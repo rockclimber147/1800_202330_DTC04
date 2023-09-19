@@ -6,17 +6,9 @@ This browser based web application to ...
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
-<<<<<<< HEAD
-* ...
-* ...
-* I'm Tatsuya, and I'm excited for the project because I like challenging new things. I'll do my best!
-=======
-
 * Hello, my name is Irene and I am excited about this project because we get to make a web application from scratch.
 * Hi! I'm Daylen Smith (rockclimber147), I'm looking forward to collaborating on this project! 
-
-* ...
->>>>>>> refs/remotes/origin/main
+* I'm Tatsuya, and I'm excited for the project because I like challenging new things. I'll do my best!
 	
 ## 3. Technologies and Resources Used
 List technologies (with version numbers), API's, icons, fonts, images, media or data sources, and other resources that were used.
