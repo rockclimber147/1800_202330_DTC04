@@ -19,21 +19,41 @@
     <!-- Other libraries go here -->
 
     <!-- Link to styles of your own -->
-    <!-- <link rel="stylesheet" href="./styles/style.css"> -->
+    <link rel="stylesheet" href="./styles/style.css">
 
 </head>
 
 <body>
 
     <!-- Bootstrap Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container-fluid d-flex justify-content-center">
+    <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-light p-4">
+            <h5 class="text-white h4">Collapsed content</h5>
+            <span class="text-muted">Toggleable via the navbar brand.</span>
+        </div>
+    </div>
+    <nav class="navbar navbar navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a href="#" class="navbar-brand">Näborly</a>
+            <div class="img-container" id="user-profile">
+                <a href="#"><img src="./images/person-icon.png" alt="user profile"></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container-fluid d-flex justify-content-center"> -->
             <!-- logo and app name -->
-            <a class="navbar-brand" href="#">
+            <!-- <a class="navbar-brand" href="#">
                 Näborly
             </a>
         </div>
-    </nav>
+    </nav> -->
 
     <!-- Bootstrap hero -->
     <div class="container col-xxl-8 px-4 py-5">
