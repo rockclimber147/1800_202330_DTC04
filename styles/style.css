@@ -40,35 +40,37 @@
 
 /*Given Colors:
 Purple #542946,
-Brown #a366554,
+Brown #a36654,
 Red #d96055
+gray #808080
+white #FFFFFF
 */
 
 .bg-info {
-    background-color: #0E9594 !important;
+    background-color: #A36654 !important;
     /* Medium shade for navbar */
 }
 
 .navbar-light .navbar-brand,
 .navbar-light .navbar-nav .nav-link {
-    color: #F5DFBB;
+    color: #808080;
     /* Light shade for brand name & nav links for contrast */
 }
 
 .btn-info {
     color: #F5DFBB;
     /* Light shade for text on info button */
-    background-color: #F2542D;
+    background-color: #d96055;
     /* Accent color for button background */
-    border-color: #127475;
+    border-color: #FFFFFF;
     /* Dark shade for button border */
 }
 
 .btn-primary {
-    color: #F5DFBB;
+    color: #FFFFFF;
     /* Light shade for text */
     font-size: 150%;
-    background-color: #F2542D;
+    background-color: #d96055;
     /* Dark shade for primary button background */
     border-color: #562C2C;
     /* Darkest shade for border */
