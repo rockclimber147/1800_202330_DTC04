@@ -1,3 +1,8 @@
+#user-profile {
+    display: flex;
+    flex-direction: column;
+}
+
 #user-profile img {
-    width: 50px;
+    width: 30pt;
 }
