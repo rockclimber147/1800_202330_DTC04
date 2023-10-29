@@ -72,6 +72,8 @@ pale yellow #F5DFBB;
 body {
     background-color: #F5DFBB;
     /* Light shade for body background */
+    padding-bottom: 120px;
+    padding-top: 120px;
 }
 
 /* buttons */
@@ -111,4 +113,9 @@ a:hover{
 
 .material-icons.md-36 {
     font-size: 36px;
+}
+
+#profile_pic{
+    width: 200px;
+    height: 200px;
 }
