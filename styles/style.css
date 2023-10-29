@@ -30,6 +30,11 @@
 }
 
 
+/* font */
+.orbitron {
+    font-family: Orbitron, sans-serif;
+}
+
 /* bootstrap color override */
 /*
 * --------------------------------------------
@@ -44,7 +49,10 @@ Brown #a36654,
 Red #d96055
 gray #808080
 white #FFFFFF
+pale yellow #F5DFBB;
 */
+
+
 
 .bg-info {
     background-color: #A36654 !important;
@@ -53,31 +61,54 @@ white #FFFFFF
 
 .navbar-light .navbar-brand,
 .navbar-light .navbar-nav .nav-link {
-    color: #808080;
+    color: #a36654;
     /* Light shade for brand name & nav links for contrast */
 }
 
-.btn-info {
-    color: #F5DFBB;
-    /* Light shade for text on info button */
-    background-color: #d96055;
-    /* Accent color for button background */
-    border-color: #FFFFFF;
-    /* Dark shade for button border */
-}
-
-.btn-primary {
-    color: #FFFFFF;
-    /* Light shade for text */
-    font-size: 150%;
-    background-color: #d96055;
-    /* Dark shade for primary button background */
-    border-color: #562C2C;
-    /* Darkest shade for border */
-    border-width: thick;
+.navbar-brand{
+    font-family: 'Orbitron', sans-serif;
 }
 
 body {
     background-color: #F5DFBB;
     /* Light shade for body background */
+}
+
+/* buttons */
+.sign_up {
+    color: #FFFFFF;
+    /* Light shade for text */
+    font-size: 150%;
+    background-color: #d96055;
+    /* Darkest shade for border */
+    border-width: thick;
+}
+
+.sign_up:hover{
+    border-color: #562C2C;
+    background-color: #d96055;
+    color: #FFFFFF;
+}
+
+.login:hover,
+.wireflow:hover {
+    border-color: #562C2C;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+a:hover{
+    color: white;
+}
+
+.material-icons.md-36 {
+    font-size: 36px;
 }

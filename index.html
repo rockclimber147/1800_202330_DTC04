@@ -17,7 +17,19 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <!-- Other libraries go here -->
+    <!-- Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Orbitron font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <!-- Pixelify font -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet"> -->
+
+
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
 
@@ -49,7 +61,7 @@
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a href="#" class="navbar-brand">Näborly</a>
+            <a href="#" class="navbar-brand"><h1>Näborly</h1></a>
             <div class="img-container" id="user-profile">
                 <a href="#"><img src="./images/person-icon.png" alt="user profile"></a>
                 <span>500pt</span>
@@ -74,12 +86,12 @@
                     alt="Bootstrap Themes" width="700" height="500" loading="lazy">
             </div>
             <div class="col-lg-6">
-                <h1 class="display-5 fw-bold lh-1 mb-3">Welcome to Näborly!</h1>
+                <h1 class="display-5 fw-bold lh-1 mb-3 orbitron">Welcome to Näborly!</h1>
                 <p class="lead">Our team DTC04 is developing a web application called Näborly to help people    who are new to the community to improve
                     their sense of belonging by facilitating community involvement.</p>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                    <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Sign Up</button>
-                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">Login</button>
+                    <button type="button" class="btn sign_up btn-lg px-4 me-md-2 orbitron">Sign Up</button>
+                    <button type="button" class="btn login btn-lg px-4 orbitron">Login</button>
                 </div>
             </div>
         </div>
@@ -88,17 +100,17 @@
 
     <!-- Link to wire flow -->
     <div class="d-flex justify-content-center">
-        <button type="button" class="btn btn-outline-secondary btn-lg px-4"><a href="#">Check out our wire
-                flow!</a></button>
+        <button type="button" class="btn wireflow btn-lg px-4 orbitron">Check out our wire
+                flow!</button>
     </div>
     <!-- /link to wire flow -->
 
     <!-- Bootstrap footer -->
-    <footer class="navbar justify-content-center bg-info fixed-bottom py-3">
-        <div class="container">
-            <span class="material-icons">home</span>
-            <span class="material-icons">receipt_long</span>
-            <span class="material-icons">search</span>
+    <footer class="navbar bg-info fixed-bottom py-3">
+        <div class="container d-flex justify-content-around">
+            <a href="#"><span class="material-icons md-36">home</span><p class="orbitron">Home</p></a>
+            <a href="#"><span class="material-icons md-36">receipt_long</span><p class="orbitron">Quest List</p></a>
+            <a href="#"><span class="material-icons md-36">search</span><p class="orbitron">Search</p></a>
         </div>
     </footer>
     <!-- Bootstrap footer -->
