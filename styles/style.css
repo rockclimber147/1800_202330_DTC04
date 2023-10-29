@@ -1,3 +1,12 @@
+#top-navbar {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#navbar-logo {
+    font-size: 30px;
+}
+
 #user-profile {
     display: flex;
     flex-direction: column;
