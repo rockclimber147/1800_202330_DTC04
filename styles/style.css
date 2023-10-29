@@ -146,3 +146,8 @@ section{
 .option_btn{
     border-radius: 30px;
 }
+
+p.orbitron{
+    margin-bottom: 3px;
+    padding-top: 3px;
+}
