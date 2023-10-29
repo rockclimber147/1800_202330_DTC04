@@ -1,3 +1,12 @@
+#top-navbar {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#navbar-logo {
+    font-size: 30px;
+}
+
 #user-profile {
     display: flex;
     flex-direction: column;
@@ -14,6 +23,10 @@
 
 #user-profile img {
     width: 30pt;
+}
+
+.hamburger-menu {
+    background-color: #F2542D;
 }
 
 .offcanvas {
@@ -26,7 +39,7 @@
 
 .list-unstyled li a:hover {
     background-color: white !important;
-    color: black !important;
+    color: #F2542D !important;
 }
 
 
