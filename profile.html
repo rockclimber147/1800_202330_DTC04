@@ -28,6 +28,9 @@
       <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet"> -->
+      <!-- Back button -->
+      <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 
       <!-- Link to styles of your own -->
@@ -36,41 +39,49 @@
 <body>
 
       <!-- Bootstrap Navbar -->
-      <div class="offcanvas offcanvas-start bg-secondary text-white" tabindex="-1" id="navbarToggleExternalContent"
-            aria-labelledby="offcanvasLabel">
-            <div class="offcanvas-header">
-                  <h5 id="offcanvasLabel">Menu</h5>
-                  <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                  <ul class="list-unstyled">
-                        <li><a href="#" class="text-white text-decoration-none mb-2 d-block">Log Out</a></li>
-                        <li><a href="#" class="text-white text-decoration-none mb-2 d-block">Help</a></li>
-                        <li><a href="#" class="text-white text-decoration-none mb-2 d-block">Preferences</a></li>
-                        <li><a href="#" class="text-white text-decoration-none mb-2 d-block">Generic Option</a></li>
-                  </ul>
-            </div>
-      </div>
       <nav class="navbar navbar navbar-light bg-light fixed-top">
             <div class="container-fluid">
-                  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                  </button>
+                  <a href="./index.html"><span class="back_arrow material-symbols-outlined">
+                        arrow_back_ios
+                  </span></a>
                   <a href="#" class="navbar-brand">
                         <h1>Näborly</h1>
                   </a>
-                  <div class="img-container" id="user-profile">
-                        <a href="#"><img src="./images/person-icon.png" alt="user profile"></a>
-                        <span>500pt</span>
-                  </div>
+                  <div></div>
             </div>
       </nav>
-      <div id="profile_pic" class="container d-flex justify-content-center">
-            <img src="images/person-icon.png" alt="user profile">
+      <div class="container">
+            <div id="profile_pic" class="container d-flex justify-content-center">
+                  <img src="images/person-icon.png" alt="user profile">
+            </div>
+                  <section id="looking_for row">
+                  <h3>I am looking for:</h3>
+                  <button class="btn btn-light option_btn col">Restaurant</button>
+                  <button class="btn btn-light option_btn col">Bar</button>
+                  <button class="btn btn-light option_btn col">Museum</button>
+                  <button class="btn btn-light option_btn col">Hike</button>
+                  <button class="btn btn-light option_btn col">Gallery</button>
+                  <form class="col-sm">
+                        <input type="text" class="form-control col-sm" placeholder="First name">
+                  </form>
+            </section>
+            <section id="about_me">
+                  <form>
+                        <div class="form-group">
+                              <label for="formGroupExampleInput">About Me:</label>
+                              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                        </div>
+                  </form>
+            </section>
+            <section id="interested_in">
+                  <h3>I am interested in:</h3>
+                  <button class="btn btn-light option_btn">Restaurant</button>
+                  <button class="btn btn-light option_btn">Bar</button>
+                  <button class="btn btn-light option_btn">Museum</button>
+                  <button class="btn btn-light option_btn">Hike</button>
+                  <button class="btn btn-light option_btn">Gallery</button>
+                  <input type="text" class="form-control" placeholder="Other">
+            </section>
       </div>
-
 </body>
 </html>
