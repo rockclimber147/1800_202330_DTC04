@@ -25,6 +25,10 @@
     width: 30pt;
 }
 
+.hamburger-menu {
+    background-color: #F2542D;
+}
+
 .offcanvas {
     width: 50%;
 }
@@ -35,7 +39,7 @@
 
 .list-unstyled li a:hover {
     background-color: white !important;
-    color: black !important;
+    color: #F2542D !important;
 }
 
 
