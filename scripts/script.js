@@ -5,6 +5,6 @@ $(document).ready(function (){
     });
     // load top navbar to page
     $.get("./reusable html/top_nav.html", function (data) {
-        $('#header').html(data);
+        $('#reusable_header').html(data);
     });
 })
