@@ -35,21 +35,15 @@
 
       <!-- Link to styles of your own -->
       <link rel="stylesheet" href="./styles/style.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+      <script src="./scripts/script.js"></script>
 </head>
 <body>
 
-      <!-- Bootstrap Navbar -->
-      <nav class="navbar navbar navbar-light bg-light fixed-top">
-            <div class="container-fluid">
-                  <a href="./index.html"><span class="back_arrow material-symbols-outlined">
-                        arrow_back_ios
-                  </span></a>
-                  <a href="#" class="navbar-brand">
-                        <h1>Näborly</h1>
-                  </a>
-                  <div></div>
-            </div>
-      </nav>
+      <!-- reusable top navbar -->
+      <div id="reusable_header"></div>
+      <!-- /reusable top navbar -->
+
       <div class="container">
             <div id="profile_pic" class="container d-flex justify-content-center">
                   <img src="images/person-icon.png" alt="user profile">

@@ -1,0 +1,15 @@
+.card-properties {
+    font-size: smaller;
+}
+
+.card-tag {
+    background-color: #d96055;
+    color: white;
+}
+
+@media screen and (min-width: 768px) {
+    .card-body {
+        font-size: 1.5rem;
+    }
+}
+
