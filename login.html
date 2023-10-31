@@ -42,71 +42,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
     <!-- Pixelify font -->
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet"> -->
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet"> -->
 
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="./scripts/script.js"></script>
+    <!-- From demo07 step 5 -->
+    <script src="./scripts/authentication.js"></script>
 
 </head>
 
 <body>
-
     <!-- reusable top navbar -->
     <div id="reusable_header"></div>
     <!-- /reusable top navbar -->
 
-    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container-fluid d-flex justify-content-center"> -->
-            <!-- logo and app name -->
-            <!-- <a class="navbar-brand" href="#">
-                Näborly
-            </a>
-        </div>
-    </nav> -->
-
-    <!-- Bootstrap hero -->
-    <div class="container col-xxl-8 px-4">
-        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-            <div class="col-10 col-sm-8 col-lg-6">
-                <img src="./images/theres-so-much-to-see.png" class="d-block mx-lg-auto img-fluid"
-                    alt="Bootstrap Themes" width="700" height="500" loading="lazy">
-            </div>
-            <div class="col-lg-6">
-                <h1 class="display-5 fw-bold lh-1 mb-3 orbitron">Welcome to Näborly!</h1>
-                <p class="lead">Our team DTC04 is developing a web application called Näborly to help people    who are new to the community to improve
-                    their sense of belonging by facilitating community involvement.</p>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                    <button type="button" class="btn sign_up btn-lg px-4 me-md-2 orbitron">Sign Up</button>
-                    <a href="login.html" class="btn login btn-lg px-4 orbitron" role="button">Log in</a>
-                </div>
-            </div>
-        </div>
+    <!-- Login Widget from Demo07 Step 4 -->
+    <div class="container">
+        <h1>Let's Login!</h1>
     </div>
-    <!-- Bootstrap hero -->
-
-    <!-- Link to wire flow -->
-    <div class="d-flex justify-content-center">
-        <button type="button" class="btn wireflow btn-lg px-4 orbitron">Check out our wire
-                flow!</button>
-    </div>
-    <!-- /link to wire flow -->
-
-    <!-- reusable footer -->
-    <div id="reusable_footer"></div>
-    <!-- /reusable footer -->
-
-
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
-
-    <!-- Link to scripts of your own -->
-    <!-- <script src="./scripts/script.js"></script> -->
-
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader">Loading...</div>
 </body>
 
 </html>
