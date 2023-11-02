@@ -1,3 +1,11 @@
+.material-icons.md-60 {
+    font-size: 60px;
+}
+
+.material-icons.md-36 {
+    font-size: 36px;
+}
+
 .card-properties {
     font-size: smaller;
 }
@@ -12,4 +20,5 @@
         font-size: 1.5rem;
     }
 }
+
 
