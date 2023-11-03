@@ -4,7 +4,7 @@
 //           |'._  ,._ l/"\
 //           |  _J<__/.v._/
 //            \( ,~._,,,,-)
-//             `-\' \`,,j|    MY NAME IS JEFF
+//             `-\' \`,,j|    JOHN SKELLINGTON AT YOUR SERVICE
 //                \_,____J
 //           .--.__)--(__.--.
 //          /  `-----..--'. j
@@ -39,7 +39,7 @@
 
 
 //---------------------------------------------------
-// This function loads the parts of your skeleton 
+// This function loads the reusable html 
 // (navbar, footer, and other things) into html doc. 
 //---------------------------------------------------
 function loadSkeleton() {
