@@ -10,7 +10,17 @@ $(document).ready(function () {
 
     // Quest tags to be randomly inserted into quest cards
     questTags = ['Restaurant', 'Hiking', 'Gallery', 'Museum', 'Park', 'Bar', 'Music', 'History', 'Concert']
-    for (i = 0; i < 5; i++) { $('#quest_card_container').append(generateRandomQuestCard()); }
+
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
+
+    function getRandomIntBetween(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+    }
+
     function generateRandomQuestCard() {
         return `<div class="card w-100 mb-2 container-fluid p-sm-3">
             <div class="row">
@@ -49,9 +59,7 @@ $(document).ready(function () {
         return tagString;
     }
 
-    function getRandomInt(max) {
-        return Math.floor(Math.random() * max);
-    }
+    for (let i = 0; i < getRandomIntBetween(4, 10); i++) { $('#quest_card_container').append(generateRandomQuestCard()); }
 })
 
 //------------------------------------------------
