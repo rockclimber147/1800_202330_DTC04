@@ -8,7 +8,7 @@ function readName(name) {
                   document.getElementById("username").innerHTML = '#' + nameDoc.data().username;   
                   document.getElementById("email").innerHTML = 'Email: ' + nameDoc.data().email; 
                   document.getElementById("age").innerHTML = 'Age: ' + nameDoc.data().age; 
-                  document.getElementById("address").innerHTML = nameDoc.data().address; 
+                  document.getElementById("address").innerHTML = 'Address: ' + nameDoc.data().address; 
                   document.getElementById("city").innerHTML = ', ' + nameDoc.data().city; 
                   document.getElementById("province").innerHTML = ', ' + nameDoc.data().province; 
                   document.getElementById("country").innerHTML = ', ' + nameDoc.data().country;
