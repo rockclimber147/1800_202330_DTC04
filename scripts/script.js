@@ -7,51 +7,6 @@ $(document).ready(function () {
     $.get("./reusable html/top_nav.html", function (data) {
         $('#reusable_header').html(data);
     });
-
-    // Quest tags to be randomly inserted into quest cards
-    questTags = ['Restaurant', 'Hiking', 'Gallery', 'Museum', 'Park', 'Bar', 'Music', 'History', 'Concert']
-    for (i = 0; i < 5; i++) { $('#quest_card_container').append(generateRandomQuestCard()); }
-    function generateRandomQuestCard() {
-        return `<div class="card w-100 mb-2 container-fluid p-sm-3">
-            <div class="row">
-                <div class="card-body col-8">
-                    <h5 class="card-title">Quest_Name</h5>
-                    <div class="row card-properties px-2">
-                        <div class="col-5 px-0 py-1">${'★'.repeat((getRandomInt(5) + 1))}</div>
-                        <div class="col-3 px-2 py-1">${'$'.repeat((getRandomInt(4) + 1))}</div>
-                        <div class="col-4 px-2 py-1">${(Math.random() * 50).toFixed(1)} mi</div>
-                    </div>
-                    <div class="row card-properties px-2">
-                        ${generateTags(getRandomInt(4) + 1)}
-                    </div>
-                </div>
-                <div class="img-container col-4 d-flex align-items-center">
-                    <img class="w-100" src="https://picsum.photos/id/${getRandomInt(255)}/100/100" alt="">
-                </div>
-            </div>
-        </div>`
-    }
-
-    function generateTags(tagCount) {
-        tagIDs = []
-        tags = 0;
-        while (tags < tagCount) {
-            randInt = getRandomInt(questTags.length)
-            if (!tagIDs.includes(randInt)) {
-                tagIDs.push(randInt);
-                tags++;
-            }
-        }
-        tagString = ""
-        for (i = 0; i < tagIDs.length; i++) {
-            tagString += `<button class="col rounded p-1 me-1 border-0 card-tag">${questTags[tagIDs[i]]}</button>`;
-        }
-        return tagString;
-    }
-
-    function getRandomInt(max) {
-        return Math.floor(Math.random() * max);
-    }
 })
 
 //------------------------------------------------
@@ -65,3 +20,42 @@ function logout() {
         // An error happened.
     });
 }
+
+//------------------------------------------------
+// Prints tag IDs and their corresponding tag names to console
+//-------------------------------------------------
+
+function log_tags() {
+    db.collection('tags').get()
+        .then(all_tags => {
+            all_tags.forEach((doc) => {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.id, " => ", doc.data().tag_name);
+            })
+        });
+}
+
+// function writeQuests() {
+//     //define a variable for the collection you want to create in Firestore to populate data
+//     var questRef = db.collection("quests");
+
+//     questRef.add({
+//         quest_name: "Let's explore a tiny Japan!",
+//         location_name: "Nitobe Memorial Garden",
+//         location: [49.26645018574508, -123.25968546090411],
+//         rate: 3,
+//         cost: 2,
+//         description: "The Nitobe Memorial Garden is a 2.5 acre (one hectare) traditional Japanese garden located at the University of British Columbia, just outside the city limits of Vancouver, British Columbia, Canada. Although it is part of the UBC Botanical Garden, Nitobe Memorial Garden is located next to UBC's Asian Centre, two kilometers from the main UBC Botanical Garden.",
+//         tag_ids: ["D4NeTY30U09lD3TemV4Y"],
+//     })
+
+//     questRef.add({
+//         quest_name: "",
+//         location_name: "",
+//         location: [,],
+//         rate: ,
+//         cost: ,
+//         description: ,
+//         tag_ids: [""],
+//     })
+// }

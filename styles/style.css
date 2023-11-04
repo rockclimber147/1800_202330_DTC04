@@ -70,6 +70,7 @@ pale yellow #F5DFBB;
     /* Medium shade for navbar */
 }
 
+/* top navbar */
 .navbar-light .navbar-brand,
 .navbar-light .navbar-nav .nav-link {
     color: #a36654;
@@ -80,6 +81,8 @@ pale yellow #F5DFBB;
     font-family: 'Orbitron', sans-serif;
 }
 
+
+/* body */
 body {
     background-color: #F5DFBB;
     /* Light shade for body background */
