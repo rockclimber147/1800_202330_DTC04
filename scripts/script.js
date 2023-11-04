@@ -20,3 +20,17 @@ function logout() {
         // An error happened.
     });
 }
+
+//------------------------------------------------
+// Prints tag IDs and their corresponding tag names to console
+//-------------------------------------------------
+
+function log_tags() {
+    db.collection('tags').get()
+    .then(all_tags => {
+        all_tags.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data().tag_name);
+    })
+    });
+}
