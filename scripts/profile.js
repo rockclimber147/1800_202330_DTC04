@@ -6,10 +6,12 @@ function readName(name) {
                   console.log("current document data: " + nameDoc.data());                          //.data() returns data object
                   document.getElementById("name").innerHTML = nameDoc.data().name;    
                   document.getElementById("username").innerHTML = '#' + nameDoc.data().username;   
+                  document.getElementById("email").innerHTML = nameDoc.data().email; 
                   document.getElementById("age").innerHTML = nameDoc.data().age; 
+                  document.getElementById("city").innerHTML = nameDoc.data().city; 
                   document.getElementById("address").innerHTML = nameDoc.data().address; 
                   document.getElementById("province").innerHTML = nameDoc.data().province; 
-                  document.getElementById("canada").innerHTML = nameDoc.data().canada; 
+                  document.getElementById("country").innerHTML = nameDoc.data().country;
                   
                   //using javascript to display the data on the right place
 
