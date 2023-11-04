@@ -39,7 +39,6 @@
       <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
       <!-- End Firebase Stuff from Demo07 -->
 
-
       <!-------------------------------------------->
       <!-- Other libraries and styles of your own -->
       <!-------------------------------------------->
@@ -76,7 +75,13 @@
             <div id="profile_pic" class="container d-flex justify-content-center">
                   <img src="images/person-icon.png" alt="user profile">
             </div>
-            <section id="looking_for row">
+            <!-- Placeholder for name -->
+            <h3 id="name" class="d-flex justify-content-center"></h3>
+            <!-- Placeholder for username -->
+            <p id="username" class="d-flex justify-content-center"></p>
+
+
+            <section id="looking_for">
                   <h3>I am looking for:</h3>
                   <button class="btn btn-light option_btn my-1">Restaurant</button>
                   <button class="btn btn-light option_btn my-1">Bar</button>
@@ -84,10 +89,20 @@
                   <button class="btn btn-light option_btn my-1">Hike</button>
                   <button class="btn btn-light option_btn my-1">Gallery</button>
                   <form class="col-sm py-2">
-                        <input type="text" class="form-control col-sm" placeholder="Other">
+                        <input type="text" class="form-control" placeholder="Other">
                   </form>
             </section>
             <section id="about_me">
+                  <!-- Placeholder for age -->
+                  <p id="age" class="d-flex justify-content-center"></p>
+                  <!-- Placeholder for address -->
+                  <p id="address" class="d-flex justify-content-center"></p>
+                  <!-- Placeholder for province -->
+                  <p id="province" class="d-flex justify-content-center"></p>
+                  <!-- Placeholder for country -->
+                  <p id="country" class="d-flex justify-content-center"></p>
+            
+
                   <form>
                         <div class="form-group">
                               <label for="formGroupExampleInput">
@@ -107,6 +122,14 @@
                   <input type="text" class="form-control my-1" placeholder="Other">
             </section>
       </div>
+
+      <!-- This script relates to firebase -->
+      <script src="./scripts/firebaseAPI_DTC04.js"></script>
+      <!-- This script loads the reusable html skeletons for the header and footer -->
+      <script src="./scripts/skeleton.js"></script>
+      <!-- This script loads the placeholders in profile -->
+      <script src="./scripts/profile.js"></script>
+      <!-- <script src="./scripts/script.js"></script> -->
 </body>
 
 </html>
