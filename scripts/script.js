@@ -20,3 +20,48 @@ function logout() {
         // An error happened.
     });
 }
+
+function writeQuests() {
+    //define a variable for the collection you want to create in Firestore to populate data
+    var questRef = db.collection("quests");
+
+    questRef.add({
+        quest_name: "",
+        location_name: "",
+        location: [,],
+        rate: ,
+        cost: ,
+        description: ,
+        tag_ids: [""],
+    })
+
+    questRef.add({
+        quest_name: "",
+        location_name: "",
+        location: [,],
+        rate: ,
+        cost: ,
+        description: ,
+        tag_ids: [""],
+    })
+
+    questRef.add({
+        quest_name: "",
+        location_name: "",
+        location: [,],
+        rate: ,
+        cost: ,
+        description: ,
+        tag_ids: [""],
+    })
+
+    questRef.add({
+        quest_name: "",
+        location_name: "",
+        location: [,],
+        rate: ,
+        cost: ,
+        description: ,
+        tag_ids: [""],
+    })
+}
