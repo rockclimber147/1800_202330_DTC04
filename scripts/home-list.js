@@ -2,7 +2,7 @@ $(document).ready(function () {
     // set current location
     let current_location = [49.28377398804422, -123.11537661105989] // to be changed in future
 
-    function calculate_distance(current, destination){
+    function calculateDistance(current, destination){
         // this function receives two arrays that represent coordinates and returns the distance in miles
 
         // calculate difference in longitude and latitude
@@ -11,7 +11,11 @@ $(document).ready(function () {
 
         // calculate distance using Pythagorean theorem and convert it to mile
         let distance = ((longitude_difference ** 2 + latitude_difference ** 2) ** 0.5 * 60).toFixed(1)
-        return distance
+        return distance;
+    }
+
+    function convertTagIdToName(tag_id) {
+        return db.collection("tags").doc(tag_id).get().tag_name;
     }
 
     function displayQuestCardsDynamically(collection) {
@@ -24,7 +28,7 @@ $(document).ready(function () {
                     var quest_stars = doc.data().rate;
                     var quest_cost = doc.data().cost;
                     var quest_location = doc.data().location;
-                    var quest_distance = calculate_distance(current_location, quest_location);
+                    var quest_distance = calculateDistance(current_location, quest_location);
                     var quest_tags = doc.data().tag_ids;
                     var image_name = doc.data().image_name;
 
