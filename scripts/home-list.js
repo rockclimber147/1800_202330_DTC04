@@ -14,46 +14,51 @@ $(document).ready(function () {
         return distance;
     }
 
-    function convertTagIdToName(tag_id) {
-        return db.collection("tags").doc(tag_id).get().tag_name;
+    async function convertTagIdToName(tag_id) {
+        console.log(tag_id)
+        return db.collection("tags").doc(tag_id).get()
+            .then(doc => {
+                return doc.data().tag_name;
+            });
     }
 
-    function displayQuestCardsDynamically(collection) {
-        let questCardTemplate = document.getElementById("questCardTemplate"); // Retrieve the HTML element with the ID "hikeCardTemplate" and store it in the cardTemplate variable.
+    async function displayQuestCardsDynamically(collection) {
+        let questCardTemplate = document.getElementById("questCardTemplate");
 
-        db.collection(collection).get()
-            .then(allQuests => {
-                allQuests.forEach(doc => {
-                    var quest_name = doc.data().quest_name;
-                    var quest_stars = doc.data().rate;
-                    var quest_cost = doc.data().cost;
-                    var quest_location = doc.data().location;
-                    var quest_distance = calculateDistance(current_location, quest_location);
-                    var quest_tags = doc.data().tag_ids;
-                    var image_name = doc.data().image_name;
+        let allQuestsSnapshot = await db.collection(collection).get();
+        for (const doc of allQuestsSnapshot.docs) {
+            var quest_name = doc.data().quest_name;
+            var quest_stars = doc.data().rate;
+            var quest_cost = doc.data().cost;
+            var quest_location = doc.data().location;
+            var quest_distance = calculateDistance(current_location, quest_location);
+            var quest_tags = doc.data().tag_ids;
+            var image_name = doc.data().image_name;
 
-                    let new_card = questCardTemplate.content.cloneNode(true);
+            let new_card = questCardTemplate.content.cloneNode(true);
 
-                    new_card.querySelector('.quest_name').innerHTML = quest_name;
-                    new_card.querySelector('.quest_stars').innerHTML = `${'★'.repeat(quest_stars)}`;
-                    new_card.querySelector('.quest_cost').innerHTML = `${'$'.repeat(quest_cost)}`;
-                    new_card.querySelector('.quest_distance').innerHTML = quest_distance + "mi";
-                    new_card.querySelector('.quest_image').innerHTML = `<img class="w-100" src="./images/${image_name}.jpg" alt="">`;
+            new_card.querySelector('.quest_name').textContent = quest_name;
+            new_card.querySelector('.quest_stars').textContent = `${'★'.repeat(quest_stars)}`;
+            new_card.querySelector('.quest_cost').textContent = `${'$'.repeat(quest_cost)}`;
+            new_card.querySelector('.quest_distance').textContent = quest_distance + "mi";
+            new_card.querySelector('.quest_image').innerHTML = `<img class="w-100" src="./images/${image_name}.jpg" alt="">`;
 
-                    let tagString = ""
-                    for (let i = 0; i < quest_tags.length; i++) {
-                        tagString += `<button class="d-inline-block rounded px-2 m-1 border-0 card_tag">${convertTagIdToName(quest_tags[i]) }</button>`;
-                    }
+            let tagString = "";
 
-                    new_card.querySelector('.quest_tags').innerHTML = tagString;
+            if (quest_tags[0] !== '') {
+                for (let tag_id of quest_tags) {
+                    let tagName = await convertTagIdToName(tag_id);
+                    tagString += `<button class="d-inline-block rounded px-2 m-1 border-0 card_tag">${tagName}</button>`;
+                }
+            }
 
-                    document.getElementById(collection + "_go_here").appendChild(new_card);
-                })
-            })
+            new_card.querySelector('.quest_tags').innerHTML = tagString;
+
+            document.getElementById(collection + "_go_here").appendChild(new_card);
+        }
     }
 
-    displayQuestCardsDynamically("quests")
-
+    displayQuestCardsDynamically("quests");
 
     // Quest tags to be randomly inserted into quest cards
     // questTags = ['Restaurant', 'Hiking', 'Gallery', 'Museum', 'Park', 'Bar', 'Music', 'History', 'Concert']
