@@ -116,12 +116,12 @@ function show_map() {
                       map.addImage('eventpin', image); // Pin Icon
 
                       // READING information from "events" collection in Firestore
-                      db.collection('hikes').get().then(allEvents => {
+                      db.collection('quests').get().then(allEvents => {
                             const features = []; // Defines an empty array for information to be added to
 
                             allEvents.forEach(doc => {
-                                  lat = doc.data().lat;
-                                  lng = doc.data().lng;
+                                  lat = doc.data().location[0];
+                                  lng = doc.data().location[1];
                                   console.log(lat, lng);
                                   coordinates = [lng, lat];
                                   console.log(coordinates);
