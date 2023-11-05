@@ -9,7 +9,7 @@ $(document).ready(function () {
     var all_quest_tags = {};
 
     var user_location = [0, 0];
-
+    $('#map').hide();
     async function init() {
         tag_db = await db.collection('tags').get()
 
@@ -25,6 +25,8 @@ $(document).ready(function () {
         });
     }
     init()
+
+    
 
     function update_quest_cards() {
         quest_collection.get()                                       // the collection called "quests"
@@ -63,6 +65,24 @@ $(document).ready(function () {
             })
     }
 })
+
+function toggle_view(){
+    console.log('switching...');
+    console.log($('#view_toggle_text').text())
+    switch($('#view_toggle_text').text()){
+        case 'MAP': {
+            $('#view_toggle_text').text('LIST');
+            $('#map').show();
+            $('#quest_cards_go_here').hide();
+            break;
+        } case 'LIST': {
+            $('#view_toggle_text').text('MAP');
+            $('#map').hide();
+            $('#quest_cards_go_here').show();
+            break;
+        }
+    }
+}
 
 function calculateDistance(current, destination) {
     // this function receives two arrays that represent coordinates and returns the distance in miles
