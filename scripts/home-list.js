@@ -1,4 +1,35 @@
 $(document).ready(function () {
+    let current_location = []
+
+    function calculate_distance(current, destination){
+        // this function receives two arrays that represent coordinates and returns the distance in miles
+
+        // calculate difference in longitude and latitude
+        let longitude_difference = current[0] - destination[0]
+        let latitude_difference = current[1] - destination[1]
+
+        // calculate distance using Pythagorean theorem and convert it to mile
+        let distance = ((longitude_difference ** 2 + latitude_difference ** 2) ** 0.5 * 60).toFixed(1)
+        return distance
+    }
+
+    function displayQuestCardsDynamically(collection) {
+        let questCardTemplate = document.getElementById("questCardTemplate"); // Retrieve the HTML element with the ID "hikeCardTemplate" and store it in the cardTemplate variable.
+
+        debugger.collection(collection).get()
+            .then(allQuests => {
+                allQuests.forEach(doc => {
+                    var quest_name = doc.data().quest_name;
+                    var quest_stars = doc.data().rate;
+                    var quest_cost = doc.data().cost;
+                    var quest_location = doc.data().location;
+                    var quest_distance = calculate_distance(current_location, quest_location);
+
+                })
+            })
+    }
+
+
     // Quest tags to be randomly inserted into quest cards
     questTags = ['Restaurant', 'Hiking', 'Gallery', 'Museum', 'Park', 'Bar', 'Music', 'History', 'Concert']
 
