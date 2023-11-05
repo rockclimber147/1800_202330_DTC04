@@ -9,7 +9,6 @@ $(document).ready(function () {
     var all_quest_tags = {};
 
     var user_location = [0, 0];
-    $('#map').hide();
     async function init() {
         tag_db = await db.collection('tags').get()
 
