@@ -37,14 +37,32 @@ function insertNameFromFirestore() {
                         var username = userDoc.data().username;
                         var email = userDoc.data().email;
                         var birthdate = userDoc.data().birthdate;
+                        var address = userDoc.data().address;
+                        var city = userDoc.data().city;
+                        var province = userDoc.data().province;
+                        var country = userDoc.data().country;
+                        
+
+                        // Need to connect to other collections
+                        var level = userDoc.data().level;
+                        var preference = userDoc.data().preference;
+                        var points_earned = userDoc.data().points_earned;
+                        var accepted_quests = userDoc.data().accepted_quests;
+                        var completed_quests = userDoc.data().completed_quests_quests;
+                        
 
                         //$("#name-goes-here").text(userName); // jQuery
                         document.getElementById("name").innerText = name;
                         document.getElementById("username").innerText = username;
                         document.getElementById("email").innerText = email;
                         document.getElementById("birthdate").innerText = birthdate;
-                        document.getElementById("username").innerText = username;
-                        document.getElementById("username").innerText = username;
+                        document.getElementById("address").innerText = address;
+                        document.getElementById("city").innerText = city;
+                        document.getElementById("province").innerText = province;
+                        document.getElementById("country").innerText = country;
+
+                        document.getElementById("preference").innerText = preference;
+                        document.getElementById("level").innerText = level;
                         
                   })
             } else {
