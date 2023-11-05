@@ -35,27 +35,51 @@ function log_tags() {
         });
 }
 
-// function writeQuests() {
-//     //define a variable for the collection you want to create in Firestore to populate data
-//     var questRef = db.collection("quests");
+function writeQuests() {
+    //define a variable for the collection you want to create in Firestore to populate data
+    var questRef = db.collection("quests");
 
-//     questRef.add({
-//         quest_name: "Let's explore a tiny Japan!",
-//         location_name: "Nitobe Memorial Garden",
-//         location: [49.26645018574508, -123.25968546090411],
-//         rate: 3,
-//         cost: 2,
-//         description: "The Nitobe Memorial Garden is a 2.5 acre (one hectare) traditional Japanese garden located at the University of British Columbia, just outside the city limits of Vancouver, British Columbia, Canada. Although it is part of the UBC Botanical Garden, Nitobe Memorial Garden is located next to UBC's Asian Centre, two kilometers from the main UBC Botanical Garden.",
-//         tag_ids: ["D4NeTY30U09lD3TemV4Y"],
-//     })
+    questRef.add({
+        quest_name: "Reveal mysteries of human beings!",
+        location_name: "Museum of Anthropology",
+        location: [49.26961348051608, -123.25948381904506],
+        rate: 5,
+        cost: 2,
+        description: "The Museum of Anthropology at the University of British Columbia (UBC) campus in Vancouver, British Columbia, Canada displays world arts and cultures, in particular works by First Nations of the Pacific Northwest. As well as being a major tourist destination, MOA is a research and teaching museum, where UBC courses in art, anthropology, archaeology, conservation, and museum studies are given. MOA houses close to 50,000 ethnographic objects, as well as 535,000 archaeological objects in its building alone.",
+        tag_ids: ["j6MrxNTQVsVDqZZqKY3A"],
+        image_name: "Museum of Anthropology",
+    })
 
-//     questRef.add({
-//         quest_name: "",
-//         location_name: "",
-//         location: [,],
-//         rate: ,
-//         cost: ,
-//         description: ,
-//         tag_ids: [""],
-//     })
-// }
+    questRef.add({
+        quest_name: "Have a coffee at the top of Vancouver!",
+        location_name: "Lupin's Cafe - Grouse Mountain",
+        location: [49.37925579153738, -123.08358387425162],
+        rate: 5,
+        cost: 1,
+        description: "Located on the main floor of the Peak Chalet, Lupins Café offers stunning decorative alpine features like high cedar beams and copper lights that emit a soft glow in the evening.",
+        tag_ids: ["D4NeTY30U09lD3TemV4Y", "YFk0Z2I5rwxqH9ShsR8Z", "ntk5nt0wadhVx4A17Weu"],
+        image_name: "Lupin's Cafe",
+    })
+
+    questRef.add({
+        quest_name: "Let's see the world's narrowest commercial building!",
+        location_name: "Sam Kee Building",
+        location: [49.28054048497626, -123.10476746176596],
+        rate: 2,
+        cost: 1,
+        description: "The Sam Kee Building at 8 West Pender Street is an internationally renowned narrow building, including a lower-level extension beneath the sidewalk, located at the traditional entry to Vancouver's historic Chinatown.",
+        tag_ids: ["j6MrxNTQVsVDqZZqKY3A"],
+        image_name: "Sam Kee Building",
+    })
+
+    questRef.add({
+        quest_name: "Twisted tower - Can you believe it?",
+        location_name: "Vancouver House",
+        location: [49.27499326902219, -123.1310302325351],
+        rate: 2,
+        cost: 1,
+        description: "Vancouver House is a neo-futurist residential skyscraper in Vancouver, British Columbia, Canada. Construction of the skyscraper began in 2016 and was expected to be finished by the end of 2019, but completion was postponed to summer of 2020. On April 15, 2021, a water pipe on the 29th floor burst and damaged 17 units as well as several elevators.",
+        tag_ids: [""],
+        image_name: "Vancouver House",
+    })
+}
