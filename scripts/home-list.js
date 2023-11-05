@@ -40,6 +40,13 @@ $(document).ready(function () {
                     new_card.querySelector('.quest_distance').innerHTML = quest_distance + "mi";
                     new_card.querySelector('.quest_image').innerHTML = `<img class="w-100" src="./images/${image_name}.jpg" alt="">`;
 
+                    let tagString = ""
+                    for (let i = 0; i < quest_tags.length; i++) {
+                        tagString += `<button class="d-inline-block rounded px-2 m-1 border-0 card_tag">${convertTagIdToName(quest_tags[i]) }</button>`;
+                    }
+
+                    new_card.querySelector('.quest_tags').innerHTML = tagString;
+
                     document.getElementById(collection + "_go_here").appendChild(new_card);
                 })
             })
