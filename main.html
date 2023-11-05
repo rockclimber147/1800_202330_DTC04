@@ -3,7 +3,7 @@
 
 <head>
     <title>My BCIT Project</title>
-    <meta name="comp1800 template" content="My 1800 App">
+    <meta name="Home" content="My 1800 App">
 
     <!------------------------>
     <!-- Required meta tags -->
@@ -46,7 +46,6 @@
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/home-list.css">
 
     <!-- Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -58,48 +57,67 @@
 
     <!-- Pixelify font -->
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet"> -->
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet"> -->
 
     <!-- Back button -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
-    <!-- Map icon -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 </head>
 
 <body>
-
     <!-- reusable top navbar -->
     <div id="reusable_header"></div>
     <!-- /reusable top navbar -->
-
-    <!-- Map icon -->
-    <a class="d-flex align-items-start " href="map_view.html"><span class="material-symbols-outlined material-icons md-36 view_icon">
-        map
-    </span></a>
-
-    <!-- Bootstrap Cards -->
-    <div id='quest_card_container' class="container"></div>
 
     <!-- reusable footer -->
     <div id="reusable_footer"></div>
     <!-- /reusable footer -->
 
+    <!------------------------------------------------------------------------------------------>
+    <!--                                  TEMPLATES                                           -->
+    <!------------------------------------------------------------------------------------------>
+
+    <!-- For Quest Cards -->
+    <template id="quest_card_template">
+        <div class="card w-100 mb-2 container-fluid p-sm-3">
+            <div class="row">
+                <div class="card_body col-8 p-2">
+                    <h5 id="quest_name" class="card-title">Quest_Name</h5>
+                    <div class="row card-properties px-2">
+                        <div id="stars" class="col-5 px-1 py-1"></div>
+                        <div id="price" class="col-3 px-2 py-1"></div>
+                        <div id="distance" class="col-4 px-2 py-1"></div>
+                    </div>
+                    <div id="quest_tags_container" class="justify-content-start card_properties"></div>
+                </div>
+                <div class="img-container col-4 d-flex align-items-center">
+                    <img class="w-100" src="https://picsum.photos/id/${getRandomIntBetween(200, 255)}/100/100" alt="">
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- For Quest Tags -->
+    <template>
+        <div>
+
+        </div>
+    </template>
+
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
+
     <!-- This script relates to firebase -->
     <script src="./scripts/firebaseAPI_DTC04.js"></script>
     <!-- This script loads the reusable html skeletons for the header and footer -->
     <script src="./scripts/skeleton.js"></script>
-    <!-- Link to scripts of your own -->
+
     <script src="./scripts/script.js"></script>
-    <script src="./scripts/home-list.js"></script>
+
 
 </body>
 
