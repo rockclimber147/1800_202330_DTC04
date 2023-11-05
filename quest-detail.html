@@ -46,6 +46,7 @@
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/quest-detail.css">
 
     <!-- Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -77,7 +78,27 @@
     <!-- /reusable top navbar -->
 
     <!-- Bootstrap Details -->
-    <div id='details_go_here' class="container"></div>
+    <div id='details_go_here' class="container">
+        <div class="row px-3 border-bottom border-dark">
+            <div class="col-7">
+                <h1>Quest_name</h1>
+                <p>★★★★★</p>
+            </div>
+            <div class="col-5 align-items-center">
+                <button class="d-block border-0 quest_accept_button py-2">Accept</button>
+            </div>
+        </div>
+        <div class="w-100 px-3 pt-4">
+            <img class="w-100" src="./images/Museum of Anthropology.jpg" alt="">
+        </div>
+        <div class="p-3">
+            <div class="row justify-content-between mb-2">
+                <h1 class="col">Quest_place</h1>
+                <p class="col text-end">$$$</p>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur, iste. Necessitatibus, minima. Fugiat nobis, architecto, maiores provident quaerat autem veritatis enim inventore odit minus blanditiis, ea et dignissimos dicta iusto.</p>
+        </div>
+    </div>
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
@@ -86,7 +107,7 @@
     <!-- Link to scripts of your own -->
     <script src="./scripts/firebaseAPI_DTC04.js"></script>
     <script src="./scripts/script.js"></script>
-    <script src="./scripts/home-list.js"></script>
+    <script src="./scripts/quest-detail.js"></script>
 
 </body>
 
