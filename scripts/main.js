@@ -58,25 +58,10 @@ $(document).ready(function () {
                             new_quest_tag.appendTo(new_quest_card.find('.quest_tags_container'));
                         }
                     }
-
-
-                    //Optional: give unique ids to all elements for future use
-                    // newcard.querySelector('.card-title').setAttribute("id", "ctitle" + i);
-                    // newcard.querySelector('.card-text').setAttribute("id", "ctext" + i);
-                    // newcard.querySelector('.card-image').setAttribute("id", "cimage" + i);
-
-                    //attach to gallery, Example: "hikes-go-here"
-                    // document.getElementById(collection + "-go-here").appendChild(newcard);
-
-                    //i++;   //Optional: iterate variable to serve as unique ID
-
                     new_quest_card.appendTo('#quest_cards_go_here')
                 })
             })
     }
-
-
-
 })
 
 function calculateDistance(current, destination) {
@@ -126,9 +111,9 @@ function show_map() {
                                   coordinates = [lng, lat];
                                   console.log(coordinates);
                                   // Coordinates
-                                  event_name = doc.data().name; // Event Name
-                                  preview = doc.data().details; // Text Preview
-                                  // img = doc.data().posterurl; // Image
+                                  event_name = doc.data().quest_name; // Event Name
+                                  preview = doc.data().description; // Text Preview
+                                  img = doc.data().posterurl; // Image
                                   // url = doc.data().link; // URL
 
                                   // Pushes information into the features array
