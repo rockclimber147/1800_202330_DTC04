@@ -3,3 +3,4 @@ We will use lower_snake_case for all original work to differentiate it from copi
 
 ## We will use templates or reusable html files to add elements. Minimize styling in JS strings.
 
+## Use jQuery when possible

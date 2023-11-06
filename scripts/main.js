@@ -39,7 +39,7 @@ $(document).ready(function () {
                     var quest_location = doc.data().location;
                     console.log('user_location from quest cards', user_location)
                     var quest_distance = calculateDistance(user_location, quest_location);
-                    var quest_tag_id_list = doc.data().tag_ids          // get the list of tag ids 
+                    var quest_tag_id_list = doc.data().tag_ids       // get the list of tag ids 
 
                     // Clone the contents of the quest card template element (not the parent template element)
                     let new_quest_card = $(quest_card_node).children().clone();
