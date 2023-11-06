@@ -15,36 +15,40 @@ $(document).ready(function () {
     }
 
     async function convertTagIdToName(tag_id) {
-        console.log(tag_id)
+        // this function receives tag_id and convert it to the name of the tag
         return db.collection("tags").doc(tag_id).get()
             .then(doc => {
                 return doc.data().tag_name;
             });
     }
 
-    async function displayQuestCardsDynamically(collection) {
-        let questCardTemplate = document.getElementById("questCardTemplate");
 
-        let allQuestsSnapshot = await db.collection(collection).get();
-        for (const doc of allQuestsSnapshot.docs) {
-            var quest_name = doc.data().quest_name;
-            var quest_stars = doc.data().rate;
-            var quest_cost = doc.data().cost;
-            var quest_location = doc.data().location;
-            var quest_distance = calculateDistance(current_location, quest_location);
-            var quest_tags = doc.data().tag_ids;
-            var image_name = doc.data().image_name;
+    async function displayQuestCardsDynamically(collection) {
+        // this function get the data of quests and pass that to home-list.html
+        // the argument should be "quests"
+        let questCardTemplate = document.getElementById("questCardTemplate");  // Retrieve the HTML element with the ID "questCardTemplate" and store it in the questCardTemplate variable. 
+
+        let allQuestsSnapshot = await db.collection(collection).get();  //the collection called "quests"
+        for (const doc of allQuestsSnapshot.docs) {  //iterate thru each doc
+            var quest_name = doc.data().quest_name;  // get value of the "quest_name" key
+            var quest_stars = doc.data().rate;  // get value of the "rate" key
+            var quest_cost = doc.data().cost;  // get value of the "cost" key
+            var quest_location = doc.data().location;  // get value of the "location" key as a list including longitude and latitude
+            var quest_distance = calculateDistance(current_location, quest_location);  // calculate the distance from current location
+            var quest_tags = doc.data().tag_ids;  // get value of the "tag_ids" key as a list including tag ids
+            var image_name = doc.data().image_name;  // get value of the "image_name" that leads to the image in images folder
 
             let new_card = questCardTemplate.content.cloneNode(true);
 
+            // pass necessary data to the html
             new_card.querySelector('.quest_name').textContent = quest_name;
             new_card.querySelector('.quest_stars').textContent = `${'★'.repeat(quest_stars)}`;
             new_card.querySelector('.quest_cost').textContent = `${'$'.repeat(quest_cost)}`;
             new_card.querySelector('.quest_distance').textContent = quest_distance + "mi";
             new_card.querySelector('.quest_image').innerHTML = `<img class="w-100" src="./images/${image_name}.jpg" alt="">`;
 
+            // convert tag ids to tag names
             let tagString = "";
-
             if (quest_tags[0] !== '') {
                 for (let tag_id of quest_tags) {
                     let tagName = await convertTagIdToName(tag_id);
@@ -52,8 +56,10 @@ $(document).ready(function () {
                 }
             }
 
+            // pass tag names to the html
             new_card.querySelector('.quest_tags').innerHTML = tagString;
 
+            // identify the place to insert html
             document.getElementById(collection + "_go_here").appendChild(new_card);
         }
     }
