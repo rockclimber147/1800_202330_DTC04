@@ -37,7 +37,7 @@ $(document).ready(function () {
     //     }
     //     tagString = ""
     //     for (i = 0; i < tagIDs.length; i++) {
-    //         tagString += `<button class="d-inline-block rounded px-2 m-1 border-0 card_tag">${questTags[tagIDs[i]]}</button>`;
+            // tagString += `<button class="d-inline-block rounded px-2 m-1 border-0 card_tag">${questTags[tagIDs[i]]}</button>`;
     //     }
     //     return tagString;
     // }
