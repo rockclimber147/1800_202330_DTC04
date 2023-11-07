@@ -8,6 +8,33 @@ function log_tags() {
         });
 }
 
+async function write_tag_popularity(){
+    tag_db = await db.collection('tags').get()
+    tag_popularity = {}
+    tag_id_list = []
+    tag_db.forEach(tag_doc => {
+        console.log(tag_doc.id)
+        tag_id_list.push(tag_doc.id)
+        tag_popularity[tag_doc.id] = 0; // make a dictionary associating quest tags with the amount of times they're used
+    })
+
+    db.collection('quests').get().then(quests => {
+        quests.forEach(doc => {
+            quest_tag_id_list = doc.data().tag_ids;
+
+            if (quest_tag_id_list[0] != ""){
+                for (let i = 0; i < quest_tag_id_list.length; i++){
+                    tag_popularity[quest_tag_id_list[i]]++          // increment amount of quests that use this ID
+                }
+            }
+        })
+        console.log(tag_popularity)
+    }).then(() =>{
+        for (let i = 0; i < tag_id_list.length; i++)
+        db.collection('tags').doc(tag_id_list[i]).update({'popularity': tag_popularity[tag_id_list[i]]})
+    })
+}
+
 function writeQuests() {
     //define a variable for the collection you want to create in Firestore to populate data
     var questRef = db.collection("quests");
