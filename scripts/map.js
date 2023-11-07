@@ -114,7 +114,7 @@ function showMap() {
 
                         // Adds user's current location as a source to the map
                         navigator.geolocation.getCurrentPosition(position => {
-                              const userLocation = [position.coords.longitude, position.coords.latitude];
+                              userLocation = [position.coords.longitude, position.coords.latitude];
                               console.log(userLocation);
                               if (userLocation) {
                                     map.addSource('userLocation', {
