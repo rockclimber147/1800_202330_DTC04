@@ -25,50 +25,96 @@
 // }
 // readName("irene_cheung");        //calling the function
 
-function insertNameFromFirestore() {
-      // Check if the user is logged in:
+// function insertNameFromFirestore() {
+//       // Check if the user is logged in:
+//       firebase.auth().onAuthStateChanged(user => {
+//             if (user) {
+//                   console.log(user.uid); // Let's know who the logged-in user is by logging their UID
+//                   currentUser = db.collection("users").doc(user.uid); // Go to the Firestore document of the user
+//                   currentUser.get().then(userDoc => {
+//                         // Get the user name
+//                         var name = userDoc.data().name;
+//                         var username = userDoc.data().username;
+//                         var email = userDoc.data().email;
+//                         var birthdate = userDoc.data().birthdate;
+//                         var address = userDoc.data().address;
+//                         var city = userDoc.data().city;
+//                         var province = userDoc.data().province;
+//                         var country = userDoc.data().country;
+                        
+
+//                         // Need to connect to other collections
+//                         var level = userDoc.data().level;
+//                         var preference = userDoc.data().preference;
+//                         var points_earned = userDoc.data().points_earned;
+//                         var accepted_quests = userDoc.data().accepted_quests;
+//                         var completed_quests = userDoc.data().completed_quests_quests;
+                        
+
+//                         //$("#name-goes-here").text(userName); // jQuery
+//                         document.getElementById("name").innerText = name;
+//                         document.getElementById("username").innerText = username;
+//                         document.getElementById("email").innerText = email;
+//                         document.getElementById("birthdate").innerText = birthdate;
+//                         document.getElementById("address").innerText = address;
+//                         document.getElementById("city").innerText = city;
+//                         document.getElementById("province").innerText = province;
+//                         document.getElementById("country").innerText = country;
+
+//                         document.getElementById("preference").innerText = preference;
+//                         document.getElementById("level").innerText = level;
+                        
+//                   })
+//             } else {
+//                   console.log("No user is logged in."); // Log a message when no user is logged in
+//             }
+//       })
+// }
+
+// insertNameFromFirestore();
+
+// Demo 10 Step 1.2 - Reading the user data from Firestore and populating the form
+var currentUser;               //points to the document of the user who is logged in
+function populateUserInfo() {
       firebase.auth().onAuthStateChanged(user => {
+            // Check if user is signed in:
             if (user) {
-                  console.log(user.uid); // Let's know who the logged-in user is by logging their UID
-                  currentUser = db.collection("users").doc(user.uid); // Go to the Firestore document of the user
-                  currentUser.get().then(userDoc => {
-                        // Get the user name
-                        var name = userDoc.data().name;
-                        var username = userDoc.data().username;
-                        var email = userDoc.data().email;
-                        var birthdate = userDoc.data().birthdate;
-                        var address = userDoc.data().address;
-                        var city = userDoc.data().city;
-                        var province = userDoc.data().province;
-                        var country = userDoc.data().country;
-                        
 
-                        // Need to connect to other collections
-                        var level = userDoc.data().level;
-                        var preference = userDoc.data().preference;
-                        var points_earned = userDoc.data().points_earned;
-                        var accepted_quests = userDoc.data().accepted_quests;
-                        var completed_quests = userDoc.data().completed_quests_quests;
-                        
+                  //go to the correct user document by referencing to the user uid
+                  currentUser = db.collection("users").doc(user.uid)
+                  //get the document for current user.
+                  currentUser.get()
+                        .then(userDoc => {
+                              //get the data fields of the user
+                              var userName = userDoc.data().name;
+                              var userSchool = userDoc.data().school;
+                              var userCity = userDoc.data().city;
 
-                        //$("#name-goes-here").text(userName); // jQuery
-                        document.getElementById("name").innerText = name;
-                        document.getElementById("username").innerText = username;
-                        document.getElementById("email").innerText = email;
-                        document.getElementById("birthdate").innerText = birthdate;
-                        document.getElementById("address").innerText = address;
-                        document.getElementById("city").innerText = city;
-                        document.getElementById("province").innerText = province;
-                        document.getElementById("country").innerText = country;
-
-                        document.getElementById("preference").innerText = preference;
-                        document.getElementById("level").innerText = level;
-                        
-                  })
+                              //if the data fields are not empty, then write them in to the form.
+                              if (userName != null) {
+                                    document.getElementById("nameInput").value = userName;
+                              }
+                              if (userSchool != null) {
+                                    document.getElementById("schoolInput").value = userSchool;
+                              }
+                              if (userCity != null) {
+                                    document.getElementById("cityInput").value = userCity;
+                              }
+                        })
             } else {
-                  console.log("No user is logged in."); // Log a message when no user is logged in
+                  // No user is signed in.
+                  console.log("No user is signed in");
             }
-      })
+      });
 }
 
-insertNameFromFirestore();
+//call the function to run it 
+populateUserInfo();
+
+// Demo 10 Step 1.3 Activate the edit button
+function editUserInfo() {
+      //Enable the form fields
+      document.getElementById('personalInfoFields').disabled = false;
+}
+
+// Demo 10 Step 1.4 Activate the save button
