@@ -21,13 +21,13 @@ var uiConfig = {
                 db.collection("users").doc(user.uid).set({         //write to firestore. We are using the UID for the ID in users collection
                     name: user.displayName,                    //"users" collection
                     email: user.email,                         //with authenticated user's ID (user.uid)
-                    username: "#username",
-                    birthdate: "Jan 1, 2023",
-                    address: "123 Smithe Street",
-                    city: "Vancouver",
-                    province: "British Columbia",
-                    country: "Canada",                      //optional default profile info
-                    preferences: "tags",                
+                    // username: "#username",
+                    // birthdate: "Jan 1, 2023",
+                    // address: "123 Smithe Street",
+                    // city: "Vancouver",
+                    // province: "British Columbia",
+                    // country: "Canada",                      //optional default profile info
+                    // preferences: "tags",                
                     //optional default profile info
                 }).then(function () {
                     console.log("New user added to firestore");
@@ -40,6 +40,7 @@ var uiConfig = {
             }
             return false;
         },
+        
         uiShown: function () {
             // The widget is rendered.
             // Hide the loader.
