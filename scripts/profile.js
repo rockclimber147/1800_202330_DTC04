@@ -131,6 +131,9 @@ function saveUserInfo(){
             // there is no city in the firestore but that is okay because update will create the key
             city: userCity
       })
+      .then(() => {
+            console.log("Document successfully updated!");
+      })
       
       document.getElementById("personalInfoFields").disabled = true;
 }
