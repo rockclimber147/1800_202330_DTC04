@@ -13,13 +13,13 @@ function populateUserInfo() {
                         .then(userDoc => {
                               //get the data fields of the user
                               var name = userDoc.data().name;
-                              var username = userDoc.data().username;
-                              var email = userDoc.data().email;
-                              var birthdate = userDoc.data().birthdate;
-                              var address = userDoc.data().address;
-                              var city = userDoc.data().city;
-                              var province = userDoc.data().province;
-                              var country = userDoc.data().country;
+                              var username = userDoc.data().userName;
+                              var email = userDoc.data().userEmail;
+                              var birthdate = userDoc.data().userBirthDate;
+                              var address = userDoc.data().userAddress;
+                              var city = userDoc.data().userCity;
+                              var province = userDoc.data().userProvince;
+                              var country = userDoc.data().userCountry;
 
                               // var level = userDoc.data().level;
                               // var preference = userDoc.data().preference;
@@ -28,29 +28,34 @@ function populateUserInfo() {
                               // var completed_quests = userDoc.data().completed_quests_quests;
 
                               //if the data fields are not empty, then write them in to the form.
-                              if (userName != null) {
+
+
+
+                              if (name != null) {
                                     document.getElementById("name").value = name;
                               }
-                              if (userSchool != null) {
-                                    document.getElementById().value = userSchool;
-                              }
-                              if (userCity != null) {
-                                    document.getElementById().value = userCity;
-                              }
-
                               if (userName != null) {
-                                    document.getElementById("nameInput").value = userName;
+                                    document.getElementById("userName").value = username;
                               }
-                              if (userSchool != null) {
-                                    document.getElementById("schoolInput").value = userSchool;
+                              if (userEmail != null) {
+                                    document.getElementById("userEmail").value = email;
+                              }
+
+                              if (userBirthDate != null) {
+                                    document.getElementById("userBirthDate").value = birthdate;
+                              }
+                              if (userAddress != null) {
+                                    document.getElementById("userAddress").value = address;
                               }
                               if (userCity != null) {
-                                    document.getElementById("cityInput").value = userCity;
+                                    document.getElementById("userCity").value = city;
                               }
-                              
-                              
-
-
+                              if (userProvince != null) {
+                                    document.getElementById("userProvince").value = province;
+                              }
+                              if (userCountry != null) {
+                                    document.getElementById("userCountry").value = country;
+                              }
 
                         })
             } else {
@@ -72,16 +77,26 @@ function editUserInfo() {
 // Demo 10 Step 1.4 Activate the save button
 function saveUserInfo(){
       // get information entered by user
-      userName = document.getElementById("nameInput").value
-      userSchool = document.getElementById("schoolInput").value
-      userCity = document.getElementById("cityInput").value
+      name.document.getElementById("name").value
+      username.document.getElementById("userName").value
+      email.document.getElementById("userEmail").value
+      birthdate.document.getElementById("userBirthDate").value
+      address.document.getElementById("userAddress").value
+      city.document.getElementById("userCity").value
+      province.document.getElementById("userProvince").value
+      country.document.getElementById("userCountry").value
 
-
+      // Update will add fields as needed
       currentUser.update({
-            name: userName,
-            school: userSchool,
-            // there is no city in the firestore but that is okay because update will create the key
-            city: userCity
+            name: name,
+            userName: username,
+            userEmail: email,
+            userBirthDate: birthdate,
+            userAddress: address,
+            userCity: city,
+            userProvince: province,
+            userCountry: country,
+
       })
       .then(() => {
             console.log("Document successfully updated!");
