@@ -118,3 +118,19 @@ function editUserInfo() {
 }
 
 // Demo 10 Step 1.4 Activate the save button
+function saveUserInfo(){
+      // get information entered by user
+      userName = document.getElementById("nameInput").value
+      userSchool = document.getElementById("schoolInput").value
+      userCity = document.getElementById("cityInput").value
+
+
+      currentUser.update({
+            name: userName,
+            school: userSchool,
+            // there is no city in the firestore but that is okay because update will create the key
+            city: userCity
+      })
+      
+      document.getElementById("personalInfoFields").disabled = true;
+}
