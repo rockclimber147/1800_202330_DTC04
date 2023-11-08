@@ -21,17 +21,11 @@ var uiConfig = {
                 db.collection("users").doc(user.uid).set({         //write to firestore. We are using the UID for the ID in users collection
                     name: user.displayName,                    //"users" collection
                     email: user.email,                         //with authenticated user's ID (user.uid)
-                    // username: "#username",
-                    // birthdate: "Jan 1, 2023",
-                    // address: "123 Smithe Street",
-                    // city: "Vancouver",
-                    // province: "British Columbia",
-                    // country: "Canada",                      //optional default profile info
-                    // preferences: "tags",                
-                    //optional default profile info
+                    country: "Canada",                      //optional default profile info      
+                    school: "BCIT"                          //optional default profile info
                 }).then(function () {
                     console.log("New user added to firestore");
-                    window.location.assign("home-list.html");       //re-direct to main.html after signup
+                    window.location.assign("main.html");       //re-direct to main.html after signup
                 }).catch(function (error) {
                     console.log("Error adding new user: " + error);
                 });
