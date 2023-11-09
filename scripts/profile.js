@@ -77,14 +77,15 @@ function editUserInfo() {
 // Demo 10 Step 1.4 Activate the save button
 function saveUserInfo(){
       // get information entered by user
-      name.document.getElementById("name").value
-      username.document.getElementById("userName").value
-      email.document.getElementById("userEmail").value
-      birthdate.document.getElementById("userBirthDate").value
-      address.document.getElementById("userAddress").value
-      city.document.getElementById("userCity").value
-      province.document.getElementById("userProvince").value
-      country.document.getElementById("userCountry").value
+      name = document.getElementById("name").value
+      username = document.getElementById("userName").value
+      // Email not working
+      email = document.getElementById("userEmail").value
+      birthdate = document.getElementById("userBirthDate").value
+      address = document.getElementById("userAddress").value
+      city = document.getElementById("userCity").value
+      province = document.getElementById("userProvince").value
+      country = document.getElementById("userCountry").value
 
       // Update will add fields as needed
       currentUser.update({
