@@ -18,6 +18,7 @@ function display_quest_info() {
             $(`.quest_place`).text(quest_place);
             $('.quest_price').text('$'.repeat(quest_price));
             $(`.quest_description`).text(quest_description);
+            $(`.quest_complete_button`).attr('onclick', `location.href='./quest-completion.html?quest_id=${ID}'`);
         })
 }
 

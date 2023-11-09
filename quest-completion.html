@@ -57,59 +57,74 @@
 
     <!-- Pixelify font -->
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet"> -->
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet"> -->
 
     <!-- Back button -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
-    <!-- Map icon -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 </head>
 
 <body>
-
     <!-- reusable top navbar -->
     <div id="reusable_header"></div>
     <!-- /reusable top navbar -->
 
-    <!-- Bootstrap Details -->
-    <div id='details_go_here' class="container">
-        <div class="row px-3 border-bottom border-dark">
-            <div class="col-8 p-0">
-                <h1 class="quest_name">Quest_name</h1>
-                <p class="quest_rating">★★★★★</p>
+    <!-- stuff -->
+    <h1 class="text-center quest_completed">Quest Completed!</h1>
+    <div class="img-container text-center">
+        <img class="w-50" src="./images/treasure-box.png" alt="">
+    </div>
+    <div class="quest_result px-3">
+        <div class="row px-2">
+            <div class="col-5">
+                <h4>Quest Name</h4>
             </div>
-            <div class="col-4 p-0 align-items-center">
-                <button class="d-block border-0 quest_accept_button py-2">Accept</button>
-                <button class="d-block border-0 quest_complete_button py-2 my-1 d-none">Complete</button>
-                <button class="d-block border-0 quest_drop_button py-2 my-1 d-none">Drop</button>
+            <div class="col-7 text-end">
+                <p class="quest_name">Quest name</p>
             </div>
         </div>
-        <div class="w-100 px-3 pt-4">
-            <img class="quest_image w-100" src="./images/Museum of Anthropology.jpg" alt="">
-        </div>
-        <div class="p-3">
-            <div class="row justify-content-between mb-2">
-                <h1 class="quest_place col-9">Quest_place</h1>
-                <p class="quest_price col-3 text-end">$$$</p>
+        <div class="row px-2">
+            <div class="col-8">
+                <h4>Clear Time</h3>
             </div>
-            <p class="quest_description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur, iste. Necessitatibus, minima. Fugiat nobis, architecto, maiores provident quaerat autem veritatis enim inventore odit minus blanditiis, ea et dignissimos dicta iusto.</p>
+            <div class="col-4 text-end">
+                <h4>2:23:54</h3>
+            </div>
         </div>
+        <div class="row px-2 acquired_point">
+            <div class="col-8">
+                <h4>Acquired Point</h3>
+            </div>
+            <div class="col-4 text-end">
+                <h4 class="quest_point">point</h3>
+            </div>
+        </div>
+        <div class="row px-2">
+            <div class="col-8">
+                <h4>Total Point</h3>
+            </div>
+            <div class="col-4 text-end">
+                <h4 class="quest_point">point</h3>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <button class="quest_done_button w-25 py-2 my-3 d-block border-0 mx-auto" onclick="location.href='./main.html'">Done</button>
     </div>
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
 
-    <!-- Link to scripts of your own -->
+    <!-- This script relates to firebase -->
     <script src="./scripts/firebaseAPI_DTC04.js"></script>
-    <script src="./scripts/script.js"></script>
+    <!-- This script loads the reusable html skeletons for the header and footer -->
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/quest-detail.js"></script>
+    <script src="./scripts/helpers.js"></script>
+    <script src="./scripts/quest-completion.js"></script>
+
 
 </body>
 
