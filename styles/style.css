@@ -157,3 +157,25 @@ p.orbitron{
 .view_icon{
     padding: 15px;
 }
+
+/* main > list view */
+.card_container {
+    width: 94% !important;
+    margin: auto;
+}
+
+.card_properties {
+    font-size: smaller;
+}
+
+.card_tag {
+    background-color: #d96055;
+    color: white;
+}
+
+@media screen and (min-width: 768px) {
+    .card_body {
+        font-size: 1.5rem;
+    }
+}
+
