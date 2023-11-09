@@ -193,3 +193,11 @@ p.orbitron{
         font-size: 1.5rem;
     }
 }
+
+/* quest-detail.html */
+.quest_accept_button {
+    width: 100%;
+    background-color: #d96055;
+    color: white;
+    border-radius: 20px;
+}
