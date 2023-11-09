@@ -21,6 +21,20 @@ function display_quest_info() {
         })
 }
 
+function switch_buttons() {
+    $('.quest_accept_button').click(function() {
+        $(this).addClass('d-none')
+        $('.quest_complete_button, .quest_drop_button').removeClass('d-none');
+    });
+
+    $('.quest_drop_button').click(function() {
+        $(this).addClass('d-none');
+        $('.quest_complete_button').addClass('d-none');
+        $('.quest_accept_button').removeClass('d-none');
+    })
+}
+
 $(document).ready(function() {
     display_quest_info();
+    switch_buttons();
 })

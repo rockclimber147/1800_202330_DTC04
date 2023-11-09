@@ -190,9 +190,16 @@ p.orbitron{
 }
 
 /* quest-detail.html */
-.quest_accept_button {
+.quest_accept_button, .quest_complete_button, .quest_drop_button {
     width: 100%;
-    background-color: #d96055;
     color: white;
     border-radius: 20px;
+}
+
+.quest_accept_button, .quest_complete_button {
+    background-color: #d96055;
+}
+
+.quest_drop_button {
+    background-color: gray;
 }
