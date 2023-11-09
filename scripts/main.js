@@ -51,7 +51,7 @@ $(document).ready(function () {
                     new_quest_card.find('.quest_price').text('$'.repeat(quest_price));
                     new_quest_card.find('.quest_description').text(quest_description);
                     new_quest_card.find('.quest_distance').text(quest_distance + 'km');
-                    new_quest_card.find('.quest_image').attr('src', './images/' + image_name + '.jpg') // Find image and put in new quest card
+                      new_quest_card.find('.quest_image').attr('src', `./images/${image_name}.jpg`) // Find image and put in new quest card
 
                     if (quest_tag_id_list[0] != "") {
                         for (let i = 0; i < quest_tag_id_list.length; i++) {
