@@ -24,6 +24,7 @@ $(document).ready(function () {
         });
     }
     init()
+    $('#quest_cards_go_here').hide();
 
     
 
