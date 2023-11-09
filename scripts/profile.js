@@ -1,28 +1,51 @@
 // Demo 7 Step 7.4 - Get name from authentication
-function getNameFromAuth() {
+// function getNameFromAuth() {
+//       firebase.auth().onAuthStateChanged(user => {
+//             // Check if a user is signed in:
+//             if (user) {
+//                   // Do something for the currently logged-in user here: 
+//                   console.log(user.uid); //print the uid in the browser console
+//                   console.log(user.displayName);  //print the user name in the browser console
+//                   userName = user.displayName;
+
+//                   //method #1:  insert with JS
+//                   document.getElementById("name-goes-here").innerText = userName;    
+
+//                   //method #2:  insert using jquery
+//                   //$("#name-goes-here").text(userName); //using jquery
+
+//                   //method #3:  insert using querySelector
+//                   //document.querySelector("#name-goes-here").innerText = userName
+
+//             } else {
+//                   // No user is signed in.
+//             }
+//       });
+// }
+// getNameFromAuth(); //run the function
+
+// Demo 9 Step 3.3 - Display name from firestore
+function insertNameFromFirestore() {
+      // Check if the user is logged in:
       firebase.auth().onAuthStateChanged(user => {
-            // Check if a user is signed in:
             if (user) {
-                  // Do something for the currently logged-in user here: 
-                  console.log(user.uid); //print the uid in the browser console
-                  console.log(user.displayName);  //print the user name in the browser console
-                  userName = user.displayName;
-
-                  //method #1:  insert with JS
-                  document.getElementById("name-goes-here").innerText = userName;    
-
-                  //method #2:  insert using jquery
-                  //$("#name-goes-here").text(userName); //using jquery
-
-                  //method #3:  insert using querySelector
-                  //document.querySelector("#name-goes-here").innerText = userName
-
+                  console.log(user.uid); // Let's know who the logged-in user is by logging their UID
+                  currentUser = db.collection("users").doc(user.uid); // Go to the Firestore document of the user
+                  currentUser.get().then(userDoc => {
+                        // Get the user name
+                        var userName = userDoc.data().name;
+                        console.log(userName);
+                        //$("#name-goes-here").text(userName); // jQuery
+                        document.getElementById("name-goes-here").innerText = userName;
+                  })
             } else {
-                  // No user is signed in.
+                  console.log("No user is logged in."); // Log a message when no user is logged in
             }
-      });
+      })
 }
-getNameFromAuth(); //run the function
+
+insertNameFromFirestore();
+
 // Demo 10 Step 1.2 - Reading the user data from Firestore and populating the form
 var currentUser;               //points to the document of the user who is logged in
 function populateUserInfo() {
@@ -37,13 +60,14 @@ function populateUserInfo() {
                         .then(userDoc => {
                               //get the data fields of the user
                               var name = userDoc.data().name;
-                              var username = userDoc.data().userName;
-                              var email = userDoc.data().userEmail;
+                              // var username = userDoc.data().userName;
+                              // var email = userDoc.data().userEmail;
                               var birthdate = userDoc.data().userBirthDate;
                               var address = userDoc.data().userAddress;
                               var city = userDoc.data().userCity;
                               var province = userDoc.data().userProvince;
                               var country = userDoc.data().userCountry;
+                              var bio = userDoc.data().userBio;
 
                               // var level = userDoc.data().level;
                               // var preference = userDoc.data().preference;
@@ -58,12 +82,12 @@ function populateUserInfo() {
                               if (name != null) {
                                     document.getElementById("name").value = name;
                               }
-                              if (userName != null) {
-                                    document.getElementById("userName").value = username;
-                              }
-                              if (userEmail != null) {
-                                    document.getElementById("userEmail").value = email;
-                              }
+                              // if (userName != null) {
+                              //       document.getElementById("userName").value = username;
+                              // }
+                              // if (userEmail != null) {
+                              //       document.getElementById("userEmail").value = email;
+                              // }
 
                               if (userBirthDate != null) {
                                     document.getElementById("userBirthDate").value = birthdate;
@@ -79,6 +103,9 @@ function populateUserInfo() {
                               }
                               if (userCountry != null) {
                                     document.getElementById("userCountry").value = country;
+                              }
+                              if (userBio != null) {
+                                    document.getElementById("userBio").value = country;
                               }
 
                         })
@@ -102,12 +129,13 @@ function editUserInfo() {
 function saveUserInfo(){
       // get information entered by user
       name = document.getElementById("name").value
-      username = document.getElementById("userName").value
+      // username = document.getElementById("userName").value
       birthdate = document.getElementById("userBirthDate").value
       address = document.getElementById("userAddress").value
       city = document.getElementById("userCity").value
       province = document.getElementById("userProvince").value
       country = document.getElementById("userCountry").value
+      bio = document.getElementById("userBio").value
 
       // Update will add fields as needed
       currentUser.update({
@@ -118,6 +146,7 @@ function saveUserInfo(){
             userCity: city,
             userProvince: province,
             userCountry: country,
+            userBio: bio
 
       })
       .then(() => {
@@ -126,3 +155,5 @@ function saveUserInfo(){
       
       document.getElementById("personalInfoFields").disabled = true;
 }
+
+
