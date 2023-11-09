@@ -158,10 +158,11 @@ p.orbitron{
     padding: 15px;
 }
 
-/* main > list view */
+/* main.html > quest_card_template */
 .card_container {
     width: 94% !important;
     margin: auto;
+    position: relative;
 }
 
 .card_properties {
@@ -171,6 +172,15 @@ p.orbitron{
 .card_tag {
     background-color: #d96055;
     color: white;
+}
+
+.quest_detail_link {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 @media screen and (min-width: 768px) {
