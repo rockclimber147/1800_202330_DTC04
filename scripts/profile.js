@@ -1,4 +1,28 @@
+// Demo 7 Step 7.4 - Get name from authentication
+function getNameFromAuth() {
+      firebase.auth().onAuthStateChanged(user => {
+            // Check if a user is signed in:
+            if (user) {
+                  // Do something for the currently logged-in user here: 
+                  console.log(user.uid); //print the uid in the browser console
+                  console.log(user.displayName);  //print the user name in the browser console
+                  userName = user.displayName;
 
+                  //method #1:  insert with JS
+                  document.getElementById("name-goes-here").innerText = userName;    
+
+                  //method #2:  insert using jquery
+                  //$("#name-goes-here").text(userName); //using jquery
+
+                  //method #3:  insert using querySelector
+                  //document.querySelector("#name-goes-here").innerText = userName
+
+            } else {
+                  // No user is signed in.
+            }
+      });
+}
+getNameFromAuth(); //run the function
 // Demo 10 Step 1.2 - Reading the user data from Firestore and populating the form
 var currentUser;               //points to the document of the user who is logged in
 function populateUserInfo() {
@@ -79,8 +103,6 @@ function saveUserInfo(){
       // get information entered by user
       name = document.getElementById("name").value
       username = document.getElementById("userName").value
-      // Email not working
-      email = document.getElementById("userEmail").value
       birthdate = document.getElementById("userBirthDate").value
       address = document.getElementById("userAddress").value
       city = document.getElementById("userCity").value
@@ -91,7 +113,6 @@ function saveUserInfo(){
       currentUser.update({
             name: name,
             userName: username,
-            userEmail: email,
             userBirthDate: birthdate,
             userAddress: address,
             userCity: city,
