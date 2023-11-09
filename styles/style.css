@@ -158,6 +158,11 @@ p.orbitron{
     padding: 15px;
 }
 
+#togglebtn{
+    position: absolute;
+    z-index: 9999 !important;
+}
+
 /* main.html > quest_card_template */
 .card_container {
     width: 94% !important;
@@ -195,6 +200,7 @@ p.orbitron{
     color: white;
     border-radius: 20px;
 }
+<<<<<<< HEAD
 
 .quest_accept_button, .quest_complete_button {
     background-color: #d96055;
@@ -203,3 +209,5 @@ p.orbitron{
 .quest_drop_button {
     background-color: gray;
 }
+=======
+>>>>>>> refs/remotes/origin/main
