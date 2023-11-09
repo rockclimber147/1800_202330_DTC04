@@ -158,6 +158,11 @@ p.orbitron{
     padding: 15px;
 }
 
+#togglebtn{
+    position: absolute;
+    z-index: 9999 !important;
+}
+
 /* main.html > quest_card_template */
 .card_container {
     width: 94% !important;
@@ -188,4 +193,3 @@ p.orbitron{
         font-size: 1.5rem;
     }
 }
-
