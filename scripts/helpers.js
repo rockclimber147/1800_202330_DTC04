@@ -11,30 +11,29 @@ function log_tags() {
 /**
  * Run this to keep tags up to date with the amount of quests that use them (This should ideally be deprecated once we implement quest creation)
  */
-async function write_tag_popularity() {            // ASYNC function so we can wait for the database response
-    tag_db = await db.collection('tags').get()     // Here we wait until we get a response, no ned for .then() as the code will pause here
-    tag_popularity = {}                            // empty dictionary to keep track of tags
-    tag_id_list = []
-    tag_db.forEach(tag_doc => {
+async function write_tag_popularity() {              // ASYNC function so we can wait for the database response
+    tag_db = await db.collection('tags').get()       // Here we wait until we get a response, no ned for .then() as the code will pause here
+    tag_popularity = {}                              // empty dictionary to keep track of tags
+    tag_id_list = []                                 // Empty list to store tag_ids
+    tag_db.forEach(tag_doc => {                      // for each tag in the tag collection
         console.log(tag_doc.id)
-        tag_id_list.push(tag_doc.id)
-        tag_popularity[tag_doc.id] = 0; // make a dictionary associating quest tags with the amount of times they're used
-    })
+        tag_id_list.push(tag_doc.id)                 // add the tag id to the list
+        tag_popularity[tag_doc.id] = 0;              // associate that tag id with 0 in the dictionary
+    });
+    db.collection('quests').get().then(quests => {   // get the quests, THEN (alternative to async await) 
+        quests.forEach(doc => {                      // for each quest in the collection:
+            quest_tag_id_list = doc.data().tag_ids;  // store the tag_ids associated with the quest
 
-    db.collection('quests').get().then(quests => {
-        quests.forEach(doc => {
-            quest_tag_id_list = doc.data().tag_ids;
-
-            if (quest_tag_id_list[0] != "") {
+            if (quest_tag_id_list[0] != "") {        // for each tag_id associated with that quest:
                 for (let i = 0; i < quest_tag_id_list.length; i++) {
-                    tag_popularity[quest_tag_id_list[i]]++          // increment amount of quests that use this ID
+                    tag_popularity[quest_tag_id_list[i]]++ // increment the popularity of that tag_id in the dictionary
                 }
             }
         })
         console.log(tag_popularity)
-    }).then(() => {
-        for (let i = 0; i < tag_id_list.length; i++)
-            db.collection('tags').doc(tag_id_list[i]).update({ 'popularity': tag_popularity[tag_id_list[i]] })
+    }).then(() => {                                   // Once looping is done, THEN
+        for (let i = 0; i < tag_id_list.length; i++)  // for each tag_id in the list we made earlier
+            db.collection('tags').doc(tag_id_list[i]).update({ 'popularity': tag_popularity[tag_id_list[i]] }) // update the tag in the collection to include the popularity associated with it in the dictionary
     })
 }
 /**
