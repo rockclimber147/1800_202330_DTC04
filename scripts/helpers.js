@@ -8,9 +8,12 @@ function log_tags() {
         });
 }
 
-async function write_tag_popularity() {
-    tag_db = await db.collection('tags').get()
-    tag_popularity = {}
+/**
+ * Run this to keep tags up to date with the amount of quests that use them (This should ideally be deprecated once we implement quest creation)
+ */
+async function write_tag_popularity() {            // ASYNC function so we can wait for the database response
+    tag_db = await db.collection('tags').get()     // Here we wait until we get a response, no ned for .then() as the code will pause here
+    tag_popularity = {}                            // empty dictionary to keep track of tags
     tag_id_list = []
     tag_db.forEach(tag_doc => {
         console.log(tag_doc.id)
@@ -37,43 +40,43 @@ async function write_tag_popularity() {
 /**
  * Reads the quests and tag databases and adds a list of associated quests to each tag
  */
-async function write_quest_ids_to_tags() {
+async function write_quest_ids_to_tags() {               // Async function because we are getting data from databases
     console.log('Reading tags...')
-    tag_db = await db.collection('tags').get()
+    tag_db = await db.collection('tags').get()           // Wait for tag db and store response
     console.log('Done.')
     console.log('Reading quests...')
-    quest_db = await db.collection('quests').get() // get data
+    quest_db = await db.collection('quests').get()       // Wait for quest db and store response
     console.log('Done.')
 
-    tag_quest_dict = {} // empty dictionary to associate tag ids with a list of quest ids
+    tag_quest_dict = {}                                  // Make empty dictionary to associate tag ids with a list of quest ids
 
     console.log('Adding tag_ids to dictionary...')
     tag_db.forEach(tag_doc => {
         console.log(`    Adding ${tag_doc.id} (${tag_doc.data().tag_name})...`)
-        tag_quest_dict[tag_doc.id] = [] // make a dictionary with k:v tag_id : empty list for each tag id in the database
+        tag_quest_dict[tag_doc.id] = []                  // Add key/value pair (tag_id: empty list) for each tag id in the database so each id has an empty list
     })
     console.log('Done.')
     console.log(tag_quest_dict)
 
-    quest_db.forEach(quest_doc => {  // for each quest
-        quest_id = quest_doc.id      // store the current quest id                    
+    quest_db.forEach(quest_doc => {                       // for each quest in the quest collection
+        quest_id = quest_doc.id                           // store the current quest id                    
         console.log(`parsing ${quest_id} (${quest_doc.data().quest_name})...`)
 
-        quest_tag_list = quest_doc.data().tag_ids                   // get the tag list
+        quest_tag_list = quest_doc.data().tag_ids         // get the tag_id list associated with that quest
         console.log(quest_tag_list)
 
-        for (i = 0; i < quest_tag_list.length; i++) {         // for each tag in that list
-            
-            if (quest_tag_list[i] != "") {
+        for (i = 0; i < quest_tag_list.length; i++) {     // for each tag in that list
+
+            if (quest_tag_list[i] != "") {                // Skip empty lists (we decided to just add an empty string)
                 console.log(`Found tag_id: ${quest_tag_list[i]}, appending quest...`)
-                tag_quest_dict[quest_tag_list[i]].push(quest_id) // append the current quest id to the tag_quest_dict at key tag_id
+                tag_quest_dict[quest_tag_list[i]].push(quest_id) // find the list associated with the tag_id in the dictionary and append the current quest id
             }
         }
-    })
+    })                                                    // We now have a dictionary associating tag_ids with a list of quests that use them
 
-    for (const tag_id in tag_quest_dict) {
+    for (const tag_id in tag_quest_dict) {                // for each iag_id (key) in the dictionary:
         console.log(tag_id, tag_quest_dict[tag_id])
-        db.collection('tags').doc(tag_id).update({'used_in_quests': tag_quest_dict[tag_id]}) // add the quest id list to each tag
+        db.collection('tags').doc(tag_id).update({ 'used_in_quests': tag_quest_dict[tag_id] }) // update the tag in the collection to include the list of quests that use that tag
     }
 }
 
