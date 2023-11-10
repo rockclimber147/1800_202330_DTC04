@@ -59,55 +59,36 @@ function populateUserInfo() {
                   currentUser.get()
                         .then(userDoc => {
                               //get the data fields of the user
-                              var name = userDoc.data().name;
-                              // var username = userDoc.data().userName;
-                              // var email = userDoc.data().userEmail;
-                              var birthdate = userDoc.data().userBirthDate;
-                              var address = userDoc.data().userAddress;
-                              var city = userDoc.data().userCity;
-                              var province = userDoc.data().userProvince;
-                              var country = userDoc.data().userCountry;
-                              var bio = userDoc.data().userBio;
+                              var userName = userDoc.data().name;
+                              var userBirthDate = userDoc.data().birthdate;
+                              var userAddress = userDoc.data().address;
+                              var userCity = userDoc.data().city;
+                              var userProvince = userDoc.data().province;
+                              var userCountry = userDoc.data().country;
+                              var userBio = userDoc.data().bio;
 
-                              // var level = userDoc.data().level;
-                              // var preference = userDoc.data().preference;
-                              // var points_earned = userDoc.data().points_earned;
-                              // var accepted_quests = userDoc.data().accepted_quests;
-                              // var completed_quests = userDoc.data().completed_quests_quests;
-
-                              //if the data fields are not empty, then write them in to the form.
-
-
-
-                              if (name != null) {
-                                    document.getElementById("name").value = name;
+                              //if the data fields are not empty, then write them into the form.
+                              if (userName != null) {
+                                    document.getElementById("nameInput").value = userName;
                               }
-                              // if (userName != null) {
-                              //       document.getElementById("userName").value = username;
-                              // }
-                              // if (userEmail != null) {
-                              //       document.getElementById("userEmail").value = email;
-                              // }
-
                               if (userBirthDate != null) {
-                                    document.getElementById("userBirthDate").value = birthdate;
+                                    document.getElementById("birthDateInput").value = userBirthDate;
                               }
                               if (userAddress != null) {
-                                    document.getElementById("userAddress").value = address;
+                                    document.getElementById("addressInput").value = userAddress;
                               }
                               if (userCity != null) {
-                                    document.getElementById("userCity").value = city;
-                              }
+                                    document.getElementById("cityInput").value = userCity;
+                              }               
                               if (userProvince != null) {
-                                    document.getElementById("userProvince").value = province;
+                                    document.getElementById("provinceInput").value = userProvince;
                               }
                               if (userCountry != null) {
-                                    document.getElementById("userCountry").value = country;
+                                    document.getElementById("countryInput").value = userCountry;
                               }
                               if (userBio != null) {
-                                    document.getElementById("userBio").value = country;
+                                    document.getElementById("bioInput").value = userBio;
                               }
-
                         })
             } else {
                   // No user is signed in.
@@ -126,33 +107,31 @@ function editUserInfo() {
 }
 
 // Demo 10 Step 1.4 Activate the save button
-function saveUserInfo(){
+function saveUserInfo() {
       // get information entered by user
-      name = document.getElementById("name").value
-      // username = document.getElementById("userName").value
-      birthdate = document.getElementById("userBirthDate").value
-      address = document.getElementById("userAddress").value
-      city = document.getElementById("userCity").value
-      province = document.getElementById("userProvince").value
-      country = document.getElementById("userCountry").value
-      bio = document.getElementById("userBio").value
 
-      // Update will add fields as needed
+      userName = document.getElementById("nameInput").value
+      userBirthDate = document.getElementById("birthDateInput").value
+      userAddress = document.getElementById("addressInput").value
+      userCity = document.getElementById("cityInput").value
+      userProvince = document.getElementById("provinceInput").value
+      userCountry = document.getElementById("countryInput").value
+      userBio = document.getElementById("bioInput").value
+
+      // Update, will add fields as needed
       currentUser.update({
-            name: name,
-            userName: username,
-            userBirthDate: birthdate,
-            userAddress: address,
-            userCity: city,
-            userProvince: province,
-            userCountry: country,
-            userBio: bio
+            name: userName,
+            birthdate: userBirthDate,
+            address: userAddress,
+            city: userCity,
+            province: userProvince,
+            country: userCountry,
+            bio: userBio
+            })
+            .then(() => {
+                  console.log("Document successfully updated!");
+            })
 
-      })
-      .then(() => {
-            console.log("Document successfully updated!");
-      })
-      
       document.getElementById("personalInfoFields").disabled = true;
 }
 

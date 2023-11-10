@@ -92,40 +92,38 @@
                   <form>
                         <fieldset class="mb-3" id="personalInfoFields" disabled>
                               
-                              
-                              
                               <div class="form-group">
                                     <label>Name</label>
-                                    <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                                    <input type="text" id="nameInput" class="form-control" placeholder="Enter your name">
                               </div>
-                              <br>
+                              
                               <div class="form-group">
                                     <label>Birth Date</label>
-                                    <input type="text" id="userBirthDate" class="form-control" placeholder="MM/DD/YYYY">
+                                    <input type="text" id="birthDateInput" class="form-control" placeholder="MM/DD/YYYY">
                               </div>
-                              <br>
+                             
                               <div class="form-group">
                                     <label>Address</label>
-                                    <input type="text" id="userAddress" class="form-control" placeholder="Enter your address">
+                                    <input type="text" id="addressInput" class="form-control" placeholder="Enter your address">
                               </div>                                       
                               <div class="form-group">
                                     <label>City</label>
-                                    <input type="text" id="userCity" class="form-control" placeholder="Enter your city">
+                                    <input type="text" id="cityInput" class="form-control" placeholder="Enter your city">
                               </div>
                               <div class="form-group">
                                     <label>Province</label>
-                                    <input type="text" id="userProvince" class="form-control" placeholder="Enter your province">
+                                    <input type="text" id="provinceInput" class="form-control" placeholder="Enter your province">
                               </div>
                               <div class="form-group">
                                     <label>Country</label>
-                                    <input type="text" id="userCountry" class="form-control" placeholder="Enter your country">
+                                    <input type="text" id="countryInput" class="form-control" placeholder="Enter your country">
                               </div>
-                              <br>
                               <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Add a Bio</label>
-                                    <textarea type="text" class="form-control" id="description" rows="3" id="userBio"></textarea>
+                                    <label>Add a Bio</label>
+                                    <textarea type="text" id="bioInput" class="form-control" placeholder="Enter your Bio"></textarea>     
                               </div>
                         </fieldset>
+
                         <div class="d-flex justify-content-end mt-5">
                               <button type="button" class="btn btn-secondary" onclick="editUserInfo()"  >Edit</button>
                               <span style="width: 10px"></span>
@@ -135,23 +133,33 @@
             </div>
 
           
-            <section id="looking_for">
+            <!-- <section id="looking_for">
                   <h3>I am looking for:</h3>
 
-                  <!-- Placeholder for activities user is seeking -->
-                  <div id="preferences">
+                  Placeholder for activities user is seeking -->
+                  <!-- <div id="preferences">
                         <button class="btn btn-light option_btn my-1" id="placeholder_for_preference_tags"></button>
                   </div>
                         <input type="text" class="form-control" placeholder="Other">
              
-            </section>
+            </section>  -->
 
             <section id="interested_in">
                   <h3>I am interested in:</h3>
 
                   <!-- Placeholder for preference -->
+                  
                   <div id="preferences">
-                        <button class="btn btn-light option_btn my-1" id="placeholder_for_preference_tags"></button>
+                  </div>
+                  <div class="form-group">
+                        <label for="exampleFormControlSelect1">What activities are you interested in?</label>
+                        <select class="form-control" id="season">
+                              <option>Hike</option>
+                              <option>Option2</option>
+                              <option>Option3</option>
+                              <option>Option4</option>
+                        </select>
+                        <br>
                   </div>
                   <input type="text" class="form-control my-1" placeholder="Other">
             </section>
