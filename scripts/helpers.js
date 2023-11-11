@@ -95,6 +95,32 @@ async function updateQuestNameList() {
     db.collection('quest_names').doc(quest_names_doc_id).update({ 'all_quest_names': quest_name_list })
 }
 
+/**
+ * This adds search keywords to each quest composed of its tags and the words in the title, ALL LOWERCASE
+ */
+async function add_keywords_to_quests(){
+    let quest_collection = await db.collection("quests").get(); // get quest collection
+    let tag_collection = await db.collection("tags").get(); // get tag collection
+    tag_id_map = {};
+
+    tag_collection.forEach((tag_doc)=>{                  // populate dictionary
+        console.log(tag_doc.data().tag_name)
+        tag_id_map[tag_doc.id] = tag_doc.data().tag_name;
+    })
+    console.log(tag_id_map)
+
+    quest_collection.forEach((quest_doc)=>{
+        keyword_list = quest_doc.data().quest_name.toLowerCase().split(' '); // break up quest name into lowercase words and store as a list
+        if (quest_doc.data().tag_ids[0] != ''){
+            for (let i = 0; i < quest_doc.data().tag_ids.length; i++){
+                keyword_list.push(tag_id_map[quest_doc.data().tag_ids[i]].toLowerCase()) // get the tag name from the tag id, make it lowercase and add it to the keyword list
+            }
+        }
+        console.log('keyword list:', keyword_list);
+        db.collection('quests').doc(quest_doc.id).update({'keywords': keyword_list})
+    })
+}
+
 function writeQuests() {
     //define a variable for the collection you want to create in Firestore to populate data
     var questRef = db.collection("quests");

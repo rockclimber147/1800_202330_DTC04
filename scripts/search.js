@@ -47,7 +47,6 @@ $(document).ready(function () {
                               var image_name = doc.data().image_name;          // get the name of the image
                               var quest_description = doc.data().description;  // gets the description field (TODO)
                               var quest_location = doc.data().location;
-                              console.log('user_location from quest cards', user_location)
                               var quest_distance = calculateDistance(user_location, quest_location);
                               var quest_tag_id_list = doc.data().tag_ids       // get the list of tag ids
                               var quest_id = doc.id;                           // get the quest ids
@@ -244,9 +243,9 @@ function show_map() {
                               allEvents.forEach(doc => {
                                     lat = doc.data().location[0];
                                     lng = doc.data().location[1];
-                                    console.log(lat, lng);
+                                    // console.log(lat, lng);
                                     coordinates = [lng, lat];
-                                    console.log(coordinates);
+                                    // console.log(coordinates);
                                     // Coordinates
                                     event_name = doc.data().quest_name; // Event Name
                                     preview = doc.data().description; // Text Preview
