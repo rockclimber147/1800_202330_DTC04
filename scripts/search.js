@@ -3,14 +3,14 @@ $(document).ready(function () {
       var quest_card_node = quest_card_template.prop('content');  // get quest templates ready
 
       var quest_tag_template = $('#quest_tag_template');
-      var quest_tag_node = quest_tag_template.prop('content'); // get tag template ready
+      var quest_tag_node = quest_tag_template.prop('content');    // get tag template ready
 
       var quest_collection = db.collection('quests');
       var all_quest_tags = {};
 
       var user_location = [0, 0];
       async function init() {
-            tag_db = await db.collection('tags').get()
+            tag_db = await db.collection('tags').get()            // get all tags
 
             tag_db.forEach(tag_doc => {
                   all_quest_tags[tag_doc.id] = tag_doc.data().tag_name;
