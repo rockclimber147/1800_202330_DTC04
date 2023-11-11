@@ -8,12 +8,16 @@ $(document).ready(function () {
       var quest_collection = db.collection('quests');
       var all_quest_tags = {};
       var quest_tag_array = [];
+      var quest_name_array = []
       var currentArray = quest_tag_array;
-      
+
       var user_location = [0, 0];
 
       async function init() {
             tag_db = await db.collection('tags').get()            // get all tags
+            let quest_name_collection = await db.collection('quest_names').doc('NJYbhL8TFCSnv3peyJPv').get()
+            quest_name_array = quest_name_collection.data().all_quest_names // Store list of all names
+            console.log(quest_name_array)
             quest_db = await db.collection('quests').get()        // get all quests
 
             tag_db.forEach(tag_doc => {
@@ -92,12 +96,11 @@ $(document).ready(function () {
                   /*for each item in the array...*/
                   for (i = 0; i < arr.length; i++) {
                         /*check if the item starts with the same letters as the text field value:*/
-                        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                        if (arr[i].toUpperCase().includes(val.toUpperCase())) { // EDIT to include any overlap
                               /*create a DIV element for each matching element:*/
                               b = document.createElement("DIV");
                               /*make the matching letters bold:*/
-                              b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-                              b.innerHTML += arr[i].substr(val.length);
+                              b.innerHTML += arr[i];
                               /*insert a input field that will hold the current array item's value:*/
                               b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
                               /*execute a function when someone clicks on the item value (DIV element):*/
