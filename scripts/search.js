@@ -12,6 +12,7 @@ $(document).ready(function () {
       var currentArray = quest_tag_array;
 
       var user_location = [0, 0];
+      var map;
 
       /**
        * Initialize the page by retrieving necessary data
@@ -28,6 +29,9 @@ $(document).ready(function () {
                   // update_quest_cards();
                   load_map();
             });
+
+            quest_db = await db.collection('quests').get() 
+            update_map(quest_db);
 
             tag_db = await db.collection('tags').get()                                                        // get all tags
             tag_db.forEach(tag_doc => {
@@ -47,7 +51,7 @@ $(document).ready(function () {
       function load_map() {
             // Defines basic mapbox data
             mapboxgl.accessToken = 'pk.eyJ1IjoiYWRhbWNoZW4zIiwiYSI6ImNsMGZyNWRtZzB2angzanBjcHVkNTQ2YncifQ.fTdfEXaQ70WoIFLZ2QaRmQ';
-            const map = new mapboxgl.Map({
+                  map = new mapboxgl.Map({
                   container: 'map', // Container ID
                   style: 'mapbox://styles/mapbox/streets-v11', // Styling URL
                   center: [user_location[1], user_location[0]], // Make map start centered on user location
@@ -143,11 +147,10 @@ $(document).ready(function () {
             });
       }
 
-      function update_map() {
-            db.collection('quests').get().then(allEvents => {
-                  const features = []; // Defines an empty array for information to be added to
+      function update_map(quest_db) {
+            const features = []; // Defines an empty array for information to be added to
 
-                  allEvents.forEach(doc => {
+                  quest_db.forEach(doc => {
                         lat = doc.data().location[0];
                         lng = doc.data().location[1];
                         // console.log(lat, lng);
@@ -220,7 +223,6 @@ $(document).ready(function () {
                   map.on('mouseleave', 'places', () => {
                         map.getCanvas().style.cursor = '';
                   });
-            });
       }
 
       function update_quest_cards() {
