@@ -79,6 +79,22 @@ async function write_quest_ids_to_tags() {               // Async function becau
     }
 }
 
+async function updateQuestNameList() {
+    quest_name_list = []
+    all_quests = await db.collection("quests").get();
+    all_quests.forEach((quest_doc) =>{
+        quest_name_list.push(quest_doc.data().quest_name)
+    })
+    console.log(quest_name_list)
+    let quest_names_doc_id;
+    quest_names_doc = await db.collection("quest_names").get();
+    quest_names_doc.forEach((quest_name_list_doc)=>{
+        quest_names_doc_id = quest_name_list_doc.id;
+    })
+
+    db.collection('quest_names').doc(quest_names_doc_id).update({ 'all_quest_names': quest_name_list })
+}
+
 function writeQuests() {
     //define a variable for the collection you want to create in Firestore to populate data
     var questRef = db.collection("quests");
