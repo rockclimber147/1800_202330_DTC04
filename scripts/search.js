@@ -38,7 +38,7 @@ $(document).ready(function () {
             let quest_name_collection = await db.collection('quest_names').doc('NJYbhL8TFCSnv3peyJPv').get()
             quest_name_array = quest_name_collection.data().all_quest_names                                   // Store list of all names
             console.log('quest names:', quest_name_array)
-            
+
             // comment out from main.js
             // quest_db = await db.collection('quests').get()        // get all quests
             
@@ -229,7 +229,7 @@ function show_map() {
       const map = new mapboxgl.Map({
             container: 'map', // Container ID
             style: 'mapbox://styles/mapbox/streets-v11', // Styling URL
-            center: [-122.964274, 49.236082], // Starting position
+            center: [user_location[0], user_location[1]], // Make map start centered on user location
             zoom: 8 // Starting zoom
       });
 
