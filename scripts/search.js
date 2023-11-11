@@ -26,7 +26,7 @@ $(document).ready(function () {
 
                   // comment out from main.js
                   // update_quest_cards();
-                  show_map();
+                  load_map();
             });
 
             tag_db = await db.collection('tags').get()                                                        // get all tags
@@ -44,7 +44,7 @@ $(document).ready(function () {
             
       }
       
-      function show_map() {
+      function load_map() {
             // Defines basic mapbox data
             mapboxgl.accessToken = 'pk.eyJ1IjoiYWRhbWNoZW4zIiwiYSI6ImNsMGZyNWRtZzB2angzanBjcHVkNTQ2YncifQ.fTdfEXaQ70WoIFLZ2QaRmQ';
             const map = new mapboxgl.Map({
@@ -67,85 +67,7 @@ $(document).ready(function () {
       
                               // Add the image to the map style.
                               map.addImage('eventpin', image); // Pin Icon
-      
-                              // READING information from "events" collection in Firestore
-                              db.collection('quests').get().then(allEvents => {
-                                    const features = []; // Defines an empty array for information to be added to
-      
-                                    allEvents.forEach(doc => {
-                                          lat = doc.data().location[0];
-                                          lng = doc.data().location[1];
-                                          // console.log(lat, lng);
-                                          coordinates = [lng, lat];
-                                          // console.log(coordinates);
-                                          // Coordinates
-                                          event_name = doc.data().quest_name; // Event Name
-                                          preview = doc.data().description; // Text Preview
-                                          img = doc.data().posterurl; // Image
-                                          // url = doc.data().link; // URL
-      
-                                          // Pushes information into the features array
-                                          features.push({
-                                                'type': 'Feature',
-                                                'properties': {
-                                                      'description': `<strong>${event_name}</strong><p>${preview}</p> <br> <a href="/hike.html?id=${doc.id}" target="_blank" title="Opens in a new window">Read more</a>`
-                                                },
-                                                'geometry': {
-                                                      'type': 'Point',
-                                                      'coordinates': coordinates
-                                                }
-                                          });
-                                    });
-      
-                                    // Adds features as a source to the map
-                                    map.addSource('places', {
-                                          'type': 'geojson',
-                                          'data': {
-                                                'type': 'FeatureCollection',
-                                                'features': features
-                                          }
-                                    });
-      
-                                    // Creates a layer above the map displaying the pins
-                                    map.addLayer({
-                                          'id': 'places',
-                                          'type': 'symbol',
-                                          // source: 'places',
-                                          'source': 'places',
-                                          'layout': {
-                                                'icon-image': 'eventpin', // Pin Icon
-                                                'icon-size': 0.1, // Pin Size
-                                                'icon-allow-overlap': true // Allows icons to overlap
-                                          }
-                                    });
-      
-                                    // Map On Click function that creates a popup, displaying previously defined information from "events" collection in Firestore
-                                    map.on('click', 'places', (e) => {
-                                          // Copy coordinates array.
-                                          const coordinates = e.features[0].geometry.coordinates.slice();
-                                          const description = e.features[0].properties.description;
-      
-                                          // Ensure that if the map is zoomed out such that multiple copies of the feature are visible, the popup appears over the copy being pointed to.
-                                          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                                                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                                          }
-      
-                                          new mapboxgl.Popup()
-                                                .setLngLat(coordinates)
-                                                .setHTML(description)
-                                                .addTo(map);
-                                    });
-      
-                                    // Change the cursor to a pointer when the mouse is over the places layer.
-                                    map.on('mouseenter', 'places', () => {
-                                          map.getCanvas().style.cursor = 'pointer';
-                                    });
-      
-                                    // Defaults cursor when not hovering over the places layer
-                                    map.on('mouseleave', 'places', () => {
-                                          map.getCanvas().style.cursor = '';
-                                    });
-                              });
+                              
                         }
                   );
       
@@ -218,6 +140,86 @@ $(document).ready(function () {
                               });
                         }
                   );
+            });
+      }
+
+      function update_map() {
+            db.collection('quests').get().then(allEvents => {
+                  const features = []; // Defines an empty array for information to be added to
+
+                  allEvents.forEach(doc => {
+                        lat = doc.data().location[0];
+                        lng = doc.data().location[1];
+                        // console.log(lat, lng);
+                        coordinates = [lng, lat];
+                        // console.log(coordinates);
+                        // Coordinates
+                        event_name = doc.data().quest_name; // Event Name
+                        preview = doc.data().description; // Text Preview
+                        img = doc.data().posterurl; // Image
+                        // url = doc.data().link; // URL
+
+                        // Pushes information into the features array
+                        features.push({
+                              'type': 'Feature',
+                              'properties': {
+                                    'description': `<strong>${event_name}</strong><p>${preview}</p> <br> <a href="/hike.html?id=${doc.id}" target="_blank" title="Opens in a new window">Read more</a>`
+                              },
+                              'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': coordinates
+                              }
+                        });
+                  });
+
+                  // Adds features as a source to the map
+                  map.addSource('places', {
+                        'type': 'geojson',
+                        'data': {
+                              'type': 'FeatureCollection',
+                              'features': features
+                        }
+                  });
+
+                  // Creates a layer above the map displaying the pins
+                  map.addLayer({
+                        'id': 'places',
+                        'type': 'symbol',
+                        // source: 'places',
+                        'source': 'places',
+                        'layout': {
+                              'icon-image': 'eventpin', // Pin Icon
+                              'icon-size': 0.1, // Pin Size
+                              'icon-allow-overlap': true // Allows icons to overlap
+                        }
+                  });
+
+                  // Map On Click function that creates a popup, displaying previously defined information from "events" collection in Firestore
+                  map.on('click', 'places', (e) => {
+                        // Copy coordinates array.
+                        const coordinates = e.features[0].geometry.coordinates.slice();
+                        const description = e.features[0].properties.description;
+
+                        // Ensure that if the map is zoomed out such that multiple copies of the feature are visible, the popup appears over the copy being pointed to.
+                        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                              coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                        }
+
+                        new mapboxgl.Popup()
+                              .setLngLat(coordinates)
+                              .setHTML(description)
+                              .addTo(map);
+                  });
+
+                  // Change the cursor to a pointer when the mouse is over the places layer.
+                  map.on('mouseenter', 'places', () => {
+                        map.getCanvas().style.cursor = 'pointer';
+                  });
+
+                  // Defaults cursor when not hovering over the places layer
+                  map.on('mouseleave', 'places', () => {
+                        map.getCanvas().style.cursor = '';
+                  });
             });
       }
 
