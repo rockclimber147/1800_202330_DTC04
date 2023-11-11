@@ -13,24 +13,35 @@ $(document).ready(function () {
 
       var user_location = [0, 0];
 
+      /**
+       * Initialize the page by retrieving necessary data
+       * 
+       * This should: Get the player location, get a list of tag names, get a list of quest names, display the search bar and (?) an empty map.
+       */
       async function init() {
-            tag_db = await db.collection('tags').get()            // get all tags
-            let quest_name_collection = await db.collection('quest_names').doc('NJYbhL8TFCSnv3peyJPv').get()
-            quest_name_array = quest_name_collection.data().all_quest_names // Store list of all names
-            console.log(quest_name_array)
-            quest_db = await db.collection('quests').get()        // get all quests
 
-            tag_db.forEach(tag_doc => {
-                  all_quest_tags[tag_doc.id] = tag_doc.data().tag_name;
-                  quest_tag_array.push(tag_doc.data().tag_name)          // add tag name to tag array
-            })
-
-            navigator.geolocation.getCurrentPosition(position => {
+            navigator.geolocation.getCurrentPosition(position => {                                            // Get player position
                   user_location = [position.coords.latitude, position.coords.longitude];
                   console.log('user_location in position', user_location)
-                  update_quest_cards();
-                  show_map();
+
+                  // comment out from main.js
+                  // update_quest_cards();
+                  // show_map();
             });
+
+            tag_db = await db.collection('tags').get()                                                        // get all tags
+            tag_db.forEach(tag_doc => {
+                  all_quest_tags[tag_doc.id] = tag_doc.data().tag_name;
+                  quest_tag_array.push(tag_doc.data().tag_name)                                               // add tag names to tag array
+            })
+            console.log('tag names:', all_quest_tags)
+            let quest_name_collection = await db.collection('quest_names').doc('NJYbhL8TFCSnv3peyJPv').get()
+            quest_name_array = quest_name_collection.data().all_quest_names                                   // Store list of all names
+            console.log('quest names:', quest_name_array)
+            
+            // comment out from main.js
+            // quest_db = await db.collection('quests').get()        // get all quests
+            
       }
       init()
       $('#quest_cards_go_here').hide();
