@@ -94,6 +94,7 @@ $(document).ready(function () {
                   /*append the DIV element as a child of the autocomplete container:*/
                   this.parentNode.appendChild(a);
                   /*for each item in the array...*/
+                  let count = 0;
                   for (i = 0; i < arr.length; i++) {
                         /*check if the item starts with the same letters as the text field value:*/
                         if (arr[i].toUpperCase().includes(val.toUpperCase())) { // EDIT to include any overlap
@@ -112,6 +113,10 @@ $(document).ready(function () {
                                     closeAllLists();
                               });
                               a.appendChild(b);
+                              count++;
+                        }
+                        if (count >= 4){     // Break when 4 suggestions reached (Prevents long lists)
+                              break;
                         }
                   }
             });
