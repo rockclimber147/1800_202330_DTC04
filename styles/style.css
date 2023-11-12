@@ -211,7 +211,7 @@ p.orbitron{
 .quest_accept_button, .quest_complete_button, .quest_drop_button,
 .pop_up_close_button,
 .pop_up_cancel_button,
-.pop_up_complete_button {
+.pop_up_confirm_button {
     width: 100%;
     border-radius: 20px;
 }
@@ -220,11 +220,11 @@ p.orbitron{
 .quest_complete_button,
 .quest_drop_button,
 .pop_up_close_button,
-.pop_up_complete_button {
+.pop_up_confirm_button {
     color: white;
 }
 
-.quest_accept_button, .quest_complete_button, .pop_up_close_button, .pop_up_complete_button {
+.quest_accept_button, .quest_complete_button, .pop_up_close_button, .pop_up_confirm_button {
     background-color: #d96055;
 }
 
