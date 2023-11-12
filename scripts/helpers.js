@@ -79,7 +79,7 @@ async function write_quest_ids_to_tags() {               // Async function becau
     }
 }
 
-async function updateQuestNameList() {
+async function update_quest_name_list() {
     quest_name_list = []
     all_quests = await db.collection("quests").get();
     all_quests.forEach((quest_doc) =>{
