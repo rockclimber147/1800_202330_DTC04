@@ -22,24 +22,40 @@ function display_quest_info() {
         })
 }
 
-function switch_buttons() {
+// function switch_buttons() {
+//     $('.quest_accept_button').click(function() {
+//         $(this).addClass('d-none')
+//         $('.quest_complete_button, .quest_drop_button').removeClass('d-none');
+//     });
+
+//     $('.quest_drop_button').click(function() {
+//         $(this).addClass('d-none');
+//         $('.quest_complete_button').addClass('d-none');
+//         $('.quest_accept_button').removeClass('d-none');
+//     })
+// }
+
+function switch_buttons_and_pop_ups() {
     $('.quest_accept_button').click(function() {
-        $(this).addClass('d-none')
-        $('.quest_complete_button, .quest_drop_button').removeClass('d-none');
-    });
-
-    $('.quest_drop_button').click(function() {
-        $(this).addClass('d-none');
-        $('.quest_complete_button').addClass('d-none');
-        $('.quest_accept_button').removeClass('d-none');
+        $('#quest_accepted_pop_up').removeClass('d-none');
+        $('#details_go_here').addClass('opacity-25');
     })
-}
-
-function close_pop_ups() {
-    
+    $('#quest_accepted_pop_up .pop_up_close_button').click(function() {
+        $(this).closest('.pop_up').addClass('d-none');
+        $('.quest_accept_button').addClass('d-none');
+        $('.quest_complete_button, .quest_drop_button').removeClass('d-none');
+        $('#details_go_here').removeClass('opacity-25');
+    })
+    $('.quest_complete_button').click(function() {
+        $('#complete_quest_pop_up').removeClass('d-none');
+        $('#details_go_here').addClass('opacity-25');
+    })
+    $('#complete_quest_pop_up .pop_up_close_button').click(function() {
+        $(this).closest('.pop_up').addClass('d-none');
+    })
 }
 
 $(document).ready(function() {
     display_quest_info();
-    switch_buttons();
+    switch_buttons_and_pop_ups();
 })
