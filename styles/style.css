@@ -1,6 +1,12 @@
 #top-navbar {
     padding-left: 15px;
     padding-right: 15px;
+    margin-bottom:0px;
+    height:10vh;
+}
+
+#footer_nav{
+    height:10vh;
 }
 
 #navbar-logo {
@@ -87,7 +93,7 @@ body {
     background-color: #F5DFBB;
     /* Light shade for body background */
     padding-bottom: 120px;
-    padding-top: 120px;
+    padding-top: 90px;
 }
 
 /* buttons */
@@ -155,15 +161,22 @@ p.orbitron{
 }
 
 .view_icon{
-    padding: 15px;
+    padding: 5px;
 }
 
-#togglebtn{
-    position: absolute;
+#view_toggle{
+    position: fixed;
+    /* This next line has a powerful aura */
     z-index: 9999 !important;
+
+    border-radius: 10px;
 }
 
 /* main.html > quest_card_template */
+#quest_cards_go_here{
+    padding-top: 50px;
+}
+
 .card_container {
     width: 94% !important;
     margin: auto;
@@ -195,18 +208,41 @@ p.orbitron{
 }
 
 /* quest-detail.html */
-.quest_accept_button, .quest_complete_button, .quest_drop_button {
+.quest_accept_button, .quest_complete_button, .quest_drop_button,
+.pop_up_close_button,
+.pop_up_cancel_button,
+.pop_up_confirm_button {
     width: 100%;
-    color: white;
     border-radius: 20px;
 }
 
-.quest_accept_button, .quest_complete_button {
+.quest_accept_button,
+.quest_complete_button,
+.quest_drop_button,
+.pop_up_close_button,
+.pop_up_confirm_button {
+    color: white;
+}
+
+.quest_accept_button, .quest_complete_button, .pop_up_close_button, .pop_up_confirm_button {
     background-color: #d96055;
 }
 
 .quest_drop_button {
     background-color: gray;
+}
+
+/* quest-detail.html > pop-ups */
+.pop_up {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pop_up_title {
+    background-color: #d96055;
+    color: white;
 }
 
 /* quest-completed */

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>My BCIT Project</title>
+    <title>Search</title>
     <meta name="Home" content="My 1800 App">
 
     <!------------------------>
@@ -46,6 +46,7 @@
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/search.css">
 
     <!-- Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -57,8 +58,8 @@
 
     <!-- Pixelify font -->
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet"> -->
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet"> -->
 
     <!-- Back button -->
     <link rel="stylesheet"
@@ -73,16 +74,23 @@
     <!-- reusable top navbar -->
     <div id="reusable_header"></div>
     <!-- /reusable top navbar -->
-
-    <main>
-        <button id="view_toggle" onclick="toggle_view()" class="d-flex align-items-start">
+    <div id="search_container">
+        <button id="view_toggle" onclick="toggle_view()">
             <span id="view_toggle_text"
                 class="material-symbols-outlined d-flex justify-content-start material-icons md-36 view_icon">LIST</span>
         </button>
+        <!-- AUTOCOMPLETE -->
+        <div class="autocomplete">
+            <input id="myInput" type="text" placeholder="Search">
+        </div>
+        <!-- /AUTOCOMPLETE -->
+        <button id="search_button">Search</button>
+    </div>
+    <main>
         <!-- MAPBOX -->
-        <div id='map' style='display:inline-block;width: 100%; height:500px;'></div>
+        <div id='map' style='display:inline-block;width: 100%; height:80vh; margin-top:10vh;'></div>
         <!-- Quest cards -->
-        <div id="quest_cards_go_here"></div>        
+        <div id="quest_cards_go_here"></div>
     </main>
 
 
@@ -131,10 +139,10 @@
     <!-- This script loads the reusable html skeletons for the header and footer -->
     <script src="./scripts/skeleton.js"></script>
 
-    <script src="./scripts/main.js"></script>
+    <script src="./scripts/search.js"></script>
 
     <!-- Helper functions, uncomment this if you need to execute them -->
-    <!-- <script src="./scripts/helpers.js"></script> -->
+    <script src="./scripts/helpers.js"></script>
 
 
 </body>
