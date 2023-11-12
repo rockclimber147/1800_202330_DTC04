@@ -222,6 +222,19 @@ p.orbitron{
     background-color: gray;
 }
 
+/* quest-detail.html > pop-ups */
+.pop_up {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pop_up_title {
+    background-color: #d96055;
+    color: white;
+}
+
 /* quest-completed */
 .quest_completed {
     rotate: -10deg;

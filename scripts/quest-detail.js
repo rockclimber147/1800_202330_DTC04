@@ -35,6 +35,10 @@ function switch_buttons() {
     })
 }
 
+function close_pop_ups() {
+    
+}
+
 $(document).ready(function() {
     display_quest_info();
     switch_buttons();
