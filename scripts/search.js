@@ -235,6 +235,7 @@ $(document).ready(function () {
       }
 
       function update_quest_cards(quest_db) {
+            $('#quest_cards_go_here').empty()
             quest_db.forEach(doc => {                          // iterate through each doc and for each:
                   var quest_name = doc.data().quest_name;          // get the quest name
                   var quest_rating = doc.data().rate;              // get value of the "details" key
