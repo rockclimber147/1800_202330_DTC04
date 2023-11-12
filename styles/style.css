@@ -2,6 +2,11 @@
     padding-left: 15px;
     padding-right: 15px;
     margin-bottom:0px;
+    height:10vh;
+}
+
+#footer_nav{
+    height:10vh;
 }
 
 #navbar-logo {

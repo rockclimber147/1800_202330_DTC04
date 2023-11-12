@@ -58,7 +58,7 @@ input[type=submit] {
 }
 
 #search_container {
-    display: fixed;
+    display: fixed !important;
     overflow: visible;
     max-height: 50px;
     width:90%;

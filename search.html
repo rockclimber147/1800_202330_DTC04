@@ -74,24 +74,21 @@
     <!-- reusable top navbar -->
     <div id="reusable_header"></div>
     <!-- /reusable top navbar -->
-    <main>
-
-        <div id="search_container">
-            <button id="view_toggle" onclick="toggle_view()">
-                <span id="view_toggle_text"
-                    class="material-symbols-outlined d-flex justify-content-start material-icons md-36 view_icon">LIST</span>
-            </button>
-            <!-- AUTOCOMPLETE -->
-            <div class="autocomplete">
-                <input id="myInput" type="text" placeholder="Search">
-            </div>
-            <!-- /AUTOCOMPLETE -->
-            <button id="search_button">Search</button>
+    <div id="search_container">
+        <button id="view_toggle" onclick="toggle_view()">
+            <span id="view_toggle_text"
+                class="material-symbols-outlined d-flex justify-content-start material-icons md-36 view_icon">LIST</span>
+        </button>
+        <!-- AUTOCOMPLETE -->
+        <div class="autocomplete">
+            <input id="myInput" type="text" placeholder="Search">
         </div>
-
-
+        <!-- /AUTOCOMPLETE -->
+        <button id="search_button">Search</button>
+    </div>
+    <main>
         <!-- MAPBOX -->
-        <div id='map' style='display:inline-block;width: 100%; height:500px;'></div>
+        <div id='map' style='display:inline-block;width: 100%; height:80vh;'></div>
         <!-- Quest cards -->
         <div id="quest_cards_go_here"></div>
     </main>
