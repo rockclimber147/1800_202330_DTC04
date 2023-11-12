@@ -173,6 +173,10 @@ p.orbitron{
 }
 
 /* main.html > quest_card_template */
+#quest_cards_go_here{
+    padding-top: 50px;
+}
+
 .card_container {
     width: 94% !important;
     margin: auto;
