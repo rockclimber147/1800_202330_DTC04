@@ -52,7 +52,8 @@ input[type=submit] {
     color: #ffffff;
 }
 
-#search_container{
-    display: flex;
-    background-color: #ffffff;
+#search_container {
+    display: absolute;
+    margin-left: 5%;
+    width:90%;
 }

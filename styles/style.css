@@ -155,12 +155,15 @@ p.orbitron{
 }
 
 .view_icon{
-    padding: 15px;
+    padding: 5px;
 }
 
-#togglebtn{
-    position: absolute;
+#view_toggle{
+    position: fixed;
+    /* This next line has a powerful aura */
     z-index: 9999 !important;
+
+    border-radius: 10px;
 }
 
 /* main.html > quest_card_template */

@@ -75,11 +75,11 @@
     <div id="reusable_header"></div>
     <!-- /reusable top navbar -->
     <main>
+        <button id="view_toggle" onclick="toggle_view()">
+            <span id="view_toggle_text"
+                class="material-symbols-outlined d-flex justify-content-start material-icons md-36 view_icon">LIST</span>
+        </button>
         <div id="search_container">
-            <button id="view_toggle" onclick="toggle_view()">
-                <span id="view_toggle_text"
-                    class="material-symbols-outlined d-flex justify-content-start material-icons md-36 view_icon">LIST</span>
-            </button>
             <!-- AUTOCOMPLETE -->
                 <div class="autocomplete">
                     <input id="myInput" type="text" placeholder="Search">
