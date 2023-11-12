@@ -325,6 +325,15 @@ $(document).ready(function () {
                   closeAllLists(e.target);
             });
       }
+
+      $('#search_button').on('click', async function () {
+            console.log('clicked search');
+            let search_text = $('#myInput').val();
+            console.log('search text:', search_text);
+            search_keywords = search_text.split(' ');
+            console.log('search keywords:', search_keywords);
+            
+      })
       init()
       $('#quest_cards_go_here').hide();
 
