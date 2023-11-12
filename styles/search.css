@@ -58,8 +58,16 @@ input[type=submit] {
 }
 
 #search_container {
-    display: fixed !important;
+    margin-top:3vh;
+    position: fixed;
+    z-index: 99999;
     overflow: visible;
     max-height: 50px;
     width:90%;
+}
+
+#search_button {
+    position: absolute;
+    height:100%;
+    border-radius: 5px;
 }
