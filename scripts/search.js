@@ -335,16 +335,19 @@ $(document).ready(function () {
                   closeAllLists(e.target);
             });
       }
-
+      /**
+       * Initiate search for keywords in search bar and load relevant quests
+       */
       $('#search_button').on('click', async function () {
             console.log('clicked search');
-            let search_text = $('#myInput').val().toLowerCase();
+            let search_text = $('#myInput').val().toLowerCase();             // put text to lowercase to match keywords
             console.log('search text:', search_text);
-            let search_keywords = search_text.split(' ');
+            let search_keywords = search_text.split(' ');                    // split text into array of words
             console.log('search keywords:', search_keywords);
-            let search_results = await db.collection('quests').where('keywords', 'array-contains-any', search_keywords).get();
-            update_map(search_results);
-            update_quest_cards(search_results);
+            let search_results = await db.collection('quests')               // get quests
+            .where('keywords', 'array-contains-any', search_keywords).get(); // where quest keywords contain any word in search array
+            update_map(search_results);                                      // update map with results
+            update_quest_cards(search_results);                              // update cards with results
       })
 
 
