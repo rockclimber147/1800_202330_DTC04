@@ -1,6 +1,7 @@
 #top-navbar {
     padding-left: 15px;
     padding-right: 15px;
+    margin-bottom:0px;
 }
 
 #navbar-logo {
@@ -87,7 +88,7 @@ body {
     background-color: #F5DFBB;
     /* Light shade for body background */
     padding-bottom: 120px;
-    padding-top: 120px;
+    padding-top: 90px;
 }
 
 /* buttons */

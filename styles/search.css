@@ -51,9 +51,15 @@ input[type=submit] {
     background-color: DodgerBlue !important;
     color: #ffffff;
 }
+.autocomplete {
+    display: inline-block;
+    margin-left:10%;
+    width:80%;
+}
 
 #search_container {
-    display: absolute;
-    margin-left: 5%;
+    display: fixed;
+    overflow: visible;
+    max-height: 50px;
     width:90%;
 }
