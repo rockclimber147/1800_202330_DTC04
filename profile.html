@@ -123,46 +123,37 @@
                                     <textarea type="text" id="bioInput" class="form-control" placeholder="Enter your Bio"></textarea>     
                               </div>
                         </fieldset>
-
-                        <div class="d-flex justify-content-end mt-5">
-                              <button type="button" class="btn btn-secondary" onclick="editUserInfo()"  >Edit</button>
-                              <span style="width: 10px"></span>
-                              <button type="button" class="btn btn-info" onclick="saveUserInfo()">Save</button>
+                        
+                        <!-- Placeholder for preference -->
+                        <div id="tag_div"></div>
+                        
+                        <!-- Dropdown menu for preferences -->
+                        <div class="form-group">
+                              <label for="exampleFormControlSelect1">What activities are you interested in?</label>
+                              <select class="form-control" id="activities">
+                              </select>
+                              <br>
                         </div>
+                        
+                        <!-- Checkboxes for preferences -->
+                        <fieldset class="tag_checkbox">
+                              <legend>What activities are you interested in?</legend>
+                              <div id="check"></div>
+                        </fieldset>
+
+
                   </form>
             </div>
 
-          
-            <!-- <section id="looking_for">
-                  <h3>I am looking for:</h3>
-
-                  Placeholder for activities user is seeking -->
-                  <!-- <div id="preferences">
-                        <button class="btn btn-light option_btn my-1" id="placeholder_for_preference_tags"></button>
-                  </div>
-                        <input type="text" class="form-control" placeholder="Other">
-             
-            </section>  -->
-
-            <section id="interested_in">
-                  <h3>I am interested in:</h3>
-
-                  <!-- Placeholder for preference -->
                   
-                  <div id="preferences">
-                  </div>
-                  <div class="form-group">
-                        <label for="exampleFormControlSelect1">What activities are you interested in?</label>
-                        <select class="form-control" id="season">
-                              <option>Hike</option>
-                              <option>Option2</option>
-                              <option>Option3</option>
-                              <option>Option4</option>
-                        </select>
-                        <br>
-                  </div>
-                  <input type="text" class="form-control my-1" placeholder="Other">
-            </section>
+
+
+      <!-- Save and Edit buttons -->
+      <div class="d-flex justify-content-end mt-5">
+            <button type="button" class="btn btn-secondary" onclick="editUserInfo()">Edit</button>
+            <span style="width: 10px"></span>
+            <button type="button" class="btn btn-info" onclick="saveUserInfo()">Save</button>
+      </div>
 
  
       <!-- This script relates to firebase -->
@@ -172,7 +163,7 @@
       <!-- This script loads the placeholders in profile -->
       <script src="./scripts/profile.js"></script>
       <!-- <script src="./scripts/script.js"></script> -->
-
+      
 </body>
 
 </html>
