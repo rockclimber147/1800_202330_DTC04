@@ -119,6 +119,20 @@ function saveUserInfo() {
       userCountry = document.getElementById("countryInput").value
       userBio = document.getElementById("bioInput").value
 
+      checkboxDivs = document.getElementById("check").getElementsByTagName("div")
+      selectedCheckboxes = []
+
+      for (i = 0; i < checkboxDivs.length; i++) {
+            var div = checkboxDivs[i];
+            console.log(div)
+            checkbox = div.getElementsByTagName("input")[0]
+            label = div.getElementsByTagName("label")[0]
+
+            if (checkbox.checked) {
+                  selectedCheckboxes.push(label.id);
+            }
+      }
+
       // Update, will add fields as needed
       currentUser.update({
             name: userName,
@@ -127,7 +141,8 @@ function saveUserInfo() {
             city: userCity,
             province: userProvince,
             country: userCountry,
-            bio: userBio
+            bio: userBio,
+            selectedCheckboxes: selectedCheckboxes
       })
             .then(() => {
                   console.log("Document successfully updated!");
@@ -136,48 +151,54 @@ function saveUserInfo() {
       document.getElementById("personalInfoFields").disabled = true;
 }
 
-function log_tags() {
-      preferences = document.getElementById("activities")
-      db.collection('tags').get()
-            .then(all_tags => {
-                  all_tags.forEach((doc) => {
-                        // doc.data() is never undefined for query doc snapshots
-                        var option = document.createElement("option");
-                        option.text = doc.data().tag_name;
-                        option.value = doc.data().tag_name;
-                        preferences.appendChild(option);
-                  })
-            })
-}
+// Populates the dropdown menu options
+// function log_tags() {
+//       preferences = document.getElementById("activities")
+//       db.collection('tags').get()
+//             .then(all_tags => {
+//                   all_tags.forEach((doc) => {
+//                         // doc.data() is never undefined for query doc snapshots
+//                         var option = document.createElement("option");
+//                         option.text = doc.data().tag_name;
+//                         option.value = doc.data().tag_name;
+//                         preferences.appendChild(option);
+//                   })
+//             })
+// }
 
-log_tags()
+// log_tags()
 
-function print_tag(){
-      preferences.addEventListener("change", (event) => {
-            var selectedOption = document.getElementById("activities").value;
-            var buttonOption = document.createElement("button")
-            var buttonText = document.createElement("span")
-            buttonText.innerHTML = selectedOption
-            buttonOption.appendChild(buttonText)
-            document.getElementById("tag_div").append(buttonOption)
-      }
-)};
+// Displaying the tag after dropdown selection
+// function print_tag() {
+//       preferences.addEventListener("change", (event) => {
+//             var selectedOption = document.getElementById("activities").value;
+//             var buttonOption = document.createElement("button")
+//             var buttonText = document.createElement("span")
+//             buttonText.innerHTML = selectedOption
+//             buttonOption.appendChild(buttonText)
+//             document.getElementById("tag_div").append(buttonOption)
+//       }
+//       )
+// };
 
-print_tag()
-      
+// print_tag()
+
 function print_tag_checkbox() {
       db.collection('tags').get()
             .then(all_tags => {
                   all_tags.forEach((doc) => {
-                  $("#check").append(
+                        $("#check").append(
                               `
                               <div>
                               <input type="checkbox" id="tagcheckbox" name="tagcheckbox" checked />
-                              <label for="tagcheckbox">${doc.data().tag_name}</label>  
+                              <label id="${doc.id}"  for="tagcheckbox">${doc.data().tag_name}</label>  
                               </div>
                               `
-                  )})
+                        )
+                  })
             });
 }
 
 print_tag_checkbox()
+
+
