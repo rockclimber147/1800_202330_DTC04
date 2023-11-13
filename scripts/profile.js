@@ -79,7 +79,7 @@ function populateUserInfo() {
                               }
                               if (userCity != null) {
                                     document.getElementById("cityInput").value = userCity;
-                              }               
+                              }
                               if (userProvince != null) {
                                     document.getElementById("provinceInput").value = userProvince;
                               }
@@ -90,6 +90,7 @@ function populateUserInfo() {
                                     document.getElementById("bioInput").value = userBio;
                               }
                         })
+
             } else {
                   // No user is signed in.
                   console.log("No user is signed in");
@@ -127,7 +128,7 @@ function saveUserInfo() {
             province: userProvince,
             country: userCountry,
             bio: userBio
-            })
+      })
             .then(() => {
                   console.log("Document successfully updated!");
             })
@@ -135,4 +136,48 @@ function saveUserInfo() {
       document.getElementById("personalInfoFields").disabled = true;
 }
 
+function log_tags() {
+      preferences = document.getElementById("activities")
+      db.collection('tags').get()
+            .then(all_tags => {
+                  all_tags.forEach((doc) => {
+                        // doc.data() is never undefined for query doc snapshots
+                        var option = document.createElement("option");
+                        option.text = doc.data().tag_name;
+                        option.value = doc.data().tag_name;
+                        preferences.appendChild(option);
+                  })
+            })
+}
 
+log_tags()
+
+function print_tag(){
+      preferences.addEventListener("change", (event) => {
+            var selectedOption = document.getElementById("activities").value;
+            var buttonOption = document.createElement("button")
+            var buttonText = document.createElement("span")
+            buttonText.innerHTML = selectedOption
+            buttonOption.appendChild(buttonText)
+            document.getElementById("tag_div").append(buttonOption)
+      }
+)};
+
+print_tag()
+      
+function print_tag_checkbox() {
+      db.collection('tags').get()
+            .then(all_tags => {
+                  all_tags.forEach((doc) => {
+                  $("#check").append(
+                              `
+                              <div>
+                              <input type="checkbox" id="tagcheckbox" name="tagcheckbox" checked />
+                              <label for="tagcheckbox">${doc.data().tag_name}</label>  
+                              </div>
+                              `
+                  )})
+            });
+}
+
+print_tag_checkbox()
