@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My BCIT Project</title>
+    <meta name="Home" content="My 1800 App">
+
+    <!------------------------>
+    <!-- Required meta tags -->
+    <!------------------------>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!------------------------------------------>
+    <!-- Bootstrap Library CSS JS CDN go here -->
+    <!------------------------------------------>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+        </script>
+
+
+    <!-------------------------------------------------------->
+    <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
+    <!-------------------------------------------------------->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <!-- Step 3.1 -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <!-- Step 3.2 -->
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    <!-- End Firebase Stuff from Demo07 -->
+
+
+    <!-------------------------------------------->
+    <!-- Other libraries and styles of your own -->
+    <!-------------------------------------------->
+
+    <!-- Link to styles of your own -->
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/main_quest_list.css">
+
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Orbitron font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+
+    <!-- Pixelify font -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet"> -->
+
+    <!-- Back button -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <!-- MapBoxGL -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+</head>
+
+<body>
+    <!-- reusable top navbar -->
+    <div id="reusable_header"></div>
+    <!-- /reusable top navbar -->
+
+    <main>
+        <button id="view_toggle" onclick="toggle_view()" class="d-flex align-items-start">
+            <span id="view_toggle_text"
+                class="material-symbols-outlined d-flex justify-content-start material-icons md-36 view_icon">LIST</span>
+        </button>
+        <!-- MAPBOX -->
+        <div id='map' style='display:inline-block;width: 100%; height:80vh; margin-top:10vh;'></div>
+        <!-- Quest cards -->
+        <div id="quest_cards_go_here"></div>        
+    </main>
+
+
+    <!-- reusable footer -->
+    <div id="reusable_footer"></div>
+    <!-- /reusable footer -->
+
+    <!------------------------------------------------------------------------------------------>
+    <!--                                  TEMPLATES                                           -->
+    <!------------------------------------------------------------------------------------------>
+
+    <!-- For Quest Cards -->
+    <template id="quest_card_template">
+        <div class="card w-100 mt-2 mb-2 container-fluid p-sm-3 card_container">
+            <div class="row">
+                <div class="card_body col-8 p-2">
+                    <h5 class="quest_name card-title">Quest_Name</h5>
+                    <div class="row card-properties px-2">
+                        <div class="quest_rating col-5 px-1 py-1">Stars</div>
+                        <div class="quest_price col-3 px-2 py-1">Price</div>
+                        <div class="quest_distance col-4 px-2 py-1">Distance</div>
+                    </div>
+                    <div class="quest_tags_container justify-content-start card_properties">
+                    </div>
+                </div>
+                <div class="img-container col-4 d-flex align-items-center">
+                    <img class="quest_image w-100" src="#" alt="">
+                </div>
+            </div>
+            <a href="#" class="quest_detail_link"></a>
+        </div>
+    </template>
+
+    <!-- For Quest Tags -->
+    <template id="quest_tag_template">
+        <button class="quest_tag d-inline-block px-2 m-1 border-0 card_tag rounded"></button>>
+    </template>
+
+
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+
+    <!-- This script relates to firebase -->
+    <script src="./scripts/firebaseAPI_DTC04.js"></script>
+    <!-- This script loads the reusable html skeletons for the header and footer -->
+    <script src="./scripts/skeleton.js"></script>
+
+    <script src="./scripts/main.js"></script>
+
+    <!-- Helper functions, uncomment this if you need to execute them -->
+    <!-- <script src="./scripts/helpers.js"></script> -->
+
+
+</body>
+
+</html>
