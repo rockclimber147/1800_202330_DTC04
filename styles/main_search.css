@@ -42,41 +42,48 @@ input[type=submit] {
 
 .autocomplete {
     display: inline-block;
-    margin-left:10%;
-    width:80%;
+    margin-left: 10%;
+    width: 80%;
 }
 
 #search_container {
-    margin-top:10vh;
+    margin-top: 10vh;
     position: fixed;
     z-index: 99999;
     overflow: visible;
     max-height: 50px;
-    width:90%;
+    width: 90%;
 }
 
 #search_button {
     position: absolute;
-    height:100%;
+    height: 100%;
     border-radius: 5px;
 }
 
-#myInput{
+#myInput {
     border-radius: 10px;
     border: 1px solid black;
 }
 
-#search_nav_button{
+#search_nav_button {
     color: white;
 }
+
 #view_toggle {
-    margin-top:0vh;
-    
+    margin-top: 0vh;
+
 }
 
 @media only screen and (max-width: 600px) {
     #myInput {
-        width:75%;
+        width: 75%;
         margin-left: 15%;
     }
-  }
+
+    .autocomplete-items {
+        width: 75%;
+        margin-left: 15%;
+        border-radius: 10px;
+    }
+}

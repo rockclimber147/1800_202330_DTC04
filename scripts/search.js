@@ -306,12 +306,6 @@ $(document).ready(function () {
                         }
                   }
             });
-            function removeActive(x) {
-                  /*a function to remove the "active" class from all autocomplete items:*/
-                  for (var i = 0; i < x.length; i++) {
-                        x[i].classList.remove("autocomplete-active");
-                  }
-            }
             function closeAllLists(elmnt) {
                   /*close all autocomplete lists in the document,
                   except the one passed as an argument:*/
