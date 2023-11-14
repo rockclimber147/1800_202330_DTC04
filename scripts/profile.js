@@ -142,7 +142,7 @@ function saveUserInfo() {
             province: userProvince,
             country: userCountry,
             bio: userBio,
-            selectedCheckboxes: selectedCheckboxes
+            preferences: selectedCheckboxes
       })
             .then(() => {
                   console.log("Document successfully updated!");
