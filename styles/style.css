@@ -174,7 +174,7 @@ p.orbitron{
 
 /* main.html > quest_card_template */
 #quest_cards_go_here{
-    padding-top: 50px;
+    padding-top: 10vh;
 }
 
 .card_container {
