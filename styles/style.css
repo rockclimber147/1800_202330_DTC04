@@ -22,15 +22,6 @@
     width: 30pt;
 }
 
-#user-profile {
-    display: flex;
-    flex-direction: column;
-}
-
-#user-profile img {
-    width: 30pt;
-}
-
 .hamburger-menu {
     background-color: #a36654;
 }
@@ -92,8 +83,8 @@ pale yellow #F5DFBB;
 body {
     background-color: #F5DFBB;
     /* Light shade for body background */
-    padding-bottom: 120px;
-    padding-top: 90px;
+    padding-bottom: 10vh;
+    padding-top: 10vh;
 }
 
 /* buttons */
@@ -174,7 +165,7 @@ p.orbitron{
 
 /* main.html > quest_card_template */
 #quest_cards_go_here{
-    padding-top: 50px;
+    padding-top: 10vh;
 }
 
 .card_container {

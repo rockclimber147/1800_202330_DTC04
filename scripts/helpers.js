@@ -88,7 +88,7 @@ async function update_quest_name_list() {
     console.log(quest_name_list)
     let quest_names_doc_id;
     quest_names_doc = await db.collection("quest_names").get();
-    quest_names_doc.forEach((quest_name_list_doc)=>{              // HAHA FOREACH WITH ONE DOCUMENT LOLOL I'M SO TIRED
+    quest_names_doc.forEach((quest_name_list_doc)=>{             
         quest_names_doc_id = quest_name_list_doc.id;
     })
 

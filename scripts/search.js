@@ -158,7 +158,7 @@ $(document).ready(function () {
                   features.push({
                         'type': 'Feature',
                         'properties': {
-                              'description': `<strong>${event_name}</strong><p>${preview}</p> <br> <a href="/hike.html?id=${doc.id}" target="_blank" title="Opens in a new window">Read more</a>`
+                              'description': `<strong>${event_name}</strong><p>${preview}</p> <br> <a href="/quest-detail.html?quest_id=${doc.id}" target="_blank" title="Opens in a new window">Read more</a>`
                         },
                         'geometry': {
                               'type': 'Point',
