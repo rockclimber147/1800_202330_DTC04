@@ -213,11 +213,12 @@ p.orbitron{
 .pop_up_close_button,
 .pop_up_confirm_button, 
 .quest_review_button, 
-.review_submit_button{
+.review_submit_button,
+.see_more_quest_button{
     color: white;
 }
 
-.quest_accept_button, .quest_complete_button, .pop_up_close_button, .pop_up_confirm_button, .review_submit_button{
+.quest_accept_button, .quest_complete_button, .pop_up_close_button, .pop_up_confirm_button, .review_submit_button, .see_more_quest_button{
     background-color: #d96055;
 }
 
