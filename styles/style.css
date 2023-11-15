@@ -158,7 +158,7 @@ p.orbitron{
 #view_toggle{
     position: fixed;
     /* This next line has a powerful aura */
-    z-index: 9999 !important;
+    z-index: 100 !important;
 
     border-radius: 10px;
 }
