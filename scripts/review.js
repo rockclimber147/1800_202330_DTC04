@@ -23,6 +23,7 @@ getQuestName(questDocID);
 
 // Select all elements with the class name "star" and store them in the "stars" variable
 const stars = document.querySelectorAll('.star');
+const money = document.querySelectorAll('.money')
 
 // Demo 10 Step 2.7
 // Iterate through each star element
@@ -33,6 +34,18 @@ stars.forEach((star, index) => {
             for (let i = 0; i <= index; i++) {
                   // Change the text content of stars to 'star' (filled)
                   document.getElementById(`star${i + 1}`).textContent = 'star';
+            }
+      });
+});
+
+// Iterate through each money element
+money.forEach((money, index) => {
+      // Add a click event listener to the current star
+      money.addEventListener('click', () => {
+            // Fill in clicked star and stars before it
+            for (let i = 0; i <= index; i++) {
+                  // Change the text content of stars to 'star' (filled)
+                  document.getElementById(`money${i + 1}`).textContent = 'attach_money';
             }
       });
 });
