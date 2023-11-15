@@ -33,7 +33,7 @@ var uiConfig = {
                 return true;
             }
             return false;
-        },
+        }, 
         
         uiShown: function () {
             // The widget is rendered.
