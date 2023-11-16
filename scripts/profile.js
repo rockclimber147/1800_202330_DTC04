@@ -65,6 +65,9 @@ function populateUserInfo() {
                               var userCity = userDoc.data().city;
                               var userProvince = userDoc.data().province;
                               var userCountry = userDoc.data().country;
+                              // Gender 
+                              var userGender = userDoc.data().gender;
+
                               var userBio = userDoc.data().bio;
 
                               //if the data fields are not empty, then write them into the form.
@@ -86,6 +89,12 @@ function populateUserInfo() {
                               if (userCountry != null) {
                                     document.getElementById("countryInput").value = userCountry;
                               }
+
+                              // Gender
+                              if (userGender != null) {
+                                    document.getElementById("genderInput").value = userGender;
+                              }
+
                               if (userBio != null) {
                                     document.getElementById("bioInput").value = userBio;
                               }
@@ -117,6 +126,8 @@ function saveUserInfo() {
       userCity = document.getElementById("cityInput").value
       userProvince = document.getElementById("provinceInput").value
       userCountry = document.getElementById("countryInput").value
+      // Gender
+      userGender = document.getElementById("genderInput").value
       userBio = document.getElementById("bioInput").value
 
       checkboxDivs = document.getElementById("check").getElementsByTagName("div")
@@ -142,6 +153,7 @@ function saveUserInfo() {
             province: userProvince,
             country: userCountry,
             bio: userBio,
+            gender: userGender,
             preferences: selectedCheckboxes
       })
             .then(() => {
@@ -189,9 +201,9 @@ function print_tag_checkbox() {
                   all_tags.forEach((doc) => {
                         $("#check").append(
                               `
-                              <div>
-                              <input type="checkbox" id="tagcheckbox" name="tagcheckbox" checked />
-                              <label id="${doc.id}"  for="tagcheckbox">${doc.data().tag_name}</label>  
+                              <div class="form-check col">
+                                    <input type="checkbox" class="form-check-input" id="tagcheckbox" name="tagcheckbox" checked />
+                                    <label id="${doc.id}" for="tagcheckbox">${doc.data().tag_name}</label>  
                               </div>
                               `
                         )
