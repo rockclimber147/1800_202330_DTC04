@@ -139,7 +139,12 @@ $(document).ready(function () {
             });
       }
 
+      /**
+       * Updates map pins based on input quest database
+       * @param {firestore-database} quest_db A database of quests fetched from firestore
+       */
       function update_map(quest_db) {
+
             const features = []; // Defines an empty array for information to be added to
 
             quest_db.forEach(doc => {
@@ -335,6 +340,48 @@ $(document).ready(function () {
             update_map(search_results);                                      // update map with results
             update_quest_cards(search_results);                              // update cards with results
       })
+      
+      function toggle_view() {
+            console.log('switching...');
+            console.log($('#view_toggle_text').text())
+            switch ($('#view_toggle_text').text()) {
+                  case 'MAP': {
+                        $('#view_toggle_text').text('LIST');
+                        $('#map').show();
+                        $('#quest_cards_go_here').hide();
+                        break;
+                  } case 'LIST': {
+                        $('#view_toggle_text').text('MAP');
+                        $('#map').hide();
+                        $('#quest_cards_go_here').show();
+                        break;
+                  }
+            }
+      }
+
+      function calculateDistance(current, destination) {
+            // this function receives two arrays that represent coordinates and returns the distance in miles
+
+            // calculate difference in longitude and latitude
+            let longitude_difference = current[0] - destination[0]
+            let latitude_difference = current[1] - destination[1]
+
+            // calculate distance using Pythagorean theorem and convert it to mile
+            let distance = ((longitude_difference ** 2 + latitude_difference ** 2) ** 0.5 * 60 * 1.60934).toFixed(1)
+            return distance;
+      }
+
+      //------------------------------------------------
+      // Call this function when the "logout" button is clicked
+      //-------------------------------------------------
+      function logout() {
+            firebase.auth().signOut().then(() => {
+                  // Sign-out successful.
+                  console.log("logging out user");
+            }).catch((error) => {
+                  // An error happened.
+            });
+      }
 
 
       init()
@@ -344,47 +391,5 @@ $(document).ready(function () {
       autocomplete(document.getElementById("myInput"), currentArray);
 })
 
-function toggle_view() {
-      console.log('switching...');
-      console.log($('#view_toggle_text').text())
-      switch ($('#view_toggle_text').text()) {
-            case 'MAP': {
-                  $('#view_toggle_text').text('LIST');
-                  $('#map').show();
-                  $('#quest_cards_go_here').hide();
-                  break;
-            } case 'LIST': {
-                  $('#view_toggle_text').text('MAP');
-                  $('#map').hide();
-                  $('#quest_cards_go_here').show();
-                  break;
-            }
-      }
-}
 
-function calculateDistance(current, destination) {
-      // this function receives two arrays that represent coordinates and returns the distance in miles
-
-      // calculate difference in longitude and latitude
-      let longitude_difference = current[0] - destination[0]
-      let latitude_difference = current[1] - destination[1]
-
-      // calculate distance using Pythagorean theorem and convert it to mile
-      let distance = ((longitude_difference ** 2 + latitude_difference ** 2) ** 0.5 * 60 * 1.60934).toFixed(1)
-      return distance;
-}
-
-
-
-//------------------------------------------------
-// Call this function when the "logout" button is clicked
-//-------------------------------------------------
-function logout() {
-      firebase.auth().signOut().then(() => {
-            // Sign-out successful.
-            console.log("logging out user");
-      }).catch((error) => {
-            // An error happened.
-      });
-}
 
