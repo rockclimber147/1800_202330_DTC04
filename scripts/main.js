@@ -35,7 +35,7 @@ $(document).ready(function () {
                               var quest_name = doc.data().quest_name;          // get the quest name
                               var quest_rating = doc.data().rate;              // get value of the "details" key
                               var quest_price = doc.data().cost;               // get the price of the quest
-                              var image_name = doc.data().image_name;          // get the name of the image
+                              var image_url = doc.data().image_url;          // get the name of the image
                               var quest_description = doc.data().description;  // gets the description field (TODO)
                               var quest_location = doc.data().location;
                               console.log('user_location from quest cards', user_location)
@@ -52,7 +52,7 @@ $(document).ready(function () {
                               new_quest_card.find('.quest_price').text('$'.repeat(quest_price));
                               new_quest_card.find('.quest_description').text(quest_description);
                               new_quest_card.find('.quest_distance').text(quest_distance + 'km');
-                              new_quest_card.find('.quest_image').attr('src', `./images/${image_name}.jpg`); // find image and put in new quest card
+                              new_quest_card.find('.quest_image').attr('src', `${image_url}`); // find image and put in new quest card
                               new_quest_card.find('.quest_detail_link').attr('href', `./quest-detail.html?quest_id=${quest_id}`); // set links to quest cards
 
                               if (quest_tag_id_list[0] != "") {
