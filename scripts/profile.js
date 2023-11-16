@@ -202,7 +202,7 @@ function print_tag_checkbox() {
                         $("#check").append(
                               `
                               <div class="form-check col">
-                                    <input type="checkbox" class="form-check-input" id="tagcheckbox" name="tagcheckbox" checked />
+                                    <input type="checkbox" class="form-check-input" id="tagcheckbox value=''" name="tagcheckbox"/>
                                     <label id="${doc.id}" for="tagcheckbox">${doc.data().tag_name}</label>  
                               </div>
                               `
