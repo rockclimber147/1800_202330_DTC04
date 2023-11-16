@@ -46,6 +46,7 @@ $(document).ready(function () {
                               // Clone the contents of the quest card template element (not the parent template element)
                               let new_quest_card = $(quest_card_node).children().clone();
 
+
                               //update title and text and image
                               new_quest_card.find('.quest_name').text(quest_name);
                               new_quest_card.find('.quest_rating').text('★'.repeat(quest_rating));
@@ -54,6 +55,7 @@ $(document).ready(function () {
                               new_quest_card.find('.quest_distance').text(quest_distance + 'km');
                               new_quest_card.find('.quest_image').attr('src', `${image_url}`); // find image and put in new quest card
                               new_quest_card.find('.quest_detail_link').attr('href', `./quest-detail.html?quest_id=${quest_id}`); // set links to quest cards
+                             
 
                               if (quest_tag_id_list[0] != "") {
                                     for (let i = 0; i < quest_tag_id_list.length; i++) {
@@ -274,6 +276,29 @@ function show_map() {
             );
       });
 }
+
+//-----------------------------------------------------------------------------
+// This function is called whenever the user clicks on the "bookmark" icon.
+// It adds the hike to the "bookmarks" array
+// Then it will change the bookmark icon from the hollow to the solid version. 
+//-----------------------------------------------------------------------------
+function saveBookmark(questDocID) {
+      // Manage the backend process to store the hikeDocID in the database, recording which hike was bookmarked by the user.
+      currentUser.update({
+            // Use 'arrayUnion' to add the new bookmark ID to the 'bookmarks' array.
+            // This method ensures that the ID is added only if it's not already present, preventing duplicates.
+            bookmarks: firebase.firestore.FieldValue.arrayUnion(questDocID)
+      })
+            // Handle the front-end update to change the icon, providing visual feedback to the user that it has been clicked.
+            .then(function () {
+                  console.log("bookmark has been saved for" + questDocID);
+                  var iconID = 'save-' + questDocID;
+                  //console.log(iconID);
+                  //this is to change the icon of the hike that was saved to "filled"
+                  document.getElementById(iconID).innerText = 'bookmark';
+            });
+}
+
 
 //------------------------------------------------
 // Call this function when the "logout" button is clicked
