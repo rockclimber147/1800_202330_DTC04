@@ -50,10 +50,12 @@ function loadSkeleton() {
             // User is signed in.
             // Do something for the user here.
             console.log($('#reusable_header').load('./reusable_html/top_nav_after_login.html'));
+            console.log($('#reusable_header_with_return').load('./reusable_html/top_nav_with_return_button.html'));
             console.log($('#reusable_footer').load('./reusable_html/bottom_nav.html'));
         } else {
             // No user is signed in.
             console.log($('#reusable_header').load('./reusable_html/top_nav_before_login.html'));
+            console.log($('#reusable_header_with_return').load('./reusable_html/top_nav_with_return_button.html'));
             console.log($('#reusable_footer').load('./reusable_html/bottom_nav.html'));
         }
     });
