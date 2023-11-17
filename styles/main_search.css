@@ -47,18 +47,21 @@ input[type=submit] {
 }
 
 #search_container {
-    margin-top: 10vh;
+    margin-top: 11vh;
     position: fixed;
     z-index: 99999;
     overflow: visible;
     max-height: 50px;
-    width: 90%;
+    width: 93%;
+    justify-content: center;
 }
 
 #search_button {
     position: absolute;
     height: 100%;
-    border-radius: 5px;
+    border-radius: 7px;
+    border: 1px solid black;
+    padding-top: 5px;
 }
 
 #myInput {
@@ -72,7 +75,6 @@ input[type=submit] {
 
 #view_toggle {
     margin-top: 0vh;
-
 }
 
 @media only screen and (max-width: 600px) {

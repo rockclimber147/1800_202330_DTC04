@@ -184,10 +184,10 @@ p.orbitron{
     position: fixed;
     /* This next line has a powerful aura */
     z-index: 100 !important;
-    margin-top: 12vh;
+    margin-top: 11vh;
     margin-left: 1vw;
     border-radius: 5px;
-    border: grey solid 2px;    
+    border: black solid 1px;    
 }
 
 /* main.html > quest_card_template */
