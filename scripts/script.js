@@ -1,6 +1,3 @@
-$(document).ready(function () {
-    
-})
 
 //------------------------------------------------
 // Call this function when the "logout" button is clicked
