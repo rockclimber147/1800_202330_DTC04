@@ -21,6 +21,15 @@ async function do_all() {
             // update contents
             $(`.quest_name`).text(quest_name);
             $(`.quest_point`).text(`${quest_point} pt`);
+
+            // update user points
+            let current_user_points = user_doc.data().points
+            console.log(`User points before adding quest points: ${current_user_points}`)
+            current_user_points += quest_point
+            console.log(`User points after adding quest points: ${current_user_points}`)
+
+            db.collection('users').doc(user.uid).update({ 'points': current_user_points })
+
         } else {
             alert('user not logged in')
             // window.location.href = 'index.html'; // Add this later so user must be logged in
