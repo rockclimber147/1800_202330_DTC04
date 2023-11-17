@@ -42,7 +42,7 @@ input[type=submit] {
 
 .autocomplete {
     display: inline-block;
-    margin-left: 10%;
+    margin-left: 10vw;
     width: 80%;
 }
 
@@ -52,16 +52,13 @@ input[type=submit] {
     z-index: 99999;
     overflow: visible;
     max-height: 50px;
-    width: 93%;
-    justify-content: center;
+    width: 90%;
 }
 
 #search_button {
     position: absolute;
     height: 100%;
-    border-radius: 7px;
-    border: 1px solid black;
-    padding-top: 5px;
+    border-radius: 5px;
 }
 
 #myInput {
@@ -75,14 +72,15 @@ input[type=submit] {
 
 #view_toggle {
     margin-top: 0vh;
+
+}
+
+#myInput {
+    width: 75%;
+    margin-left: 15%;
 }
 
 @media only screen and (max-width: 600px) {
-    #myInput {
-        width: 75%;
-        margin-left: 15%;
-    }
-
     .autocomplete-items {
         width: 75%;
         margin-left: 15%;
