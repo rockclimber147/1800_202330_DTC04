@@ -4,6 +4,7 @@ function saveQuestDocumentIDAndRedirect() {
       localStorage.setItem('questDocID', ID);
       window.location.href = 'review.html';
 }
+
 var questDocID = localStorage.getItem("questDocID");    //visible to all functions on this page
 
 
@@ -16,8 +17,9 @@ function getQuestName(id) {
                   document.getElementById("questName").innerHTML = questName;
             });
 }
-
-getQuestName(questDocID);
+if (window.location.href.includes("review.html")){
+      getQuestName(questDocID);
+}
 
 // Add this JavaScript code to make stars clickable
 
