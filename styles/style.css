@@ -22,7 +22,7 @@ button.navbar-toggler{
 }
 
 #user-profile img {
-    width: 30pt;
+    width: 25pt;
 }
 
 .hamburger-menu {
@@ -134,7 +134,7 @@ a:hover{
 }
 
 .material-icons.md-36 {
-    font-size: 36px;
+    font-size: 32px;
 }
 
 #profile_pic{
@@ -206,6 +206,9 @@ p.orbitron{
 @media screen and (min-width: 768px) {
     .card_body {
         font-size: 1.5rem;
+    }
+    #footer_nav a {
+        font-size: 0.7rem;
     }
 }
 
