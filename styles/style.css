@@ -1,8 +1,11 @@
 #top-navbar {
-    padding-left: 15px;
     padding-right: 15px;
     margin-bottom:0px;
     height:10vh;
+}
+
+button.navbar-toggler{
+    margin-left: 15px;
 }
 
 #footer_nav{
@@ -78,6 +81,14 @@ pale yellow #F5DFBB;
     font-family: 'Orbitron', sans-serif;
 }
 
+h1{
+    margin: 0px;
+    font-size: 1.5rem;
+}
+
+#firebaseui-auth-container{
+    margin-top: 10vh;
+}
 
 /* body */
 body {
@@ -197,6 +208,8 @@ p.orbitron{
         font-size: 1.5rem;
     }
 }
+
+
 
 /* quest-detail.html */
 .quest_accept_button, .quest_complete_button, .quest_drop_button,
