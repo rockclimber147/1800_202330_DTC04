@@ -77,6 +77,11 @@ pale yellow #F5DFBB;
     /* Light shade for brand name & nav links for contrast */
 }
 
+
+#review_title{
+    padding: 0 12px;
+}
+
 .navbar-brand{
     font-family: 'Orbitron', sans-serif;
 }

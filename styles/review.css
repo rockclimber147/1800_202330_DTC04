@@ -8,6 +8,17 @@
 .card{
       width: 80%;
       margin: 5%;
+      background-color: #a36654;
+      justify-content: center;
+}
+
+#reviewCardGroup{
+      justify-content: center;
+      padding-top: 15px;
+}
+
+h1{
+      padding: 20px 12px;
 }
 
 
