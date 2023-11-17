@@ -1,12 +1,9 @@
 #top-navbar {
-    padding-right: 15px;
     margin-bottom:0px;
     height:10vh;
 }
 
-button.navbar-toggler{
-    margin-left: 15px;
-}
+
 
 #footer_nav{
     height:10vh;
@@ -88,6 +85,11 @@ pale yellow #F5DFBB;
 .navbar-brand{
     font-family: 'Orbitron', sans-serif;
     margin: 0px;
+}
+
+.navbar-toggler{
+    border: none;
+    padding: 0px;
 }
 
 h1{
