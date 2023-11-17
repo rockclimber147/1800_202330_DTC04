@@ -170,7 +170,7 @@ function populateReviews() {
                         }
 
                         for (let i = cost; i < 5; i++) {
-                              costRating += '<span class="material-icons">fiber_manual_record</span>';
+                              costRating += '<span></span>';
                         }
 
                         // FIXED THE BUG! I was appending reviewCard twice
