@@ -20,7 +20,6 @@ async function display_quest_info() {
         $(`.quest_place`).text(quest_place);
         $('.quest_price').text('$'.repeat(quest_price));
         $(`.quest_description`).text(quest_description);
-        $(`#complete_quest_pop_up .pop_up_confirm_button`).attr('onclick', `location.href='./quest-completion.html?quest_id=${ID}'`);
 
         db.collection("users").doc(user.uid).onSnapshot((user_doc) => {
             console.log("Current user data: ", user_doc.data());
@@ -94,13 +93,17 @@ function switch_buttons_and_pop_ups(user, ID) {
     $('#drop_quest_pop_up .pop_up_confirm_button').click(function () {
         $(this).closest('.pop_up').addClass('d-none'); // pop-up disappears
         $('#quest_dropped_pop_up').removeClass('d-none'); // another pop-up shows up
+        db.collection('users').doc(user.uid).update({
+            accepted_quests: firebase.firestore.FieldValue.arrayRemove(ID)
+        })
+        $('#drop').addClass('d-none');
+        $('#complete').addClass('d-none');
     })
 
     // when "Close" is clicked after dropping quest
     $('#quest_dropped_pop_up .pop_up_close_button').click(function () {
         $(this).closest('.pop_up').addClass('d-none'); // pop-up disappears
         $('.quest_accept_button').removeClass('d-none'); // "Accept" button shows up
-        $('.quest_complete_button, .quest_drop_button').addClass('d-none'); // "Complete" and "Drop" button disappear
         $('#details_go_here').removeClass('opacity-25');
     })
 
@@ -115,6 +118,15 @@ function switch_buttons_and_pop_ups(user, ID) {
         $(this).closest('.pop_up').addClass('d-none'); // pop-up disappears
         $('#details_go_here').removeClass('opacity-25');
     })
+
+    // When complete quest is confirmed
+    $(`#complete_quest_pop_up .pop_up_confirm_button`).click(async function(){
+        await db.collection('users').doc(user.uid).update({
+            accepted_quests: firebase.firestore.FieldValue.arrayRemove(ID), // Remove the quest from accepted quests
+            completed_quests: firebase.firestore.FieldValue.arrayUnion(ID)  // Move to completed quests
+        })
+        window.location.href = `location.href='./quest-completion.html?quest_id=${ID}'`
+    });
 
 }
 
