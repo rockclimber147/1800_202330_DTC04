@@ -349,28 +349,12 @@ $(document).ready(function () {
             let search_keywords = search_text.split(' ');                    // split text into array of words
             console.log('search keywords:', search_keywords);
             let search_results = await db.collection('quests')               // get quests
-            .where('keywords', 'array-contains-any', search_keywords).get(); // where quest keywords contain any word in search array
+                  .where('keywords', 'array-contains-any', search_keywords).get(); // where quest keywords contain any word in search array
             update_map(search_results);                                      // update map with results
             update_quest_cards(search_results);                              // update cards with results
       })
-      
-      function toggle_view() {
-            console.log('switching...');
-            console.log($('#view_toggle_text').text())
-            switch ($('#view_toggle_text').text()) {
-                  case 'MAP': {
-                        $('#view_toggle_text').text('LIST');
-                        $('#map').show();
-                        $('#quest_cards_go_here').hide();
-                        break;
-                  } case 'LIST': {
-                        $('#view_toggle_text').text('MAP');
-                        $('#map').hide();
-                        $('#quest_cards_go_here').show();
-                        break;
-                  }
-            }
-      }
+
+
 
       function calculateDistance(current, destination) {
             // this function receives two arrays that represent coordinates and returns the distance in miles
@@ -384,17 +368,7 @@ $(document).ready(function () {
             return distance;
       }
 
-      //------------------------------------------------
-      // Call this function when the "logout" button is clicked
-      //-------------------------------------------------
-      function logout() {
-            firebase.auth().signOut().then(() => {
-                  // Sign-out successful.
-                  console.log("logging out user");
-            }).catch((error) => {
-                  // An error happened.
-            });
-      }
+
 
 
       init()
@@ -405,4 +379,32 @@ $(document).ready(function () {
 })
 
 
+function toggle_view() {
+      console.log('switching...');
+      console.log($('#view_toggle_text').text())
+      switch ($('#view_toggle_text').text()) {
+            case 'MAP': {
+                  $('#view_toggle_text').text('LIST');
+                  $('#map').show();
+                  $('#quest_cards_go_here').hide();
+                  break;
+            } case 'LIST': {
+                  $('#view_toggle_text').text('MAP');
+                  $('#map').hide();
+                  $('#quest_cards_go_here').show();
+                  break;
+            }
+      }
+}
 
+//------------------------------------------------
+// Call this function when the "logout" button is clicked
+//-------------------------------------------------
+function logout() {
+      firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+            console.log("logging out user");
+      }).catch((error) => {
+            // An error happened.
+      });
+}
