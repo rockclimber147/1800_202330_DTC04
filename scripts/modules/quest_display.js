@@ -17,6 +17,7 @@ export function update_quest_cards(quest_db, quest_html_node, tag_html_node, use
           var quest_distance = calculateDistance(user_location, quest_location);
           var quest_tag_id_list = doc.data().tag_ids       // get the list of tag ids
           var quest_id = doc.id;                           // get the quest ids
+          var quest_point = doc.data().point;            // get the quest points
 
           // Clone the contents of the quest card template element (not the parent template element)
           let new_quest_card = $(quest_html_node).clone();
@@ -29,6 +30,7 @@ export function update_quest_cards(quest_db, quest_html_node, tag_html_node, use
           new_quest_card.find('.quest_distance').text(quest_distance + 'km');
           new_quest_card.find('.quest_image').attr('src', image_url); // find image and put in new quest card
           new_quest_card.find('.quest_detail_link').attr('href', `./quest-detail.html?quest_id=${quest_id}`); // set links to quest cards
+          new_quest_card.find('.quest_point').text(quest_point + 'pt');
 
           if (quest_tag_id_list[0] != "") {
                 for (let i = 0; i < quest_tag_id_list.length; i++) {
