@@ -16,7 +16,7 @@ $(document).ready(function () {
                   all_quest_tags[tag_doc.id] = tag_doc.data().tag_name;
             })
 
-            navigator.geolocation.getCurrentPosition(position => {
+            navigator.geolocation.getCurrentPosition(async position => {
                   user_location = [position.coords.latitude, position.coords.longitude];
                   console.log('user_location in position', user_location)
                   update_quest_cards();
