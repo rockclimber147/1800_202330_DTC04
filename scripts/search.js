@@ -5,7 +5,6 @@ $(document).ready(function () {
       var quest_tag_template = $('#quest_tag_template');
       var quest_tag_node = quest_tag_template.prop('content');    // get tag template ready
 
-      var quest_collection = db.collection('quests');
       var all_quest_tags = {};
       var quest_tag_array = [];
       var quest_name_array = []
@@ -13,6 +12,8 @@ $(document).ready(function () {
 
       var user_location = [0, 0];
       var map;
+      var current_user_id;
+
 
       /**
        * Initialize the page by retrieving necessary data
@@ -26,8 +27,17 @@ $(document).ready(function () {
                   load_map();
             });
 
-            quest_db = await db.collection('quests').get()
+            await firebase.auth().onAuthStateChanged(async user => {
+                  // Check if user is signed in:
+                  if (user) {
+                        current_user_id = user.uid;
+                  } else {
+                        alert('user is not logged in!')
+                  }
+            });
 
+
+            quest_db = await db.collection('quests').get()
             tag_db = await db.collection('tags').get()                                     // get all tags
             tag_db.forEach(tag_doc => {
                   all_quest_tags[tag_doc.id] = tag_doc.data().tag_name;
@@ -39,6 +49,9 @@ $(document).ready(function () {
             console.log('quest names:', quest_name_array)
       }
 
+      /**
+       * Loads an empty mapbox
+       */
       function load_map() {
             // Defines basic mapbox data
             console.log('user_location in load_map():', user_location)
