@@ -30,7 +30,7 @@ export function update_quest_cards(quest_db, quest_html_node, tag_html_node, use
           new_quest_card.find('.quest_distance').text(quest_distance + 'km');
           new_quest_card.find('.quest_image').attr('src', image_url); // find image and put in new quest card
           new_quest_card.find('.quest_detail_link').attr('href', `./quest-detail.html?quest_id=${quest_id}`); // set links to quest cards
-          new_quest_card.find('.quest_point').text(quest_point + 'pt');
+          new_quest_card.find('.quest_point').text(quest_point + 'pt'); // put quest points in quest card
 
           if (quest_tag_id_list[0] != "") {
                 for (let i = 0; i < quest_tag_id_list.length; i++) {
