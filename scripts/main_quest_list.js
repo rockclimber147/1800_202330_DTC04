@@ -16,7 +16,7 @@ $(document).ready(async function () {
             var user_location = [position.coords.latitude, position.coords.longitude];
             console.log('user_location in position', user_location)
 
-            let map = initialize_map(user_location);
+            var map = await initialize_map(user_location);
 
             await firebase.auth().onAuthStateChanged(async (user) => {
                 if (user) {

@@ -40,6 +40,7 @@ $(document).ready(function () {
                   $.get('reusable_html/quest_tag.html'),
                   db.collection('quest_names').doc('NJYbhL8TFCSnv3peyJPv').get()
             ])
+            // We're using strict mode now so add all these to the search button so it can access them in the event listener
             document.getElementById('search_button').quest_html_node = quest_html_node
             document.getElementById('search_button').tag_html_node =tag_html_node
             document.getElementById('search_button').user_location = user_location
