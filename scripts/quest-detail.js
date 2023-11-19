@@ -1,3 +1,6 @@
+/**
+ * Checks if user is logged in -> gets quest from url -> populate quest info -> update based on user
+ */
 async function display_quest_info() {
     await firebase.auth().onAuthStateChanged(async (user) => {
 
@@ -21,6 +24,9 @@ async function display_quest_info() {
         $('.quest_price').text('$'.repeat(quest_price));
         $(`.quest_description`).text(quest_description);
 
+        /**
+         * This snapshot updates the display whenever the user document changes
+         */
         db.collection("users").doc(user.uid).onSnapshot((user_doc) => {
             console.log("Current user data: ", user_doc.data());
             let user_accepted_quests = user_doc.data().accepted_quests;
@@ -41,6 +47,10 @@ async function display_quest_info() {
     });
 }
 
+/**
+ * Switches the display based on the stage the quest is at (not accepted/accepted/completed)
+ * @param {String} display_state THe state of the user
+ */
 function set_display_state(display_state) {
     switch (display_state) {
         case 'quest is accepted': {
