@@ -135,7 +135,7 @@ function switch_buttons_and_pop_ups(user, ID) {
             accepted_quests: firebase.firestore.FieldValue.arrayRemove(ID), // Remove the quest from accepted quests
             completed_quests: firebase.firestore.FieldValue.arrayUnion(ID)  // Move to completed quests
         })
-        window.location.href = `location.href='./quest-completion.html?quest_id=${ID}'`
+        window.location.href = `quest-completion.html?quest_id=${ID}`
     });
 
 }
