@@ -15,6 +15,7 @@ async function display_quest_info() {
         var quest_place = quest_doc.data().location_name;      // get the name of the location
         var quest_price = quest_doc.data().cost;               // get the price of the quest
         var quest_description = quest_doc.data().description;  // gets the description field
+        var quest_point = quest_doc.data().point;             // gets the points field
 
         // update contents
         $(`.quest_name`).text(quest_name);
@@ -23,6 +24,7 @@ async function display_quest_info() {
         $(`.quest_place`).text(quest_place);
         $('.quest_price').text('$'.repeat(quest_price));
         $(`.quest_description`).text(quest_description);
+        $(`#quest_point`).text(quest_point);
 
         /**
          * This snapshot updates the display whenever the user document changes
