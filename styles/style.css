@@ -1,9 +1,9 @@
 #top-navbar {
-    padding-left: 15px;
-    padding-right: 15px;
     margin-bottom:0px;
     height:10vh;
+    background-color: #F5DFBB;
 }
+
 
 #footer_nav{
     height:10vh;
@@ -19,7 +19,7 @@
 }
 
 #user-profile img {
-    width: 30pt;
+    width: 25pt;
 }
 
 .hamburger-menu {
@@ -74,10 +74,32 @@ pale yellow #F5DFBB;
     /* Light shade for brand name & nav links for contrast */
 }
 
-.navbar-brand{
-    font-family: 'Orbitron', sans-serif;
+.top_part_quest_detail{
+    padding-top: 5vh;
 }
 
+#review_title{
+    padding: 0 12px;
+}
+
+.navbar-brand{
+    font-family: 'Orbitron', sans-serif;
+    margin: 0px;
+}
+
+.navbar-toggler{
+    border: none;
+    padding: 0px;
+}
+
+h1{
+    margin: 0px;
+    font-size: 1.5rem;
+}
+
+#firebaseui-auth-container{
+    margin-top: 10vh;
+}
 
 /* body */
 body {
@@ -123,7 +145,7 @@ a:hover{
 }
 
 .material-icons.md-36 {
-    font-size: 36px;
+    font-size: 32px;
 }
 
 #profile_pic{
@@ -138,6 +160,9 @@ a:hover{
     padding-left: 10px;
 }
 
+#back_button{
+    padding-left: 15px;
+}
 section{
     padding: 10px;
 }
@@ -158,9 +183,11 @@ p.orbitron{
 #view_toggle{
     position: fixed;
     /* This next line has a powerful aura */
-    z-index: 9999 !important;
-
-    border-radius: 10px;
+    z-index: 100 !important;
+    margin-top: 11vh;
+    margin-left: 1vw;
+    border-radius: 5px;
+    border: black solid 1px;    
 }
 
 /* main.html > quest_card_template */
@@ -196,7 +223,12 @@ p.orbitron{
     .card_body {
         font-size: 1.5rem;
     }
+    #footer_nav a {
+        font-size: 0.6rem;
+    }
 }
+
+
 
 /* quest-detail.html */
 .quest_accept_button, .quest_complete_button, .quest_drop_button,

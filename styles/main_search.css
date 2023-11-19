@@ -42,14 +42,14 @@ input[type=submit] {
 
 .autocomplete {
     display: inline-block;
-    margin-left: 10%;
+    margin-left: 10vw;
     width: 80%;
 }
 
 #search_container {
-    margin-top: 10vh;
+    margin-top: 11vh;
     position: fixed;
-    z-index: 99999;
+    z-index: 100;
     overflow: visible;
     max-height: 50px;
     width: 90%;
@@ -75,12 +75,12 @@ input[type=submit] {
 
 }
 
-@media only screen and (max-width: 600px) {
-    #myInput {
-        width: 75%;
-        margin-left: 15%;
-    }
+#myInput {
+    width: 75%;
+    margin-left: 15%;
+}
 
+@media only screen and (max-width: 600px) {
     .autocomplete-items {
         width: 75%;
         margin-left: 15%;

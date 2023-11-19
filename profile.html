@@ -63,12 +63,7 @@
 
 <body>
 
-      <button><span class="material-symbols-outlined md-48" onclick="window.history.go(-1); return false;">arrow_back_ios</span></button>
-
-      <!-- reusable top navbar -->
-      <!-- <div id="reusable_header"></div> -->
-      <!-- /reusable top navbar -->
-
+      <span class="material-symbols-outlined back_button" onclick="window.history.go(-1); return false;">arrow_back_ios</span>
 
       <div class="container">
             <div id="level"></div>
@@ -95,6 +90,13 @@
                                     <label>Name</label>
                                     <input type="text" id="nameInput" class="form-control" placeholder="Enter your name">
                               </div>
+
+                              <label for="exampleFormControlSelect1">What is your gender?</label>
+                              <select class="form-control" id="genderInput">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Other</option>
+                              </select>
                               
                               <div class="form-group">
                                     <label>Birth Date</label>
@@ -121,6 +123,12 @@
                                     <label>Add a Bio</label>
                                     <textarea type="text" id="bioInput" class="form-control" placeholder="Enter your Bio"></textarea>     
                               </div>
+                              <fieldset class="tag_checkbox">
+                                    <legend>What activities are you interested in?</legend>
+                                    <div id="check"></div>
+                                    </div>
+                              </fieldset>
+
                         </fieldset>
 
                         <!-- Placeholder for preference -->
@@ -135,10 +143,7 @@
                         <!-- </div> -->
                         
                         <!-- Checkboxes for preferences -->
-                        <fieldset class="tag_checkbox">
-                              <legend>What activities are you interested in?</legend>
-                              <div id="check"></div>
-                        </fieldset>
+                        
 
                   </form>
             </div>

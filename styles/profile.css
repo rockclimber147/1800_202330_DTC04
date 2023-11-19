@@ -1,8 +1,12 @@
-.material-symbols-outlined.md-48 {
-      font-size: 48px;
-      margin: 20px;
+.back_button {
+      font-size: 40px;
+      margin: 10px;
 }
 
 body{
       padding: 5px;
+}
+
+.tag_checkbox{
+      padding-top: 15px;
 }
