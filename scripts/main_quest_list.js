@@ -1,6 +1,6 @@
 $(document).ready(async function () {
-    var quest_card_node
-    var quest_tag_node
+    var quest_html_node
+    var tag_html_node
     var user_doc
     var user_location
     var all_quest_tags = {};
@@ -20,7 +20,7 @@ $(document).ready(async function () {
             await firebase.auth().onAuthStateChanged(async (user) => {
                 if (user) {
                     let quest_tag_db;
-                    [quest_card_node, quest_tag_node, user_doc, quest_tag_db] = await Promise.all
+                    [quest_html_node, tag_html_node, user_doc, quest_tag_db] = await Promise.all
                         ([$.get('reusable_html/quest_card.html'), // Quest card template from reusable html
                         $.get('reusable_html/quest_tag.html'),   // Quest tag from reusable html
                         db.collection("users").doc(user.uid).get(),
@@ -256,7 +256,7 @@ $(document).ready(async function () {
             var quest_name = doc.data().quest_name;          // get the quest name
             var quest_rating = doc.data().rate;              // get value of the "details" key
             var quest_price = doc.data().cost;               // get the price of the quest
-            var image_url = doc.data().image_url;          // get the name of the image
+            var image_url = doc.data().image_url;           // get the name of the image
             var quest_description = doc.data().description;  // gets the description field (TODO)
             var quest_location = doc.data().location;
             var quest_distance = calculateDistance(user_location, quest_location);
@@ -264,7 +264,7 @@ $(document).ready(async function () {
             var quest_id = doc.id;                           // get the quest ids
 
             // Clone the contents of the quest card template element (not the parent template element)
-            let new_quest_card = $(quest_card_node).clone();
+            let new_quest_card = $(quest_html_node).clone();
 
             //update title and text and image
             new_quest_card.find('.quest_name').text(quest_name);
@@ -277,7 +277,7 @@ $(document).ready(async function () {
 
             if (quest_tag_id_list[0] != "") {
                 for (let i = 0; i < quest_tag_id_list.length; i++) {
-                    let new_quest_tag = $(quest_tag_node).children().clone();
+                    let new_quest_tag = $(tag_html_node).clone();
                     new_quest_tag.text(all_quest_tags[quest_tag_id_list[i]]);
                     new_quest_tag.appendTo(new_quest_card.find('.quest_tags_container'));
                 }

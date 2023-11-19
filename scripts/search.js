@@ -1,19 +1,13 @@
 $(document).ready(function () {
-      var quest_card_template = $('#quest_card_template');
-      var quest_card_node = quest_card_template.prop('content');  // get quest templates ready
-
-      var quest_tag_template = $('#quest_tag_template');
-      var quest_tag_node = quest_tag_template.prop('content');    // get tag template ready
-
       var all_quest_tags = {};
-      var quest_tag_array = [];
-      var quest_name_array = []
-      var currentArray = quest_tag_array;
+      var all_keywords = []
 
       var user_location = [0, 0];
       var map;
       var current_user_id;
 
+      var quest_html_node
+      var tag_html_node
 
       /**
        * Initialize the page by retrieving necessary data
@@ -36,17 +30,25 @@ $(document).ready(function () {
                   }
             });
 
+            [quest_db, tag_db, quest_html_node, tag_html_node, quest_name_collection] = await Promise.all([
+                  await db.collection('quests').get(),
+                  await db.collection('tags').get(),
+                  $.get('reusable_html/quest_card.html'), // Quest card template from reusable html
+                  $.get('reusable_html/quest_tag.html'),
+                  db.collection('quest_names').doc('NJYbhL8TFCSnv3peyJPv').get()
+            ])
 
-            quest_db = await db.collection('quests').get()
-            tag_db = await db.collection('tags').get()                                     // get all tags
+            all_keywords = quest_name_collection.data().all_quest_names
+
             tag_db.forEach(tag_doc => {
                   all_quest_tags[tag_doc.id] = tag_doc.data().tag_name;
-                  quest_tag_array.push(tag_doc.data().tag_name)                            // add tag names to tag array
+                  all_keywords.push(tag_doc.data().tag_name)                            // add tag names to tag array
             })
             console.log('tag names:', all_quest_tags)
-            let quest_name_collection = await db.collection('quest_names').doc('NJYbhL8TFCSnv3peyJPv').get()
-            quest_name_array = quest_name_collection.data().all_quest_names               // Store list of all names
-            console.log('quest names:', quest_name_array)
+            // Store list of all names
+            console.log('quest names:', all_keywords)
+            /*initiate the autocomplete function on the "myInput" element, and pass along the keyword array as possible autocomplete values:*/
+            autocomplete(document.getElementById("myInput"), all_keywords);
       }
 
       /**
@@ -250,7 +252,7 @@ $(document).ready(function () {
                   var quest_name = doc.data().quest_name;          // get the quest name
                   var quest_rating = doc.data().rate;              // get value of the "details" key
                   var quest_price = doc.data().cost;               // get the price of the quest
-                  var image_name = doc.data().image_name;          // get the name of the image
+                  var image_url = doc.data().image_url;          // get the name of the image
                   var quest_description = doc.data().description;  // gets the description field (TODO)
                   var quest_location = doc.data().location;
                   var quest_distance = calculateDistance(user_location, quest_location);
@@ -258,7 +260,7 @@ $(document).ready(function () {
                   var quest_id = doc.id;                           // get the quest ids
 
                   // Clone the contents of the quest card template element (not the parent template element)
-                  let new_quest_card = $(quest_card_node).children().clone();
+                  let new_quest_card = $(quest_html_node).clone();
 
                   //update title and text and image
                   new_quest_card.find('.quest_name').text(quest_name);
@@ -266,12 +268,12 @@ $(document).ready(function () {
                   new_quest_card.find('.quest_price').text('$'.repeat(quest_price));
                   new_quest_card.find('.quest_description').text(quest_description);
                   new_quest_card.find('.quest_distance').text(quest_distance + 'km');
-                  new_quest_card.find('.quest_image').attr('src', `./images/${image_name}.jpg`); // find image and put in new quest card
+                  new_quest_card.find('.quest_image').attr('src', image_url); // find image and put in new quest card
                   new_quest_card.find('.quest_detail_link').attr('href', `./quest-detail.html?quest_id=${quest_id}`); // set links to quest cards
 
                   if (quest_tag_id_list[0] != "") {
                         for (let i = 0; i < quest_tag_id_list.length; i++) {
-                              let new_quest_tag = $(quest_tag_node).children().clone();
+                              let new_quest_tag = $(tag_html_node).clone();
                               new_quest_tag.text(all_quest_tags[quest_tag_id_list[i]]);
                               new_quest_tag.appendTo(new_quest_card.find('.quest_tags_container'));
                         }
@@ -374,8 +376,6 @@ $(document).ready(function () {
       init()
       $('#quest_cards_go_here').hide();
 
-      /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-      autocomplete(document.getElementById("myInput"), currentArray);
 })
 
 
