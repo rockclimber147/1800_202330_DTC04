@@ -5,7 +5,6 @@ $(document).ready(function () {
       var quest_tag_template = $('#quest_tag_template');
       var quest_tag_node = quest_tag_template.prop('content');    // get tag template ready
 
-      var quest_collection = db.collection('quests');
       var all_quest_tags = {};
       var quest_tag_array = [];
       var quest_name_array = []
@@ -13,6 +12,8 @@ $(document).ready(function () {
 
       var user_location = [0, 0];
       var map;
+      var current_user_id;
+
 
       /**
        * Initialize the page by retrieving necessary data
@@ -26,8 +27,17 @@ $(document).ready(function () {
                   load_map();
             });
 
-            quest_db = await db.collection('quests').get()
+            await firebase.auth().onAuthStateChanged(async user => {
+                  // Check if user is signed in:
+                  if (user) {
+                        current_user_id = user.uid;
+                  } else {
+                        alert('user is not logged in!')
+                  }
+            });
 
+
+            quest_db = await db.collection('quests').get()
             tag_db = await db.collection('tags').get()                                     // get all tags
             tag_db.forEach(tag_doc => {
                   all_quest_tags[tag_doc.id] = tag_doc.data().tag_name;
@@ -39,6 +49,9 @@ $(document).ready(function () {
             console.log('quest names:', quest_name_array)
       }
 
+      /**
+       * Loads an empty mapbox
+       */
       function load_map() {
             // Defines basic mapbox data
             console.log('user_location in load_map():', user_location)
@@ -336,28 +349,12 @@ $(document).ready(function () {
             let search_keywords = search_text.split(' ');                    // split text into array of words
             console.log('search keywords:', search_keywords);
             let search_results = await db.collection('quests')               // get quests
-            .where('keywords', 'array-contains-any', search_keywords).get(); // where quest keywords contain any word in search array
+                  .where('keywords', 'array-contains-any', search_keywords).get(); // where quest keywords contain any word in search array
             update_map(search_results);                                      // update map with results
             update_quest_cards(search_results);                              // update cards with results
       })
-      
-      function toggle_view() {
-            console.log('switching...');
-            console.log($('#view_toggle_text').text())
-            switch ($('#view_toggle_text').text()) {
-                  case 'MAP': {
-                        $('#view_toggle_text').text('LIST');
-                        $('#map').show();
-                        $('#quest_cards_go_here').hide();
-                        break;
-                  } case 'LIST': {
-                        $('#view_toggle_text').text('MAP');
-                        $('#map').hide();
-                        $('#quest_cards_go_here').show();
-                        break;
-                  }
-            }
-      }
+
+
 
       function calculateDistance(current, destination) {
             // this function receives two arrays that represent coordinates and returns the distance in miles
@@ -371,17 +368,7 @@ $(document).ready(function () {
             return distance;
       }
 
-      //------------------------------------------------
-      // Call this function when the "logout" button is clicked
-      //-------------------------------------------------
-      function logout() {
-            firebase.auth().signOut().then(() => {
-                  // Sign-out successful.
-                  console.log("logging out user");
-            }).catch((error) => {
-                  // An error happened.
-            });
-      }
+
 
 
       init()
@@ -392,4 +379,32 @@ $(document).ready(function () {
 })
 
 
+function toggle_view() {
+      console.log('switching...');
+      console.log($('#view_toggle_text').text())
+      switch ($('#view_toggle_text').text()) {
+            case 'MAP': {
+                  $('#view_toggle_text').text('LIST');
+                  $('#map').show();
+                  $('#quest_cards_go_here').hide();
+                  break;
+            } case 'LIST': {
+                  $('#view_toggle_text').text('MAP');
+                  $('#map').hide();
+                  $('#quest_cards_go_here').show();
+                  break;
+            }
+      }
+}
 
+//------------------------------------------------
+// Call this function when the "logout" button is clicked
+//-------------------------------------------------
+function logout() {
+      firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+            console.log("logging out user");
+      }).catch((error) => {
+            // An error happened.
+      });
+}

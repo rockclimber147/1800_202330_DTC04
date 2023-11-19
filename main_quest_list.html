@@ -47,6 +47,7 @@
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/main_search.css">
     <link rel="stylesheet" href="./styles/main_quest_list.css">
 
     <!-- Icons -->
@@ -71,15 +72,24 @@
     <div id="reusable_header"></div>
     <!-- /reusable top navbar -->
 
-    <main>
-        <button id="view_toggle" onclick="toggle_view()" class="d-flex align-items-start">
+    <div id="search_container" class="container d-flex justify-content-between">
+        <button id="view_toggle" onclick="toggle_view()">
             <span id="view_toggle_text"
-                class="material-symbols-outlined d-flex justify-content-start material-icons md-36 view_icon">LIST</span>
+                class="material-symbols-outlined justify-content-start material-icons md-36 view_icon">LIST</span>
         </button>
+
+        <button class="top_button">Bookmarked Quests</button>
+        <button class="top_button">Active Quests</button>
+
+    </div>
+
+    <main>
         <!-- MAPBOX -->
         <div id='map' style='display:inline-block;width: 100%; height:80vh; margin-top:10vh;'></div>
         <!-- Quest cards -->
-        <div id="quest_cards_go_here"></div>        
+        <div id="quest_cards_go_here">
+
+        </div>
     </main>
 
     <!-- reusable footer -->
@@ -127,7 +137,7 @@
     <!-- This script loads the reusable html skeletons for the header and footer -->
     <script src="./scripts/skeleton.js"></script>
 
-    <script src="./scripts/main.js"></script>
+    <script src="./scripts/main_quest_list.js"></script>
 
     <!-- Helper functions, uncomment this if you need to execute them -->
     <!-- <script src="./scripts/helpers.js"></script> -->
