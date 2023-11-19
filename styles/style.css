@@ -254,7 +254,7 @@ p.orbitron{
     background-color: #d96055;
 }
 
-.quest_drop_button, .quest_review_button {
+.quest_drop_button, .quest_review_button, #quest_is_completed{
     background-color: gray;
     
 }
