@@ -62,6 +62,7 @@ function set_display_state(display_state) {
             $('#drop').addClass('d-none');
             $('#complete').addClass('d-none');
             $('#quest_is_completed').removeClass('d-none');
+            $('.quest_review_button').removeClass('d-none');
             break;
         } case 'quest is not yet accepted': {
             $('#accept').removeClass('d-none')
