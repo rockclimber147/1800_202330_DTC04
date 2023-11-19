@@ -240,6 +240,9 @@ export function update_map(map, quest_db) {
     });
 }
 
+/**
+ * Toggles the view from map to quest card and back
+ */
 export function toggle_view() {
     console.log('switching...');
     console.log($('#view_toggle_text').text())
@@ -259,9 +262,9 @@ export function toggle_view() {
 }
 
 /**
- * 
- * @param {Array} current 
- * @param {Array} destination 
+ * Calculates the distance between two latitude/longitude coordinates
+ * @param {Array} current current latitude and longitude
+ * @param {Array} destination destination latitude and longitude
  * @returns 
  */
 function calculateDistance(current, destination) {
