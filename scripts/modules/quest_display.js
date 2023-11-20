@@ -4,42 +4,50 @@
  * @param {DOMObject} quest_html_node A DOM object representing a quest card
  * @param {DOMObject} tag_html_node A DOM object representing a quest tag
  * @param {Map} all_quest_tags A Map relating tag ids to tag names
+ * @param {firestoreDatabase} user_db A database of users
  */
-export function update_quest_cards(quest_db, quest_html_node, tag_html_node, user_location, all_quest_tags) {
+export function update_quest_cards(quest_db, quest_html_node, tag_html_node, user_location, all_quest_tags, user_doc) {
     $('#quest_cards_go_here').empty()
     quest_db.forEach(doc => {                          // iterate through each doc and for each:
-          var quest_name = doc.data().quest_name;          // get the quest name
-          var quest_rating = doc.data().rate;              // get value of the "details" key
-          var quest_price = doc.data().cost;               // get the price of the quest
-          var image_url = doc.data().image_url;          // get the name of the image
-          var quest_description = doc.data().description;  // gets the description field (TODO)
-          var quest_location = doc.data().location;
-          var quest_distance = calculateDistance(user_location, quest_location);
-          var quest_tag_id_list = doc.data().tag_ids       // get the list of tag ids
-          var quest_id = doc.id;                           // get the quest ids
-          var quest_point = doc.data().point;            // get the quest points
+        var quest_name = doc.data().quest_name;          // get the quest name
+        var quest_rating = doc.data().rate;              // get value of the "details" key
+        var quest_price = doc.data().cost;               // get the price of the quest
+        var image_url = doc.data().image_url;          // get the name of the image
+        var quest_description = doc.data().description;  // gets the description field (TODO)
+        var quest_location = doc.data().location;
+        var quest_distance = calculateDistance(user_location, quest_location);
+        var quest_tag_id_list = doc.data().tag_ids       // get the list of tag ids
+        var quest_id = doc.id;                           // get the quest ids
+        var quest_point = doc.data().point;            // get the quest points
+        var bookmarked_quests = user_doc.data().bookmarked_quests
+        
+        // Clone the contents of the quest card template element (not the parent template element)
+        let new_quest_card = $(quest_html_node).clone();
 
-          // Clone the contents of the quest card template element (not the parent template element)
-          let new_quest_card = $(quest_html_node).clone();
+        let bookmark_state = 'bookmark_border'
+        console.log(bookmarked_quests)
+        if (bookmarked_quests.includes(quest_id)){
+            bookmark_state = "bookmark"
+        }
 
-          //update title and text and image
-          new_quest_card.find('.quest_name').text(quest_name);
-          new_quest_card.find('.quest_rating').text('★'.repeat(quest_rating));
-          new_quest_card.find('.quest_price').text('$'.repeat(quest_price));
-          new_quest_card.find('.quest_description').text(quest_description);
-          new_quest_card.find('.quest_distance').text(quest_distance + 'km');
-          new_quest_card.find('.quest_image').attr('src', image_url); // find image and put in new quest card
-          new_quest_card.find('.quest_detail_link').attr('href', `./quest-detail.html?quest_id=${quest_id}`); // set links to quest cards
-          new_quest_card.find('.quest_point').text(quest_point + 'pt'); // put quest points in quest card
-
-          if (quest_tag_id_list[0] != "") {
-                for (let i = 0; i < quest_tag_id_list.length; i++) {
-                      let new_quest_tag = $(tag_html_node).clone();
-                      new_quest_tag.text(all_quest_tags[quest_tag_id_list[i]]);
-                      new_quest_tag.appendTo(new_quest_card.find('.quest_tags_container'));
-                }
-          }
-          new_quest_card.appendTo('#quest_cards_go_here')
+        //update title and text and image
+        new_quest_card.find('.quest_name').text(quest_name);
+        new_quest_card.find('.quest_rating').text('★'.repeat(quest_rating));
+        new_quest_card.find('.quest_price').text('$'.repeat(quest_price));
+        new_quest_card.find('.quest_description').text(quest_description);
+        new_quest_card.find('.quest_distance').text(quest_distance + 'km');
+        new_quest_card.find('.quest_image').attr('src', image_url); // find image and put in new quest card
+        new_quest_card.find('.quest_detail_link').attr('href', `./quest-detail.html?quest_id=${quest_id}`); // set links to quest cards
+        new_quest_card.find('.quest_point').text(quest_point + 'pt'); // put quest points in quest card
+        new_quest_card.find('.quest_bookmark').text(bookmark_state)
+        if (quest_tag_id_list[0] != "") {
+            for (let i = 0; i < quest_tag_id_list.length; i++) {
+                    let new_quest_tag = $(tag_html_node).clone();
+                    new_quest_tag.text(all_quest_tags[quest_tag_id_list[i]]);
+                    new_quest_tag.appendTo(new_quest_card.find('.quest_tags_container'));
+            }
+        }
+        new_quest_card.appendTo('#quest_cards_go_here')
     })
 }
 

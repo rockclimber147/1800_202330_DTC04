@@ -48,7 +48,7 @@ insertNameFromFirestore();
 
 // Demo 10 Step 1.2 - Reading the user data from Firestore and populating the form
 var currentUser;               //points to the document of the user who is logged in
-async function populateUserInfo() {
+function populateUserInfo() {
       firebase.auth().onAuthStateChanged(async user => {
             // Check if user is signed in:
             if (user) {
@@ -72,8 +72,6 @@ async function populateUserInfo() {
                   var userBio = userDoc.data().bio;
 
                   var userPreferences = userDoc.data().preferences
-
-                  var input = document.getElementById
 
                   //if the data fields are not empty, then write them into the form.
                   if (userName != null) {

@@ -40,7 +40,8 @@ $(document).ready(async function () {
                                     quest_html_node,
                                     tag_html_node,
                                     user_location,
-                                    all_quest_tags
+                                    all_quest_tags,
+                                    user_doc
                               )
                         } else {
                               alert('User not signed in!')
