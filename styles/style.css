@@ -231,6 +231,10 @@ p.orbitron{
     #footer_nav a {
         font-size: 0.6rem;
     }
+
+    #top-navbar {
+        height: 15vh;
+    }
 }
 
 
