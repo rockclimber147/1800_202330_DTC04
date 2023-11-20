@@ -184,8 +184,7 @@ p.orbitron{
     position: fixed;
     /* This next line has a powerful aura */
     z-index: 100 !important;
-    margin-top: 11vh;
-    margin-left: 1vw;
+    margin-top: 0vh; 
     border-radius: 5px;
     border: black solid 1px;    
 }
