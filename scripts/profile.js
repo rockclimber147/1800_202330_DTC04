@@ -48,60 +48,77 @@ insertNameFromFirestore();
 
 // Demo 10 Step 1.2 - Reading the user data from Firestore and populating the form
 var currentUser;               //points to the document of the user who is logged in
-function populateUserInfo() {
-      firebase.auth().onAuthStateChanged(user => {
+async function populateUserInfo() {
+      firebase.auth().onAuthStateChanged(async user => {
             // Check if user is signed in:
             if (user) {
+                  [userDoc, tag_db] = await Promise.all([
+                        db.collection("users").doc(user.uid).get(),
+                        db.collection("tags").get()
+                  ])
+                  console.log(userDoc)
+                  console.log(tag_db)
 
-                  //go to the correct user document by referencing to the user uid
-                  currentUser = db.collection("users").doc(user.uid)
-                  //get the document for current user.
-                  currentUser.get()
-                        .then(userDoc => {
-                              //get the data fields of the user
-                              var userName = userDoc.data().name;
-                              var userBirthDate = userDoc.data().birthdate;
-                              var userAddress = userDoc.data().address;
-                              var userCity = userDoc.data().city;
-                              var userProvince = userDoc.data().province;
-                              var userCountry = userDoc.data().country;
-                              // Gender 
-                              var userGender = userDoc.data().gender;
+                  //get the data fields of the user
+                  var userName = userDoc.data().name;
+                  var userBirthDate = userDoc.data().birthdate;
+                  var userAddress = userDoc.data().address;
+                  var userCity = userDoc.data().city;
+                  var userProvince = userDoc.data().province;
+                  var userCountry = userDoc.data().country;
+                  // Gender 
+                  var userGender = userDoc.data().gender;
 
-                              var userBio = userDoc.data().bio;
-                              // var preferences = userDoc.data().preferences
+                  var userBio = userDoc.data().bio;
 
-                              //if the data fields are not empty, then write them into the form.
-                              if (userName != null) {
-                                    document.getElementById("nameInput").value = userName;
-                              }
-                              if (userBirthDate != null) {
-                                    document.getElementById("birthDateInput").value = userBirthDate;
-                              }
-                              if (userAddress != null) {
-                                    document.getElementById("addressInput").value = userAddress;
-                              }
-                              if (userCity != null) {
-                                    document.getElementById("cityInput").value = userCity;
-                              }
-                              if (userProvince != null) {
-                                    document.getElementById("provinceInput").value = userProvince;
-                              }
-                              if (userCountry != null) {
-                                    document.getElementById("countryInput").value = userCountry;
-                              }
+                  var userPreferences = userDoc.data().preferences
 
-                              // Gender
-                              if (userGender != null) {
-                                    document.getElementById("genderInput").value = userGender;
-                              }
+                  var input = document.getElementById
 
-                              if (userBio != null) {
-                                    document.getElementById("bioInput").value = userBio;
-                              }
+                  //if the data fields are not empty, then write them into the form.
+                  if (userName != null) {
+                        document.getElementById("nameInput").value = userName;
+                  }
+                  if (userBirthDate != null) {
+                        document.getElementById("birthDateInput").value = userBirthDate;
+                  }
+                  if (userAddress != null) {
+                        document.getElementById("addressInput").value = userAddress;
+                  }
+                  if (userCity != null) {
+                        document.getElementById("cityInput").value = userCity;
+                  }
+                  if (userProvince != null) {
+                        document.getElementById("provinceInput").value = userProvince;
+                  }
+                  if (userCountry != null) {
+                        document.getElementById("countryInput").value = userCountry;
+                  }
 
-                             
-                        })
+                  // Gender
+                  if (userGender != null) {
+                        document.getElementById("genderInput").value = userGender;
+                  }
+
+                  if (userBio != null) {
+                        document.getElementById("bioInput").value = userBio;
+                  }
+
+                  tag_db.forEach((doc) => {
+                        let checked = ''
+                        if (userPreferences.includes(doc.id)){
+                              checked = 'checked'
+                        }
+                        console.log(`${checked}`)
+                        $("#check").append(
+                              `
+                              <div class="form-check">
+                                    <input ${checked} type="checkbox" class="form-check-input" id="tagcheckbox" name="tagcheckbox"/>
+                                    <label id="${doc.id}" for="tagcheckbox">${doc.data().tag_name}</label>  
+                              </div>
+                              `
+                        )
+                  })
 
             } else {
                   // No user is signed in.
@@ -198,20 +215,3 @@ function saveUserInfo() {
 
 // print_tag()
 
-function print_tag_checkbox() {
-      db.collection('tags').get()
-            .then(all_tags => {
-                  all_tags.forEach((doc) => {
-                        $("#check").append(
-                              `
-                              <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="tagcheckbox" value='' name="tagcheckbox"/>
-                                    <label id="${doc.id}" for="tagcheckbox">${doc.data().tag_name}</label>  
-                              </div>
-                              `
-                        )
-                  })
-            });
-}
-
-print_tag_checkbox()
