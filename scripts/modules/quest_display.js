@@ -149,7 +149,7 @@ export async function initialize_map(user_location) {
 
 /**
  * Adds pins from quest_db to the map
- * @param {*} map OpenGL mapbok
+ * @param {*} map OpenGL mapbox
  * @param {*} quest_db Quest database
  */
 export function update_map(map, quest_db) {
