@@ -1,6 +1,7 @@
 import {update_quest_cards, initialize_map, update_map, toggle_view} from './modules/quest_display.js';
 
 $(document).ready(async function () {
+    $('#quest_cards_go_here').hide()
     var quest_html_node
     var tag_html_node
     var user_doc
