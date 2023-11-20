@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>My BCIT Project</title>
+    <title>Search</title>
     <meta name="Home" content="My 1800 App">
 
     <!------------------------>
@@ -47,7 +47,7 @@
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="./styles/main.css">
-    <link rel="stylesheet" href="./styles/main_home.css">
+    <link rel="stylesheet" href="./styles/main_search.css">
 
     <!-- Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -70,57 +70,31 @@
     <!-- reusable top navbar -->
     <div id="reusable_header"></div>
     <!-- /reusable top navbar -->
-
-    
-    <main>
-        <button id="view_toggle" onclick="toggle_view()" class="d-flex align-items-start">
+    <div id="search_container" class="container d-flex justify-content-between">
+        <button id="view_toggle" onclick="toggle_view()">
             <span id="view_toggle_text"
-                class="material-symbols-outlined d-flex justify-content-start material-icons md-36 view_icon">LIST</span>
+                class="material-symbols-outlined justify-content-start material-icons md-36 view_icon">LIST</span>
         </button>
+        <!-- AUTOCOMPLETE -->
+        <div class="autocomplete flex-end">
+            <input id="myInput" type="text" placeholder="Search">
+            <button id="search_button" class="bg-light"><span class="material-icons md-36">search</span></button>
+        </div>
+        <!-- /AUTOCOMPLETE -->
+    </div>
+    <main>
         <!-- MAPBOX -->
         <div id='map' style='display:inline-block;width: 100%; height:80vh; margin-top:10vh;'></div>
         <!-- Quest cards -->
-        <div id="quest_cards_go_here"></div>        
+        <div id="quest_cards_go_here">
+            
+        </div>
     </main>
 
 
     <!-- reusable footer -->
     <div id="reusable_footer"></div>
     <!-- /reusable footer -->
-
-    <!------------------------------------------------------------------------------------------>
-    <!--                                  TEMPLATES                                           -->
-    <!------------------------------------------------------------------------------------------>
-
-    <!-- For Quest Cards -->
-    <template id="quest_card_template">
-        <div class="card w-100 mt-2 mb-2 container-fluid p-sm-3 card_container">
-            <div class="row">
-                <div class="card_body col-8 py-2">
-                    <span><i class="material-icons">bookmark_border</i></span>
-                    <h5 class="quest_name card-title">Quest_Name</h5>
-                    <div class="row card-properties px-2">
-                        <div class="quest_rating col-5 px-1 py-1">Stars</div>
-                        <div class="quest_price col-3 px-2 py-1">Price</div>
-                        <div class="quest_distance col-4 px-2 py-1">Distance</div>
-                    </div>
-                    <div class="quest_tags_container justify-content-start card_properties">
-                    </div>
-                </div>
-                <div class="col-4 d-flex align-items-center">
-                    <img class="quest_image w-100" src="#" alt="">
-                </div>
-            </div>
-            <a href="#" class="quest_detail_link"></a>
-            
-        </div>
-    </template>
-
-    <!-- For Quest Tags -->
-    <template id="quest_tag_template">
-        <button class="quest_tag d-inline-block px-2 m-1 border-0 card_tag rounded"></button>>
-    </template>
-
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
@@ -130,7 +104,11 @@
     <script src="./scripts/firebaseAPI_DTC04.js"></script>
     <!-- This script loads the reusable html skeletons for the header and footer -->
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/main.js"></script>
+
+    <!-- This script is for displaying user information to top_nav bar -->
+    <script src="./scripts/top_nav.js"></script>
+
+    <script type="module" src="./scripts/search.js"></script>
 
     <!-- Helper functions, uncomment this if you need to execute them -->
     <!-- <script src="./scripts/helpers.js"></script> -->

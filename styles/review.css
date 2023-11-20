@@ -1,14 +1,31 @@
 /* Add CSS styles for the card container with vertical scrolling */
 .card-container {
-      max-height: 350px;
+      max-height: 500px;
       /* Adjust the maximum height as needed */
       overflow-y: auto;
 }
 
-/* Style the individual cards as needed */
-.card {
-      width: 45%;
-      /* Adjust the width as per your design, leaving a little space for margins */
-      margin: 2%;
-      /* Add margin between cards */
+.card{
+      width: 80%;
+      margin: 5%;
+      background-color: #a36654;
+      justify-content: center;
 }
+
+#reviewCardGroup{
+      justify-content: center;
+      padding-top: 15px;
+}
+
+#review_title{
+      padding: 20px 12px;
+}
+
+
+@media screen and (min-width: 768px) {
+      .card { 
+            width: 45%;
+            margin: 2%;
+      }
+}
+/* Style the individual cards as needed */

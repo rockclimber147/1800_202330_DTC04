@@ -1,12 +1,9 @@
 #top-navbar {
-    padding-right: 15px;
     margin-bottom:0px;
     height:10vh;
+    background-color: #F5DFBB;
 }
 
-button.navbar-toggler{
-    margin-left: 15px;
-}
 
 #footer_nav{
     height:10vh;
@@ -77,8 +74,22 @@ pale yellow #F5DFBB;
     /* Light shade for brand name & nav links for contrast */
 }
 
+.top_part_quest_detail{
+    padding-top: 5vh;
+}
+
+#review_title{
+    padding: 0 12px;
+}
+
 .navbar-brand{
     font-family: 'Orbitron', sans-serif;
+    margin: 0px;
+}
+
+.navbar-toggler{
+    border: none;
+    padding: 0px;
 }
 
 h1{
@@ -149,6 +160,9 @@ a:hover{
     padding-left: 10px;
 }
 
+#back_button{
+    padding-left: 15px;
+}
 section{
     padding: 10px;
 }
@@ -170,11 +184,12 @@ p.orbitron{
     position: fixed;
     /* This next line has a powerful aura */
     z-index: 100 !important;
-
-    border-radius: 10px;
+    margin-top: 0vh; 
+    border-radius: 5px;
+    border: black solid 1px;    
 }
 
-/* main.html > quest_card_template */
+/* main_home.html > quest_card_template */
 #quest_cards_go_here{
     padding-top: 10vh;
 }
@@ -194,6 +209,12 @@ p.orbitron{
     color: white;
 }
 
+.quest_point {
+    color: #F2542D;
+    font-size: 1.2rem;
+    font-style: bold;
+}
+
 .quest_detail_link {
     display: block;
     position: absolute;
@@ -210,6 +231,10 @@ p.orbitron{
     #footer_nav a {
         font-size: 0.6rem;
     }
+
+    #top-navbar {
+        height: 15vh;
+    }
 }
 
 
@@ -218,7 +243,7 @@ p.orbitron{
 .quest_accept_button, .quest_complete_button, .quest_drop_button,
 .pop_up_close_button,
 .pop_up_cancel_button,
-.pop_up_confirm_button, .review_submit_button {
+.pop_up_confirm_button, .review_submit_button, #quest_is_completed, .quest_review_button {
     width: 100%;
     border-radius: 20px;
 }
@@ -230,15 +255,15 @@ p.orbitron{
 .pop_up_confirm_button, 
 .quest_review_button, 
 .review_submit_button,
-.see_more_quest_button{
+.see_more_quest_button, #quest_is_completed, .quest_review_button{
     color: white;
 }
 
-.quest_accept_button, .quest_complete_button, .pop_up_close_button, .pop_up_confirm_button, .review_submit_button, .see_more_quest_button{
+.quest_accept_button, .quest_complete_button, .pop_up_close_button, .pop_up_confirm_button, .review_submit_button, .see_more_quest_button, .quest_review_button{
     background-color: #d96055;
 }
 
-.quest_drop_button, .quest_review_button {
+.quest_drop_button, #quest_is_completed{
     background-color: gray;
     
 }

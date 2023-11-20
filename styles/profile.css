@@ -6,3 +6,12 @@
 body{
       padding: 5px;
 }
+
+.tag_checkbox{
+      padding-top: 15px;
+}
+
+.form-check{
+      width: 50%;
+      display: inline-block;
+}
