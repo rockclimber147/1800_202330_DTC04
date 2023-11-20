@@ -5,5 +5,23 @@ body {
 
 
 #quest_cards_go_here{
-    padding-top: 15vh;
+    padding-top: 5vh;
+}
+
+h3 {
+    padding-top: 6vh;
+}
+
+#welcome_message {
+    font-size: 1rem;
+    padding-top: 0vh;
+}
+
+#user_name {
+    font-size: 1.2rem;
+}
+
+
+h3 {
+    padding-top: 0vh;
 }

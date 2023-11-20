@@ -184,8 +184,7 @@ p.orbitron{
     position: fixed;
     /* This next line has a powerful aura */
     z-index: 100 !important;
-    margin-top: 11vh;
-    margin-left: 1vw;
+    margin-top: 0vh; 
     border-radius: 5px;
     border: black solid 1px;    
 }
@@ -208,6 +207,12 @@ p.orbitron{
 .card_tag {
     background-color: #d96055;
     color: white;
+}
+
+.quest_point {
+    color: #F2542D;
+    font-size: 1.2rem;
+    font-style: bold;
 }
 
 .quest_detail_link {
@@ -234,7 +239,7 @@ p.orbitron{
 .quest_accept_button, .quest_complete_button, .quest_drop_button,
 .pop_up_close_button,
 .pop_up_cancel_button,
-.pop_up_confirm_button, .review_submit_button {
+.pop_up_confirm_button, .review_submit_button, #quest_is_completed, .quest_review_button {
     width: 100%;
     border-radius: 20px;
 }
@@ -246,15 +251,15 @@ p.orbitron{
 .pop_up_confirm_button, 
 .quest_review_button, 
 .review_submit_button,
-.see_more_quest_button{
+.see_more_quest_button, #quest_is_completed, .quest_review_button{
     color: white;
 }
 
-.quest_accept_button, .quest_complete_button, .pop_up_close_button, .pop_up_confirm_button, .review_submit_button, .see_more_quest_button{
+.quest_accept_button, .quest_complete_button, .pop_up_close_button, .pop_up_confirm_button, .review_submit_button, .see_more_quest_button, .quest_review_button{
     background-color: #d96055;
 }
 
-.quest_drop_button, .quest_review_button {
+.quest_drop_button, #quest_is_completed{
     background-color: gray;
     
 }

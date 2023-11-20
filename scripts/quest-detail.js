@@ -15,6 +15,7 @@ async function display_quest_info() {
         var quest_place = quest_doc.data().location_name;      // get the name of the location
         var quest_price = quest_doc.data().cost;               // get the price of the quest
         var quest_description = quest_doc.data().description;  // gets the description field
+        var quest_point = quest_doc.data().point;             // gets the points field
 
         // update contents
         $(`.quest_name`).text(quest_name);
@@ -23,6 +24,7 @@ async function display_quest_info() {
         $(`.quest_place`).text(quest_place);
         $('.quest_price').text('$'.repeat(quest_price));
         $(`.quest_description`).text(quest_description);
+        $(`#quest_point`).text(quest_point);
 
         /**
          * This snapshot updates the display whenever the user document changes
@@ -62,6 +64,7 @@ function set_display_state(display_state) {
             $('#drop').addClass('d-none');
             $('#complete').addClass('d-none');
             $('#quest_is_completed').removeClass('d-none');
+            $('.quest_review_button').removeClass('d-none');
             break;
         } case 'quest is not yet accepted': {
             $('#accept').removeClass('d-none')
@@ -135,7 +138,7 @@ function switch_buttons_and_pop_ups(user, ID) {
             accepted_quests: firebase.firestore.FieldValue.arrayRemove(ID), // Remove the quest from accepted quests
             completed_quests: firebase.firestore.FieldValue.arrayUnion(ID)  // Move to completed quests
         })
-        window.location.href = `location.href='./quest-completion.html?quest_id=${ID}'`
+        window.location.href = `quest-completion.html?quest_id=${ID}`
     });
 
 }
