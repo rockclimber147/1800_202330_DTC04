@@ -5,8 +5,7 @@ $(document).ready(function () {
       var all_keywords = []
 
       var user_location = [0, 0];
-      var map;
-      var current_user_id;
+      var quest_db, tag_db, quest_html_node, tag_html_node, quest_name_collection, user_doc;
 
       /**
        * Initialize the page by retrieving necessary data
@@ -20,42 +19,43 @@ $(document).ready(function () {
                   console.log('user_location in position', user_location)
                   map = await initialize_map(user_location);
                   document.getElementById('search_button').current_map = map;
-                  
+
             });
 
             await firebase.auth().onAuthStateChanged(async user => {
                   // Check if user is signed in:
                   if (user) {
-                        current_user_id = user.uid;
+                        [quest_db, tag_db, quest_html_node, tag_html_node, quest_name_collection, user_doc] = await Promise.all([
+                              await db.collection('quests').get(),
+                              await db.collection('tags').get(),
+                              $.get('reusable_html/quest_card.html'), // Quest card template from reusable html
+                              $.get('reusable_html/quest_tag.html'),
+                              db.collection('quest_names').doc('NJYbhL8TFCSnv3peyJPv').get(),
+                              await db.collection('users').doc(user.uid).get()
+                        ])
+                        // We're using strict mode now so add all these to the search button so it can access them in the event listener
+                        document.getElementById('search_button').quest_html_node = quest_html_node
+                        document.getElementById('search_button').tag_html_node = tag_html_node
+                        document.getElementById('search_button').user_location = user_location
+                        document.getElementById('search_button').all_quest_tags = all_quest_tags
+                        all_keywords = quest_name_collection.data().all_quest_names
+
+                        tag_db.forEach(tag_doc => {
+                              all_quest_tags[tag_doc.id] = tag_doc.data().tag_name;
+                              all_keywords.push(tag_doc.data().tag_name)                            // add tag names to tag array
+                        })
+                        console.log('tag names:', all_quest_tags)
+                        // Store list of all names
+                        console.log('quest names:', all_keywords)
+                        /*initiate the autocomplete function on the "myInput" element, and pass along the keyword array as possible autocomplete values:*/
+                        autocomplete(document.getElementById("myInput"), all_keywords);
                   } else {
                         alert('user is not logged in!')
                   }
             });
-            
-            var quest_db, tag_db, quest_html_node, tag_html_node, quest_name_collection;
-            [quest_db, tag_db, quest_html_node, tag_html_node, quest_name_collection] = await Promise.all([
-                  await db.collection('quests').get(),
-                  await db.collection('tags').get(),
-                  $.get('reusable_html/quest_card.html'), // Quest card template from reusable html
-                  $.get('reusable_html/quest_tag.html'),
-                  db.collection('quest_names').doc('NJYbhL8TFCSnv3peyJPv').get()
-            ])
-            // We're using strict mode now so add all these to the search button so it can access them in the event listener
-            document.getElementById('search_button').quest_html_node = quest_html_node
-            document.getElementById('search_button').tag_html_node =tag_html_node
-            document.getElementById('search_button').user_location = user_location
-            document.getElementById('search_button').all_quest_tags = all_quest_tags
-            all_keywords = quest_name_collection.data().all_quest_names
 
-            tag_db.forEach(tag_doc => {
-                  all_quest_tags[tag_doc.id] = tag_doc.data().tag_name;
-                  all_keywords.push(tag_doc.data().tag_name)                            // add tag names to tag array
-            })
-            console.log('tag names:', all_quest_tags)
-            // Store list of all names
-            console.log('quest names:', all_keywords)
-            /*initiate the autocomplete function on the "myInput" element, and pass along the keyword array as possible autocomplete values:*/
-            autocomplete(document.getElementById("myInput"), all_keywords);
+
+
       }
 
       function autocomplete(inp, arr) {
@@ -129,14 +129,15 @@ $(document).ready(function () {
             console.log('search keywords:', search_keywords);
             let search_results = await db.collection('quests')               // get quests
                   .where('keywords', 'array-contains-any', search_keywords).get(); // where quest keywords contain any word in search array
-            console.log('TEST',event.currentTarget.current_map)
+            console.log('TEST', event.currentTarget.current_map)
             update_map(event.currentTarget.current_map, search_results);                                      // update map with results
             update_quest_cards(
                   search_results,
-                  event.currentTarget.quest_html_node,
-                  event.currentTarget.tag_html_node,
-                  event.currentTarget.user_location,
-                  event.currentTarget.all_quest_tags
+                  quest_html_node,
+                  tag_html_node,
+                  user_location,
+                  all_quest_tags,
+                  user_doc
             );                              // update cards with results
       })
 
