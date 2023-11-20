@@ -15,6 +15,7 @@ async function display_quest_info() {
         var quest_place = quest_doc.data().location_name;      // get the name of the location
         var quest_price = quest_doc.data().cost;               // get the price of the quest
         var quest_description = quest_doc.data().description;  // gets the description field
+        
 
         // update contents
         $(`.quest_name`).text(quest_name);

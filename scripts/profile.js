@@ -69,6 +69,7 @@ function populateUserInfo() {
                               var userGender = userDoc.data().gender;
 
                               var userBio = userDoc.data().bio;
+                              // var preferences = userDoc.data().preferences
 
                               //if the data fields are not empty, then write them into the form.
                               if (userName != null) {
@@ -98,6 +99,8 @@ function populateUserInfo() {
                               if (userBio != null) {
                                     document.getElementById("bioInput").value = userBio;
                               }
+
+                             
                         })
 
             } else {
@@ -201,7 +204,7 @@ function print_tag_checkbox() {
                   all_tags.forEach((doc) => {
                         $("#check").append(
                               `
-                              <div class="form-check col">
+                              <div class="form-check col align-items">
                                     <input type="checkbox" class="form-check-input" id="tagcheckbox value=''" name="tagcheckbox"/>
                                     <label id="${doc.id}" for="tagcheckbox">${doc.data().tag_name}</label>  
                               </div>
@@ -212,5 +215,3 @@ function print_tag_checkbox() {
 }
 
 print_tag_checkbox()
-
-
