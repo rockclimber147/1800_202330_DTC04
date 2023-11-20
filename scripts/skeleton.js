@@ -49,8 +49,12 @@ function loadSkeleton() {
             //if the pointer to "user" object is not null, then someone is logged in
             // User is signed in.
             // Do something for the user here.
-            console.log($('#reusable_header').load('./reusable_html/top_nav_after_login.html'));
-            console.log($('#reusable_header_with_return').load('./reusable_html/top_nav_with_return_button.html'));
+            console.log($('#reusable_header').load('./reusable_html/top_nav_after_login.html', function () {
+                display_points_earned();
+            }));
+            console.log($('#reusable_header_with_return').load('./reusable_html/top_nav_with_return_button.html', function () {
+                display_points_earned();
+            }));
             console.log($('#reusable_footer').load('./reusable_html/bottom_nav.html'));
         } else {
             // No user is signed in.
