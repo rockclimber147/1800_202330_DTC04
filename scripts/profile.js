@@ -204,8 +204,8 @@ function print_tag_checkbox() {
                   all_tags.forEach((doc) => {
                         $("#check").append(
                               `
-                              <div class="form-check col align-items">
-                                    <input type="checkbox" class="form-check-input" id="tagcheckbox value=''" name="tagcheckbox"/>
+                              <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="tagcheckbox" value='' name="tagcheckbox"/>
                                     <label id="${doc.id}" for="tagcheckbox">${doc.data().tag_name}</label>  
                               </div>
                               `
