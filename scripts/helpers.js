@@ -132,7 +132,7 @@ function writeQuests() {
         rate: 4, //integer between 1 to 5 (decide as you want!)
         cost: 3, // integer between 1 to 3 (1: ~$15, 2: ~$40, 3: $40~)
         description: "The Vancouver Aquarium offers a memorable experience, showcasing the wonders of the underwater world. Located in the heart of Stanley park, it is the perfect spot for nature and animal lovers. Come to see sea otters, seals, sea lions, sharks, and more! Not only do they have animals, but you can immerse yourself in a 4D theatre experience. It will be an unforgettable experience for visitors of all ages.",
-        tag_ids: ["FRqykuyJ6ibTjRW2SRYs"], // uncomment helper.js at main.html and run log_tags() to see the list of tags (or you can copy tag_ids from firebase)
+        tag_ids: ["FRqykuyJ6ibTjRW2SRYs"], // uncomment helper.js at main_home.html and run log_tags() to see the list of tags (or you can copy tag_ids from firebase)
         image_url: "https://smapse.com/storage/2019/09/converted/895_0_o-2.jpg", // right click on the image at google image search and then select "Copy Image Address"
         point: 1300, // integer which is multiple of 50 (if required time to complete the quest from downtown is: ~30min => ~500pt, ~1hr => ~700pt, ~2hr => ~1000pt )
     })
@@ -144,7 +144,7 @@ function writeQuests() {
         rate: 3, //integer between 1 to 5 (decide as you want!)
         cost: 2, // integer between 1 to 3 (1: ~$15, 2: ~$40, 3: $40~)
         description: "Nestled in Vancouver's charming Gastown district, the Lamplighter is one of the most iconic bars in the city. It was established back in 1925 and was the first pub to be granted an alcohol license. With its rustic decor and warm ambiance, it is the perfect spot for a casual drink and a lively evening. Next time you trek through the cobblestone streets of Gastown, make sure you make a stop at the Lamplighter!",
-        tag_ids: ["amcTVmlcFPvVZo2XarCH", "j6MrxNTQVsVDqZZqKY3A"], // uncomment helper.js at main.html and run log_tags() to see the list of tags (or you can copy tag_ids from firebase)
+        tag_ids: ["amcTVmlcFPvVZo2XarCH", "j6MrxNTQVsVDqZZqKY3A"], // uncomment helper.js at main_home.html and run log_tags() to see the list of tags (or you can copy tag_ids from firebase)
         image_url: "https://www.vmcdn.ca/f/files/via/import/2018/01/04115149_lamplighter-pub-vancouver.jpg;w=960", // right click on the image at google image search and then select "Copy Image Address"
         point: 650, // integer which is multiple of 50 (if required time to complete the quest from downtown is: ~30min => ~500pt, ~1hr => ~700pt, ~2hr => ~1000pt )
     })
@@ -156,7 +156,7 @@ function writeQuests() {
         rate: 3, //integer between 1 to 5 (decide as you want!)
         cost: 2, // integer between 1 to 3 (1: ~$15, 2: ~$40, 3: $40~)
         description: "The gallery spans 165,000 square feet, making it the largest art museum in Western Canada. Here, you can explore the diverse collections of artwork and immerse yourself in thought-provoking exhibitions. Find artwork in various mediums including paintings, sculptures, and more. This is the perfect destination for those who are interested in fine and contemporary arts. Located in the heart of downtown Vancouver at Robson Square, it is close to Robson Street, a popular shopping district. Visit the Vancouver Art Gallery for an unforgettable cultural experience!",
-        tag_ids: ["FRqykuyJ6ibTjRW2SRYs"], // uncomment helper.js at main.html and run log_tags() to see the list of tags (or you can copy tag_ids from firebase)
+        tag_ids: ["FRqykuyJ6ibTjRW2SRYs"], // uncomment helper.js at main_home.html and run log_tags() to see the list of tags (or you can copy tag_ids from firebase)
         image_url: "https://contentadmin.vanartgallery.bc.ca/wp-content/uploads/2019/06/5_HISTORY-Robson-Square-Vancouver-Art-Gallery-1024PX.jpg", // right click on the image at google image search and then select "Copy Image Address"
         point: 1000, // integer which is multiple of 50 (if required time to complete the quest from downtown is: ~30min => ~500pt, ~1hr => ~700pt, ~2hr => ~1000pt )
     })
@@ -168,7 +168,7 @@ function writeQuests() {
         rate: 4, //integer between 1 to 5 (decide as you want!)
         cost: 3, // integer between 1 to 3 (1: ~$15, 2: ~$40, 3: $40~)
         description: "The Orpheum is an iconic venue featuring an interior with elegant sweeping staircases, majestic chandeliers, and exquisite architecture. It is one of the designated National Heritage Sites and has enraptured millions of people since its opening in 1927. The Orpheum is also home to the internationally renowned Vancouver Symphony Orchestra. Make sure to book your next ticket here to experience an unparalleled performance!",
-        tag_ids: ["HMrrJ40lism9mp1GIsAP"], // uncomment helper.js at main.html and run log_tags() to see the list of tags (or you can copy tag_ids from firebase)
+        tag_ids: ["HMrrJ40lism9mp1GIsAP"], // uncomment helper.js at main_home.html and run log_tags() to see the list of tags (or you can copy tag_ids from firebase)
         image_url: "https://lh3.googleusercontent.com/p/AF1QipO8YFYY-xsT6M0te3P2X7L4yAfekb8_NpCUn0Ti=s1360-w1360-h1020", // right click on the image at google image search and then select "Copy Image Address"
         point: 800, // integer which is multiple of 50 (if required time to complete the quest from downtown is: ~30min => ~500pt, ~1hr => ~700pt, ~2hr => ~1000pt )
     })
@@ -181,7 +181,7 @@ function writeQuests() {
         rate: 2, //integer between 1 to 5 (decide as you want!)
         cost: 1, // integer between 1 to 3 (1: ~$15, 2: ~$40, 3: $40~)
         description: "The Greenheart TreeWalk will spark your adventurous spirit as you navigate suspended walkways and tree platforms high above the forest ﬂoor. Located in the heart of UBC Botanical Garden, the 310 metre-long tree top canopy walkway hangs from huge Douglas firs, cedars and grand firs, many of which are over 100 years old. Reaching a height of nearly 20 metres above the forest floor, the walkway will give you a bird’s eye view of Vancouver’s magnificent coastal temperate rainforest.",
-        tag_ids: ["D4NeTY30U09lD3TemV4Y", "ntk5nt0wadhVx4A17Weu"], // uncomment helper.js at main.html and run log_tags() to see the list of tags (or you can copy tag_ids from firebase)
+        tag_ids: ["D4NeTY30U09lD3TemV4Y", "ntk5nt0wadhVx4A17Weu"], // uncomment helper.js at main_home.html and run log_tags() to see the list of tags (or you can copy tag_ids from firebase)
         image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Greenheart_TreeWalk_-_UBC_Botanical_Garden_-_Vancouver%2C_Canada_-_DSC08050.jpg/1024px-Greenheart_TreeWalk_-_UBC_Botanical_Garden_-_Vancouver%2C_Canada_-_DSC08050.jpg", // right click on the image at google image search and then select "Copy Image Address"
         point: 650, // integer which is multiple of 50 (if required time to complete the quest from downtown is: ~30min => ~500pt, ~1hr => ~700pt, ~2hr => ~1000pt )
     })
