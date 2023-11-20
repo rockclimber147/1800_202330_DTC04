@@ -26,6 +26,7 @@ input[type=submit] {
     top: 100%;
     left: 0;
     right: 0;
+    margin-left: 15%;
 }
 
 .autocomplete-items div {
@@ -33,6 +34,8 @@ input[type=submit] {
     cursor: pointer;
     background-color: #fff;
     border-bottom: 1px solid #d4d4d4;
+    width:85%;
+    border-radius:5%;
 }
 
 /*when hovering an item:*/
@@ -82,7 +85,7 @@ input[type=submit] {
 
 @media only screen and (max-width: 600px) {
     .autocomplete-items {
-        width: 75%;
+        width: 85%;
         margin-left: 15%;
         border-radius: 10px;
     }
