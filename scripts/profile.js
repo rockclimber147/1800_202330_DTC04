@@ -104,10 +104,9 @@ function populateUserInfo() {
 
                   tag_db.forEach((doc) => {
                         let checked = ''
-                        if (userPreferences.includes(doc.id)){
-                              checked = 'checked'
-                        }
-                        console.log(`${checked}`)
+                        if (userPreferences != null) {
+                              if (userPreferences.includes(doc.id))
+                                    checked = 'checked'
                         $("#check").append(
                               `
                               <div class="form-check">
@@ -115,7 +114,7 @@ function populateUserInfo() {
                                     <label id="${doc.id}" for="tagcheckbox">${doc.data().tag_name}</label>  
                               </div>
                               `
-                        )
+                        )}
                   })
 
             } else {
