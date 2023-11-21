@@ -39,7 +39,7 @@ $(document).ready(function () {
                         document.getElementById('search_button').user_location = user_location
                         document.getElementById('search_button').all_quest_tags = all_quest_tags
 
-                        let quest_names = quest_name_collection.data().all_quest_names
+                        let quest_names = quest_name_collection.data().all_quest_names;
                         console.log(`all quest names: ${quest_names}`)
                         for (let i = 0; i < quest_names.length; i++) {
                               console.log(`quest name: ${quest_names[i]}`)
@@ -139,12 +139,13 @@ $(document).ready(function () {
             let search_keywords = search_text.split(' ');                    // split text into array of words
             let final_search_keywords = []
             for (let i = 0; i < search_keywords.length; i++) {
-                  let current = search_keywords[i]
+                  let current = search_keywords[i].toLowerCase()
                   console.log(`current keyword: ${current}`)
                   for (let j = 0; j < all_keywords.length; j++) {
-                        if (all_keywords[j].includes(current)) {
+                        console.log(`checking against: ${all_keywords[j].toLowerCase() }`)
+                        if (all_keywords[j].toLowerCase().includes(current)) {
                               console.log(`match found: ${all_keywords[j]}`)
-                              final_search_keywords.push(all_keywords[j])
+                              final_search_keywords.push(all_keywords[j].toLowerCase())
                         }
                   }
             }
