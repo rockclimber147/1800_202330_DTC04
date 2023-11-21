@@ -40,6 +40,8 @@ export function update_quest_cards(quest_db, quest_html_node, tag_html_node, use
         new_quest_card.find('.quest_detail_link').attr('href', `./quest-detail.html?quest_id=${quest_id}`); // set links to quest cards
         new_quest_card.find('.quest_point').text(quest_point + 'pt'); // put quest points in quest card
         new_quest_card.find('.quest_bookmark').text(bookmark_state)
+        new_quest_card.find('.quest_bookmark').attr('id', doc.id) // set id to id of current quest
+        
         if (quest_tag_id_list[0] != "") {
             for (let i = 0; i < quest_tag_id_list.length; i++) {
                     let new_quest_tag = $(tag_html_node).clone();
@@ -47,7 +49,9 @@ export function update_quest_cards(quest_db, quest_html_node, tag_html_node, use
                     new_quest_tag.appendTo(new_quest_card.find('.quest_tags_container'));
             }
         }
+
         new_quest_card.appendTo('#quest_cards_go_here')
+
     })
 }
 
@@ -288,3 +292,4 @@ function calculateDistance(current, destination) {
     let distance = ((longitude_difference ** 2 + latitude_difference ** 2) ** 0.5 * 60 * 1.60934).toFixed(1)
     return distance;
 }
+
