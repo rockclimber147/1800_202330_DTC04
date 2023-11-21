@@ -292,3 +292,4 @@ function calculateDistance(current, destination) {
     let distance = ((longitude_difference ** 2 + latitude_difference ** 2) ** 0.5 * 60 * 1.60934).toFixed(1)
     return distance;
 }
+

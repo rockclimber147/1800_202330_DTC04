@@ -77,7 +77,20 @@ function insertNameFromFirestore() {
 
 insertNameFromFirestore()
 
-
+// function saveBookmark(questdocID) {
+//       // Manage the backend process to store the hikeDocID in the database, recording which hike was bookmarked by the user.
+//       currentUser.update({
+//             // Use 'arrayUnion' to add the new bookmark ID to the 'bookmarks' array.
+//             // This method ensures that the ID is added only if it's not already present, preventing duplicates.
+//             bookmarks: firebase.firestore.FieldValue.arrayUnion(hikeDocID)
+//       })
+//             // Handle the front-end update to change the icon, providing visual feedback to the user that it has been clicked.
+//             .then(function () {
+//                   //console.log(iconID);
+//                   //this is to change the icon of the hike that was saved to "filled"
+//                   document.getElementById("quest_bookmark").innerText = 'bookmark';
+//             });
+// }
 
 //------------------------------------------------------------------------------------------TODO - Update saveBookmark and add to module--------------------------------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
