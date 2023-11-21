@@ -38,15 +38,26 @@ $(document).ready(function () {
                         document.getElementById('search_button').tag_html_node = tag_html_node
                         document.getElementById('search_button').user_location = user_location
                         document.getElementById('search_button').all_quest_tags = all_quest_tags
-                        all_keywords = quest_name_collection.data().all_quest_names
 
+                        let quest_names = quest_name_collection.data().all_quest_names
+                        console.log(`all quest names: ${quest_names}`)
+                        for (let i = 0; i < quest_names.length; i++) {
+                              console.log(`quest name: ${quest_names[i]}`)
+                              let quest_name_keywords = quest_names[i].split(' ')
+                              console.log(`keywords: ${quest_name_keywords}`)
+                              for (let j = 0; j < quest_name_keywords.length; j++) {
+                                    if (!all_keywords.includes(quest_name_keywords[j])) {
+                                          all_keywords.push(quest_name_keywords[j]);
+                                    }
+                              }
+                        }
+                        console.log(`all keywords from quest name: ${all_keywords}`)
                         tag_db.forEach(tag_doc => {
                               all_quest_tags[tag_doc.id] = tag_doc.data().tag_name;
                               all_keywords.push(tag_doc.data().tag_name)                            // add tag names to tag array
                         })
-                        console.log('tag names:', all_quest_tags)
-                        // Store list of all names
-                        console.log('quest names:', all_keywords)
+
+                        console.log('all keywords with tags', all_keywords)
                         /*initiate the autocomplete function on the "myInput" element, and pass along the keyword array as possible autocomplete values:*/
                         autocomplete(document.getElementById("myInput"), all_keywords);
                   } else {
@@ -126,9 +137,25 @@ $(document).ready(function () {
             let search_text = $('#myInput').val().toLowerCase();             // put text to lowercase to match keywords
             console.log('search text:', search_text);
             let search_keywords = search_text.split(' ');                    // split text into array of words
-            console.log('search keywords:', search_keywords);
+            let final_search_keywords = []
+            for (let i = 0; i < search_keywords.length; i++) {
+                  let current = search_keywords[i]
+                  console.log(`current keyword: ${current}`)
+                  for (let j = 0; j < all_keywords.length; j++) {
+                        if (all_keywords[j].includes(current)) {
+                              console.log(`match found: ${all_keywords[j]}`)
+                              final_search_keywords.push(all_keywords[j])
+                        }
+                  }
+            }
+
+            while (final_search_keywords.length >= 10) {
+                  final_search_keywords.pop()
+            }
+
+            console.log('final search keywords:', final_search_keywords);
             let search_results = await db.collection('quests')               // get quests
-                  .where('keywords', 'array-contains-any', search_keywords).get(); // where quest keywords contain any word in search array
+                  .where('keywords', 'array-contains-any', final_search_keywords).get(); // where quest keywords contain any word in search array
             console.log('TEST', event.currentTarget.current_map)
             update_map(event.currentTarget.current_map, search_results);                                      // update map with results
             update_quest_cards(
