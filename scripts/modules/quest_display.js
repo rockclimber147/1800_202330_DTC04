@@ -178,7 +178,7 @@ export function update_map(map, quest_db) {
         // console.log(coordinates);
         // Coordinates
         let event_name = doc.data().quest_name; // Event Name
-        let preview = doc.data().description; // Text Preview
+        let preview = " "; // Text Preview
         // let img = doc.data().posterurl; // Image
         // url = doc.data().link; // URL
 
