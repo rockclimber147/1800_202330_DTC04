@@ -73,11 +73,6 @@ input[type=submit] {
     color: white;
 }
 
-#view_toggle {
-    margin-top: 0vh;
-
-}
-
 #myInput {
     width: 75%;
     margin-left: 15%;

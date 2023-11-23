@@ -71,26 +71,27 @@
     <div id="reusable_header"></div>
     <!-- /reusable top navbar -->
 
-    
+
+
     <main>
-        <div class="container-fluid text-dark pt-5">
-            <div class="d-flex justify-content-center row pt-4">
-                <div class="container" id="welcome_box">
-                    <h3 class="display-4 d-flex justify-content-center orbitron" id="welcome_message">Welcome</h3>
-                    <h3 class="d-flex justify-content-center orbitron user_name"><span id="name-goes-here"></span></h3>
-                </div>
+        <div id="top_interface">
+            <button id="view_toggle">
+                <span id="view_toggle_text"
+                    class="material-symbols-outlined justify-content-start material-icons md-36 view_icon">LIST</span>
+            </button>
+
+            <div id="welcome_box">
+                <h3 class="display-4 d-flex justify-content-center orbitron" id="welcome_message">Welcome</h3>
+                <h3 class="d-flex justify-content-center orbitron user_name"><span id="name-goes-here"></span></h3>
             </div>
+
         </div>
-        <button id="view_toggle" class="d-flex align-items-start bg-light">
-            <span id="view_toggle_text"
-                class="material-symbols-outlined d-flex justify-content-start material-icons  view_icon">LIST</span>
-        </button>
         <!-- MAPBOX -->
-        <div id='map' style='display:inline-block; width: 100%; height:70vh;'></div>
+        <div id='map' style='display:inline-block; width: 100%; height:80vh;'></div>
         <!-- Quest cards -->
-        <div id="quest_cards_go_here"></div>        
+        <div id="quest_cards_go_here"></div>
     </main>
-        
+
 
 
     <!-- reusable footer -->

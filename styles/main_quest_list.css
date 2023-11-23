@@ -7,27 +7,33 @@
 }
 
 #bookmarked_button {
-    margin-left: 20%;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
+    margin-right:-6px;
 }
 
 #accepted_button {
-    margin-right: auto;
+    margin-right:-6px;
+}
+
+
+#completed_button {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
-.top_button {
-    width: 35%;
+#quest_view_toggle {
+    position: absolute;
+    width:70%;
+    left: 50%;
+    transform: translateX(-50%);
     height:100%;
 }
 
-.pressed {
-    background: #a36654;
-    color:white;
-    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
-       -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
-            box-shadow: inset 0px 0px 5px #c1c1c1;
-     outline: none;
+.top_button {
+    box-sizing: border-box;
+    
+    width: 33%;
+    height:100%;
 }
+

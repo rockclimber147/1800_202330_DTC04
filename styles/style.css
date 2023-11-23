@@ -180,15 +180,6 @@ p.orbitron{
     padding: 5px;
 }
 
-#view_toggle{
-    position: fixed;
-    /* This next line has a powerful aura */
-    z-index: 100 !important;
-    margin-top: 0vh; 
-    border-radius: 5px;
-    border: black solid 1px;    
-}
-
 /* main_home.html > quest_card_template */
 #quest_cards_go_here{
     padding-top: 10vh;

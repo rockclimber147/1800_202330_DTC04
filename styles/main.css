@@ -12,20 +12,7 @@ h3 {
     padding-top: 6vh;
 }
 
-#welcome_box {
-    border: hsl(14, 32%, 48%) solid 3px;
-    width: 50vw;
-    margin: 10px;
-    border-radius: 10px;
-    background-color: white;
-    color: #a36654;
-}
 
-#welcome_message {
-    font-size: 1.2rem;
-    padding-top: 0vh;
-    margin-bottom: 0px;
-}
 
 #user_name {
     font-size: 1.2rem;
@@ -34,4 +21,43 @@ h3 {
 
 h3 {
     padding-top: 0vh;
+}
+
+
+/* COntainer for the superimposed */
+#top_interface{
+    display:flex;
+    flex-direction: row;
+    position: fixed;
+    height:10vh;
+    width:100%;
+
+
+    z-index: 9999;
+    background-color: aqua;
+}
+
+#view_toggle {
+    height:100%;
+    display:inline-block;
+    border-radius: 10px;
+}
+
+
+/* For pressed button look */
+.pressed {
+    background: #a36654;
+    color:white;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+       -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+            box-shadow: inset 0px 0px 5px #c1c1c1;
+     outline: none;
+}
+
+
+/* Fix main to fill the remainiong 80vh not used by to and bottom navs (10vh each) */
+main {
+    margin-top: 10vh;
+    padding:0px;
+    height:80vh;
 }
