@@ -9,6 +9,7 @@ $(document).ready(async function () {
 
     var accepted_quests_db;
     var bookmarked_quests_db;
+    var completed_quests_db;
 
     await init();
 
@@ -38,17 +39,21 @@ $(document).ready(async function () {
                     })
 
                     let user_accepted_quest_ids = user_doc.data().accepted_quests;
-                    user_accepted_quest_ids.push('placeholder so firebase doesnt get mad')
+                    user_accepted_quest_ids.push('placeholder so firebase doesn\'t get mad')
                     console.log('current user accepted quests:', user_accepted_quest_ids);
-                    let user_completed_quest_ids = user_doc.data().bookmarked_quests;
-                    user_completed_quest_ids.push('placeholder so firebase doesnt get mad')
+                    let user_completed_quest_ids = user_doc.data().completed_quests;
+                    user_completed_quest_ids.push('placeholder so firebase doesn\'t get mad')
                     console.log('current user completed quests:', user_completed_quest_ids);
+                    let user_bookmarked_quest_ids = user_doc.data().bookmarked_quests;
+                    user_bookmarked_quest_ids.push('placeholder so firebase doesn\'t get mad')
+                    console.log('current user bookmarked quests:', user_bookmarked_quest_ids);
 
 
 
-                    [accepted_quests_db, bookmarked_quests_db] = await Promise.all([
+                    [accepted_quests_db, completed_quests_db, bookmarked_quests_db] = await Promise.all([
                         db.collection('quests').where(firebase.firestore.FieldPath.documentId(), 'in', user_accepted_quest_ids).get(),
-                        db.collection('quests').where(firebase.firestore.FieldPath.documentId(), 'in', user_completed_quest_ids).get()
+                        db.collection('quests').where(firebase.firestore.FieldPath.documentId(), 'in', user_completed_quest_ids).get(),
+                        db.collection('quests').where(firebase.firestore.FieldPath.documentId(), 'in', user_bookmarked_quest_ids).get()
                     ])
                     console.log('accepted quests db:', accepted_quests_db)
                     console.log('completed quests db:', bookmarked_quests_db)
@@ -67,6 +72,8 @@ $(document).ready(async function () {
                         accepted_button.addClass('pressed')
                         bookmarked_button.prop('disabled', false)
                         bookmarked_button.removeClass('pressed')
+                        completed_button.prop('disabled', false)
+                        completed_button.removeClass('pressed')
                         update_map(map, accepted_quests_db);
                         update_quest_cards(
                             accepted_quests_db,
@@ -79,13 +86,33 @@ $(document).ready(async function () {
                     })
                     $("#bookmarked_button").on('click', () => {
                         console.log('clicked bookmarked quest button')
-                        bookmarked_button.prop('disabled', true)
-                        bookmarked_button.addClass('pressed')
                         accepted_button.prop('disabled', false)
                         accepted_button.removeClass('pressed')
+                        bookmarked_button.prop('disabled', true)
+                        bookmarked_button.addClass('pressed')
+                        completed_button.prop('disabled', false)
+                        completed_button.removeClass('pressed')
                         update_map(map, bookmarked_quests_db);
                         update_quest_cards(
                             bookmarked_quests_db,
+                            quest_html_node,
+                            tag_html_node,
+                            user_location,
+                            all_quest_tags,
+                            user_doc
+                        )
+                    })
+                    $("#completed_button").on('click', () => {
+                        console.log('clicked completed quest button')
+                        accepted_button.prop('disabled', false)
+                        accepted_button.removeClass('pressed')
+                        bookmarked_button.prop('disabled', false)
+                        bookmarked_button.removeClass('pressed')
+                        completed_button.prop('disabled', true)
+                        completed_button.addClass('pressed')
+                        update_map(map, completed_quests_db);
+                        update_quest_cards(
+                            completed_quests_db,
                             quest_html_node,
                             tag_html_node,
                             user_location,
@@ -101,6 +128,7 @@ $(document).ready(async function () {
     }
     var accepted_button = $("#accepted_button")
     var bookmarked_button = $("#bookmarked_button")
+    var completed_button = $("#completed_button")
 
     
 
