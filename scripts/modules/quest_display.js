@@ -20,13 +20,13 @@ export function update_quest_cards(quest_db, quest_html_node, tag_html_node, use
         var quest_id = doc.id;                           // get the quest ids
         var quest_point = doc.data().point;            // get the quest points
         var bookmarked_quests = user_doc.data().bookmarked_quests
-        
+
         // Clone the contents of the quest card template element (not the parent template element)
         let new_quest_card = $(quest_html_node).clone();
 
         let bookmark_state = 'bookmark_border'
         console.log(bookmarked_quests)
-        if (bookmarked_quests.includes(quest_id)){
+        if (bookmarked_quests.includes(quest_id)) {
             bookmark_state = "bookmark"
         }
 
@@ -40,13 +40,14 @@ export function update_quest_cards(quest_db, quest_html_node, tag_html_node, use
         new_quest_card.find('.quest_detail_link').attr('href', `./quest-detail.html?quest_id=${quest_id}`); // set links to quest cards
         new_quest_card.find('.quest_point').text(quest_point + 'pt'); // put quest points in quest card
         new_quest_card.find('.quest_bookmark').text(bookmark_state)
-        new_quest_card.find('.quest_bookmark').attr('id', doc.id) // set id to id of current quest
-        
+        new_quest_card.find('.quest_bookmark').attr('id', 'bookmark_' + doc.id) // set id to id of current quest
+        new_quest_card.find('i').click(() => (toggle_bookmark(quest_id, user_doc.id)));
+
         if (quest_tag_id_list[0] != "") {
             for (let i = 0; i < quest_tag_id_list.length; i++) {
-                    let new_quest_tag = $(tag_html_node).clone();
-                    new_quest_tag.text(all_quest_tags[quest_tag_id_list[i]]);
-                    new_quest_tag.appendTo(new_quest_card.find('.quest_tags_container'));
+                let new_quest_tag = $(tag_html_node).clone();
+                new_quest_tag.text(all_quest_tags[quest_tag_id_list[i]]);
+                new_quest_tag.appendTo(new_quest_card.find('.quest_tags_container'));
             }
         }
 
@@ -261,17 +262,17 @@ export function toggle_view() {
     console.log('switching...');
     console.log($('#view_toggle_text').text())
     switch ($('#view_toggle_text').text()) {
-          case 'MAP': {
-                $('#view_toggle_text').text('LIST');
-                $('#map').show();
-                $('#quest_cards_go_here').hide();
-                break;
-          } case 'LIST': {
-                $('#view_toggle_text').text('MAP');
-                $('#map').hide();
-                $('#quest_cards_go_here').show();
-                break;
-          }
+        case 'MAP': {
+            $('#view_toggle_text').text('LIST');
+            $('#map').show();
+            $('#quest_cards_go_here').hide();
+            break;
+        } case 'LIST': {
+            $('#view_toggle_text').text('MAP');
+            $('#map').hide();
+            $('#quest_cards_go_here').show();
+            break;
+        }
     }
 }
 
@@ -293,3 +294,19 @@ function calculateDistance(current, destination) {
     return distance;
 }
 
+async function toggle_bookmark(quest_id, user_id) {
+    var iconID = 'bookmark_' + quest_id;
+    if (document.getElementById('bookmark_' + quest_id).innerText == 'bookmark') {
+        await db.collection("users").doc(user_id).update({
+            bookmarked_quests: firebase.firestore.FieldValue.arrayRemove(quest_id)
+        })
+        console.log("bookmark has been removed for " + quest_id);
+        document.getElementById(iconID).innerText = 'bookmark_border';
+    } else {
+        await db.collection("users").doc(user_id).update({
+            bookmarked_quests: firebase.firestore.FieldValue.arrayUnion(quest_id)
+        })
+        console.log("bookmark has been saved for " + quest_id);
+        document.getElementById(iconID).innerText = 'bookmark';
+    }
+}
