@@ -287,6 +287,8 @@ p.orbitron{
     font-size: 3rem;
 }
 
+
+
 .acquired_point {
     border-bottom: solid black 1px;
 }
@@ -297,3 +299,8 @@ p.orbitron{
     border-radius: 20px;
     background-color: #d96055;
 }
+
+.thank_you {
+    margin: 10vh 5vw;
+}
+
