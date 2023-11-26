@@ -37,9 +37,22 @@ export function update_quest_cards(quest_db, quest_html_node, tag_html_node, use
         let new_quest_card = $(quest_html_node).clone();
 
         let bookmark_state = 'bookmark_border'
-        console.log(bookmarked_quests)
         if (bookmarked_quests.includes(quest_id)) {
             bookmark_state = "bookmark"
+        }
+
+        // append 'completed', 'accepted', or point depending on the state of the quest
+        switch (display_state) {
+            case 'quest is accepted': {
+                new_quest_card.find('.quest_state').text('Accepted');
+                break;
+            } case 'quest is completed': {
+                new_quest_card.find('.quest_state').text('Completed');
+                break;
+            } case 'quest is not yet accepted': {
+                new_quest_card.find('.quest_state').text(quest_point + 'pt');
+                break;
+            }
         }
 
         //update title and text and image
@@ -60,20 +73,6 @@ export function update_quest_cards(quest_db, quest_html_node, tag_html_node, use
                 let new_quest_tag = $(tag_html_node).clone();
                 new_quest_tag.text(all_quest_tags[quest_tag_id_list[i]]);
                 new_quest_tag.appendTo(new_quest_card.find('.quest_tags_container'));
-            }
-        }
-
-        // append 'completed', 'accepted', or point depending on the state of the quest
-        switch (display_state) {
-            case 'quest is accepted': {
-                new_quest_card.find('.quest_state').text('Accepted');
-                break;
-            } case 'quest is completed': {
-                new_quest_card.find('.quest_state').text('Completed');
-                break;
-            } case 'quest is not yet accepted': {
-                new_quest_card.find('.quest_state').text(quest_point + 'pt');
-                break;
             }
         }
 
