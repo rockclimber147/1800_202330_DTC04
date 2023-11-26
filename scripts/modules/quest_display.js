@@ -19,7 +19,19 @@ export function update_quest_cards(quest_db, quest_html_node, tag_html_node, use
         var quest_tag_id_list = doc.data().tag_ids       // get the list of tag ids
         var quest_id = doc.id;                           // get the quest ids
         var quest_point = doc.data().point;            // get the quest points
-        var bookmarked_quests = user_doc.data().bookmarked_quests
+        var bookmarked_quests = user_doc.data().bookmarked_quests;  // get the list of bookmarked quests
+        var user_accepted_quests = user_doc.data().accepted_quests; // get the list of accepted quests
+        var user_completed_quests = user_doc.data().completed_quests;   // get the list of completed quests
+
+        // determine the current state of the quest
+        var display_state;
+        if (user_accepted_quests.includes(quest_id)) {
+            display_state = 'quest is accepted';
+        } else if (user_completed_quests.includes(quest_id)) {
+            display_state = 'quest is completed';
+        } else {
+            display_state = 'quest is not yet accepted';
+        }
 
         // Clone the contents of the quest card template element (not the parent template element)
         let new_quest_card = $(quest_html_node).clone();
@@ -38,11 +50,11 @@ export function update_quest_cards(quest_db, quest_html_node, tag_html_node, use
         new_quest_card.find('.quest_distance').text(quest_distance + 'km');
         new_quest_card.find('.quest_image').attr('src', image_url); // find image and put in new quest card
         new_quest_card.find('.quest_detail_link').attr('href', `./quest-detail.html?quest_id=${quest_id}`); // set links to quest cards
-        new_quest_card.find('.quest_point').text(quest_point + 'pt'); // put quest points in quest card
         new_quest_card.find('.quest_bookmark').text(bookmark_state)
         new_quest_card.find('.quest_bookmark').attr('id', 'bookmark_' + doc.id) // set id to id of current quest
         new_quest_card.find('i').click(() => (toggle_bookmark(quest_id, user_doc.id)));
 
+        // append tags to quest card
         if (quest_tag_id_list[0] != "") {
             for (let i = 0; i < quest_tag_id_list.length; i++) {
                 let new_quest_tag = $(tag_html_node).clone();
@@ -51,9 +63,23 @@ export function update_quest_cards(quest_db, quest_html_node, tag_html_node, use
             }
         }
 
+        // append 'completed', 'accepted', or point depending on the state of the quest
+        switch (display_state) {
+            case 'quest is accepted': {
+                new_quest_card.find('.quest_state').text('Accepted');
+                break;
+            } case 'quest is completed': {
+                new_quest_card.find('.quest_state').text('Completed');
+                break;
+            } case 'quest is not yet accepted': {
+                new_quest_card.find('.quest_state').text(quest_point + 'pt');
+                break;
+            }
+        }
+
         new_quest_card.appendTo('#quest_cards_go_here')
 
-    })
+    });
 }
 
 /**

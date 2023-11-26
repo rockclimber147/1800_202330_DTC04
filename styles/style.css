@@ -200,9 +200,9 @@ p.orbitron{
     color: white;
 }
 
-.quest_point {
+.quest_state {
     color: #F2542D;
-    font-size: 1.2rem;
+    font-size: 1.0rem;
     font-style: bold;
 }
 

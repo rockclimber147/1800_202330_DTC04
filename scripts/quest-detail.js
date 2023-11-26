@@ -30,11 +30,8 @@ async function display_quest_info() {
          * This snapshot updates the display whenever the user document changes
          */
         db.collection("users").doc(user.uid).onSnapshot((user_doc) => {
-            console.log("Current user data: ", user_doc.data());
             let user_accepted_quests = user_doc.data().accepted_quests;
             let user_completed_quests = user_doc.data().completed_quests;
-            console.log(`user accepted quests:`, user_accepted_quests);
-            console.log(`user completed quests:`, user_completed_quests);
             let display_state;
             if (user_accepted_quests.includes(ID)) {
                 display_state = 'quest is accepted';
