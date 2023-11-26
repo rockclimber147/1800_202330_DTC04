@@ -133,6 +133,9 @@ $(document).ready(function () {
        */
 
       $('#search_button').on('click', async function (event) {
+            $('#message_before_search').hide();
+            $('#quest_cards_go_here').html("");
+
             console.log('clicked search');
             let search_text = $('#myInput').val().toLowerCase();             // put text to lowercase to match keywords
             console.log('search text:', search_text);
