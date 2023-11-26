@@ -133,9 +133,8 @@ $(document).ready(function () {
        */
 
       $('#search_button').on('click', async function (event) {
-            $('#message_before_search').hide();
-            $('#no_results').hide();
-            $('#quest_cards_go_here').html("");
+            $('.card_container').remove();
+            $('#message_before_search').remove();
 
             console.log('clicked search');
             let search_text = $('#myInput').val().toLowerCase();             // put text to lowercase to match keywords
@@ -159,12 +158,9 @@ $(document).ready(function () {
             }
 
             if (final_search_keywords.length > 0) {
-                  let search_results
-                  search_results = await db.collection('quests')               // get quests
+                  let search_results = await db.collection('quests')               // get quests
                         .where('keywords', 'array-contains-any', final_search_keywords).get(); // where quest keywords contain any word in search array
-                  console.log('TEST', event.currentTarget.current_map)
-                  console.log('search results:', search_results);
-                  console.log('final search keywords:', final_search_keywords);
+
                   update_map(event.currentTarget.current_map, search_results);                                      // update map with results
                   update_quest_cards(
                         search_results,
@@ -173,18 +169,12 @@ $(document).ready(function () {
                         user_location,
                         all_quest_tags,
                         user_doc
-                  );                              // update cards with results
+                  );                               // update cards with results
             }
-
-            // if (search_results.empty) {
-            //       $('#no_results').show();
-            // }
-            
       })
 
       init()
       $('#quest_cards_go_here').hide();
-
 })
 
 $('#view_toggle').on('click', toggle_view)
