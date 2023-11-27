@@ -84,6 +84,19 @@ async function display_points_earned() {
 // Call this function when the "logout" button is clicked
 //-------------------------------------------------
 function logout() {
+    let text = "Are you sure you want to log out?";
+    if (confirm(text) == true) {
+        firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+            console.log("logging out user");
+        }).catch((error) => {
+            // An error happened.
+        });
+    }
+
+}
+
+function auto_logout() {
     firebase.auth().signOut().then(() => {
         // Sign-out successful.
         console.log("logging out user");
