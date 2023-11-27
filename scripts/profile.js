@@ -1,28 +1,3 @@
-// Demo 7 Step 7.4 - Get name from authentication
-// function getNameFromAuth() {
-//       firebase.auth().onAuthStateChanged(user => {
-//             // Check if a user is signed in:
-//             if (user) {
-//                   // Do something for the currently logged-in user here: 
-//                   console.log(user.uid); //print the uid in the browser console
-//                   console.log(user.displayName);  //print the user name in the browser console
-//                   userName = user.displayName;
-
-//                   //method #1:  insert with JS
-//                   document.getElementById("name-goes-here").innerText = userName;    
-
-//                   //method #2:  insert using jquery
-//                   //$("#name-goes-here").text(userName); //using jquery
-
-//                   //method #3:  insert using querySelector
-//                   //document.querySelector("#name-goes-here").innerText = userName
-
-//             } else {
-//                   // No user is signed in.
-//             }
-//       });
-// }
-// getNameFromAuth(); //run the function
 
 // Demo 9 Step 3.3 - Display name from firestore
 function insertNameFromFirestore() {
@@ -44,6 +19,7 @@ function insertNameFromFirestore() {
       })
 }
 
+
 insertNameFromFirestore();
 
 // Demo 10 Step 1.2 - Reading the user data from Firestore and populating the form
@@ -56,8 +32,8 @@ function populateUserInfo() {
                         db.collection("users").doc(user.uid).get(),
                         db.collection("tags").get()
                   ])
-                  console.log(userDoc)
-                  console.log(tag_db)
+                  console.log("hey" + userDoc)
+                  console.log("Hi" + tag_db)
 
                   //get the data fields of the user
                   var userName = userDoc.data().name;
@@ -72,6 +48,10 @@ function populateUserInfo() {
                   var userBio = userDoc.data().bio;
 
                   var userPreferences = userDoc.data().preferences
+                  var userPoints = userDoc.data().points
+                  var userLevel = userDoc.data().level
+
+
 
                   //if the data fields are not empty, then write them into the form.
                   if (userName != null) {
@@ -93,13 +73,20 @@ function populateUserInfo() {
                         document.getElementById("countryInput").value = userCountry;
                   }
 
-                  // Gender
                   if (userGender != null) {
                         document.getElementById("genderInput").value = userGender;
                   }
 
                   if (userBio != null) {
                         document.getElementById("bioInput").value = userBio;
+                  }
+
+                  if (userPoints != null) {
+                        document.getElementById("points_earned").innerHTML = `<p id="points">Points: ${userPoints}</p>`
+                  }
+
+                  if (userLevel != null) {
+                        document.getElementById("level").innerHTML = `<p id="level">Level: ${userLevel}</p>`
                   }
 
                   tag_db.forEach((doc) => {
@@ -109,12 +96,21 @@ function populateUserInfo() {
                                     checked = 'checked'
                         $("#check").append(
                               `
+                        <div class="form-check">
+                              <input ${checked} type="checkbox" class="form-check-input" id="tagcheckbox" name="tagcheckbox"/>
+                              <label id="${doc.id}" for="tagcheckbox">${doc.data().tag_name}</label>  
+                        </div>
+                        `
+                        )
+                        } else {
+                              $("#check").append(
+                                    `
                               <div class="form-check">
                                     <input ${checked} type="checkbox" class="form-check-input" id="tagcheckbox" name="tagcheckbox"/>
                                     <label id="${doc.id}" for="tagcheckbox">${doc.data().tag_name}</label>  
                               </div>
-                              `
-                        )}
+                        `)
+                        }
                   })
 
             } else {
@@ -175,40 +171,10 @@ function saveUserInfo() {
       })
             .then(() => {
                   console.log("Document successfully updated!");
+                  alert("Your information is saved!")
             })
 
       document.getElementById("personalInfoFields").disabled = true;
 }
 
-// Populates the dropdown menu options
-// function log_tags() {
-//       preferences = document.getElementById("activities")
-//       db.collection('tags').get()
-//             .then(all_tags => {
-//                   all_tags.forEach((doc) => {
-//                         // doc.data() is never undefined for query doc snapshots
-//                         var option = document.createElement("option");
-//                         option.text = doc.data().tag_name;
-//                         option.value = doc.data().tag_name;
-//                         preferences.appendChild(option);
-//                   })
-//             })
-// }
-
-// log_tags()
-
-// // Displaying the tag after dropdown selection
-// function print_tag() {
-//       preferences.addEventListener("change", (event) => {
-//             var selectedOption = document.getElementById("activities").value;
-//             var buttonOption = document.createElement("button")
-//             var buttonText = document.createElement("span")
-//             buttonText.innerHTML = selectedOption
-//             buttonOption.appendChild(buttonText)
-//             document.getElementById("tag_div").append(buttonOption)
-//       }
-//       )
-// };
-
-// print_tag()
 
