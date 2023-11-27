@@ -32,8 +32,8 @@ function populateUserInfo() {
                         db.collection("users").doc(user.uid).get(),
                         db.collection("tags").get()
                   ])
-                  console.log("hey" + userDoc)
-                  console.log("Hi" + tag_db)
+                  console.log(userDoc)
+                  console.log(tag_db)
 
                   //get the data fields of the user
                   var userName = userDoc.data().name;
@@ -82,11 +82,11 @@ function populateUserInfo() {
                   }
 
                   if (userPoints != null) {
-                        document.getElementById("points_earned").innerHTML = `<p id="points">Points: ${userPoints}</p>`
+                        document.getElementById("points_earned").innerHTML = `<h4 id="points">Points: ${userPoints}</h4>`
                   }
 
                   if (userLevel != null) {
-                        document.getElementById("level").innerHTML = `<p id="level">Level: ${userLevel}</p>`
+                        document.getElementById("level").innerHTML = `<h4 id="level">Level: ${userLevel}</h4>`
                   }
 
                   tag_db.forEach((doc) => {
