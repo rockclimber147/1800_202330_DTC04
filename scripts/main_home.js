@@ -35,7 +35,7 @@ $(document).ready(async function () {
                                     all_quest_tags[tag_doc.id] = tag_doc.data().tag_name;
                               })
 
-                              update_map(map, quest_db);
+                              update_map(map, quest_db, user_doc);
                               update_quest_cards(
                                     quest_db,
                                     quest_html_node,

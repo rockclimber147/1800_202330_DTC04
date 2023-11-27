@@ -104,14 +104,19 @@ export async function initialize_map(user_location) {
     // Adds map features
     map.on('load', () => {
         // Defines map pin icon for events
-        map.loadImage( //                         PIN COLOR HERE?
-            'https://cdn.iconscout.com/icon/free/png-256/pin-locate-marker-location-navigation-16-28668.png',
+        map.loadImage( 
+            '/images/quest_pin.png',
             (error, image) => {
                 if (error) throw error;
-
-                // Add the image to the map style.
                 map.addImage('eventpin', image); // Pin Icon
+            }
+        );
 
+        map.loadImage( 
+            '/images/completed_quest_pin.png',
+            (error, image) => {
+                if (error) throw error;
+                map.addImage('completed_quest_pin', image);
             }
         );
 
@@ -193,7 +198,7 @@ export async function initialize_map(user_location) {
  * @param {*} map OpenGL mapbox
  * @param {*} quest_db Quest database
  */
-export function update_map(map, quest_db) {
+export function update_map(map, quest_db, user_doc) {
 
     const features = []; // Defines an empty array for information to be added to
 

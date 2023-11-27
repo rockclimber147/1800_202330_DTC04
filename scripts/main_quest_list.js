@@ -57,7 +57,7 @@ $(document).ready(async function () {
                     ])
                     console.log('accepted quests db:', accepted_quests_db)
                     console.log('completed quests db:', bookmarked_quests_db)
-                    update_map(map, accepted_quests_db);
+                    update_map(map, accepted_quests_db, user_doc);
                     update_quest_cards(
                         accepted_quests_db,
                         quest_html_node,

@@ -161,7 +161,7 @@ $(document).ready(function () {
                   let search_results = await db.collection('quests')               // get quests
                         .where('keywords', 'array-contains-any', final_search_keywords).get(); // where quest keywords contain any word in search array
 
-                  update_map(event.currentTarget.current_map, search_results);                                      // update map with results
+                  update_map(event.currentTarget.current_map, search_results, user_doc);                                      // update map with results
                   update_quest_cards(
                         search_results,
                         quest_html_node,
