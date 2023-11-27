@@ -25,13 +25,17 @@ h3 {
 }
 
 #welcome_message {
-    font-size: 1.2rem;
+    font-size: 1.0rem;
     padding-top: 0vh;
     margin-bottom: 0px;
 }
 
-#user_name {
-    font-size: 1.2rem;
+/* #user_name {
+    font-size: 1.0rem;
+} */
+
+#name-goes-here{
+    font-size: 1.0rem;
 }
 
 
