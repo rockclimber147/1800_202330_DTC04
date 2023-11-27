@@ -43,12 +43,15 @@ $(document).ready(async function () {
                     let user_accepted_quest_ids = user_doc.data().accepted_quests;
                     user_accepted_quest_ids.push('placeholder so firebase doesn\'t get mad')
                     console.log('current user accepted quests:', user_accepted_quest_ids);
+
                     let user_completed_quest_ids = user_doc.data().completed_quests;
                     user_completed_quest_ids.push('placeholder so firebase doesn\'t get mad')
                     console.log('current user completed quests:', user_completed_quest_ids);
+
                     let user_bookmarked_quest_ids = user_doc.data().bookmarked_quests;
                     user_bookmarked_quest_ids.push('placeholder so firebase doesn\'t get mad')
                     console.log('current user bookmarked quests:', user_bookmarked_quest_ids);
+                    
                     [accepted_quests_db, completed_quests_db, bookmarked_quests_db] = await Promise.all([
                         db.collection('quests').where(firebase.firestore.FieldPath.documentId(), 'in', user_accepted_quest_ids).get(),
                         db.collection('quests').where(firebase.firestore.FieldPath.documentId(), 'in', user_completed_quest_ids).get(),
@@ -127,9 +130,7 @@ $(document).ready(async function () {
     var accepted_button = $("#accepted_button")
     var bookmarked_button = $("#bookmarked_button")
     var completed_button = $("#completed_button")
-
     
-
 });
 
 $('#view_toggle').on('click', toggle_view)
