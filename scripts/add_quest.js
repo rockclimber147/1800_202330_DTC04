@@ -48,6 +48,30 @@ async function add_quest_to_database() {
                 }
             });
 
+            tag_db.forEach((doc) => {
+                let checked = ''
+                if (userPreferences != null) {
+                    if (userPreferences.includes(doc.id))
+                        checked = 'checked'
+                    $("#check").append(
+                        `
+                        <div class="form-check">
+                              <input ${checked} type="checkbox" class="form-check-input" id="tagcheckbox" name="tagcheckbox"/>
+                              <label id="${doc.id}" for="tagcheckbox">${doc.data().tag_name}</label>  
+                        </div>
+                        `
+                    )
+                } else {
+                    $("#check").append(
+                        `
+                              <div class="form-check">
+                                    <input ${checked} type="checkbox" class="form-check-input" id="tagcheckbox" name="tagcheckbox"/>
+                                    <label id="${doc.id}" for="tagcheckbox">${doc.data().tag_name}</label>  
+                              </div>
+                        `)
+                }
+            })
+
         } 
     })
 }
