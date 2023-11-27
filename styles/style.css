@@ -192,7 +192,7 @@ p.orbitron{
 
 /* Map */
 #view_toggle{
-    position: fixed;
+    /* position: fixed; */
     /* This next line has a powerful aura */
     z-index: 50 !important;
     margin: 1vh; 
