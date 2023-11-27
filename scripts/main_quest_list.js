@@ -74,7 +74,7 @@ $(document).ready(async function () {
                         bookmarked_button.removeClass('pressed')
                         completed_button.prop('disabled', false)
                         completed_button.removeClass('pressed')
-                        update_map(map, accepted_quests_db);
+                        update_map(map, accepted_quests_db, user_doc);
                         update_quest_cards(
                             accepted_quests_db,
                             quest_html_node,
@@ -91,7 +91,7 @@ $(document).ready(async function () {
                         bookmarked_button.addClass('pressed')
                         completed_button.prop('disabled', false)
                         completed_button.removeClass('pressed')
-                        update_map(map, bookmarked_quests_db);
+                        update_map(map, bookmarked_quests_db, user_doc);
                         update_quest_cards(
                             bookmarked_quests_db,
                             quest_html_node,
@@ -108,7 +108,7 @@ $(document).ready(async function () {
                         bookmarked_button.removeClass('pressed')
                         completed_button.prop('disabled', true)
                         completed_button.addClass('pressed')
-                        update_map(map, completed_quests_db);
+                        update_map(map, completed_quests_db, user_doc);
                         update_quest_cards(
                             completed_quests_db,
                             quest_html_node,

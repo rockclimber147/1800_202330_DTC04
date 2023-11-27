@@ -197,6 +197,7 @@ export async function initialize_map(user_location) {
  * Adds pins from quest_db to the map
  * @param {*} map OpenGL mapbox
  * @param {*} quest_db Quest database
+ * @param {*} user_doc Firebase document for current user
  */
 export function update_map(map, quest_db, user_doc) {
 
@@ -212,7 +213,7 @@ export function update_map(map, quest_db, user_doc) {
         // console.log(coordinates);
         // Coordinates
         let event_name = doc.data().quest_name; // Event Name
-        let pin_type = 'quest_pin.png'
+
         if (user_doc.data().completed_quests.includes(doc.id)){
             currentArray = completed_quests;
         } else {
