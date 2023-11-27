@@ -66,7 +66,9 @@ export function update_quest_cards(quest_db, quest_html_node, tag_html_node, use
         new_quest_card.find('.quest_bookmark').text(bookmark_state)
         new_quest_card.find('.quest_bookmark').attr('id', 'bookmark_' + doc.id) // set id to id of current quest
         new_quest_card.find('i').click(() => (toggle_bookmark(quest_id, user_doc.id)));
-        new_quest_card.find('.quest_name, .quest_rating, .quest_price, .quest_distance, .quest_image').click(() => (window.location.href = `./quest-detail.html?quest_id=${quest_id}`)); // set links to quest cards
+        new_quest_card.find('.quest_name, .quest_rating, .quest_price, .quest_distance, .quest_image').click(() => (
+            window.location.href = `./quest-detail.html?quest_id=${quest_id}`
+            )); // set links to quest cards
 
         // append tags to quest card
         if (quest_tag_id_list[0] != "") {
