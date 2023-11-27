@@ -121,6 +121,9 @@ async function add_keywords_to_quests() {
     })
 }
 
+/**
+ * This adds new quests to the quest collection
+ */
 function writeQuests() {
     //define a variable for the collection you want to create in Firestore to populate data
     var questRef = db.collection("quests");

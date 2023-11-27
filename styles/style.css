@@ -223,10 +223,6 @@ p.orbitron{
     #footer_nav a {
         font-size: 0.6rem;
     }
-
-    #top-navbar {
-        height: 15vh;
-    }
 }
 
 
@@ -266,6 +262,7 @@ p.orbitron{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 300px;
 }
 
 .pop_up_title {

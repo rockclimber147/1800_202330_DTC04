@@ -34,10 +34,12 @@ $(document).ready(async function () {
                         db.collection('tags').get()
                         ]) // current user
 
+                    // Get all quest tags
                     quest_tag_db.forEach(tag_doc => {
                         all_quest_tags[tag_doc.id] = tag_doc.data().tag_name;
                     })
 
+                    // Get all quests that the user has accepted, completed, and bookmarked
                     let user_accepted_quest_ids = user_doc.data().accepted_quests;
                     user_accepted_quest_ids.push('placeholder so firebase doesn\'t get mad')
                     console.log('current user accepted quests:', user_accepted_quest_ids);
@@ -47,9 +49,6 @@ $(document).ready(async function () {
                     let user_bookmarked_quest_ids = user_doc.data().bookmarked_quests;
                     user_bookmarked_quest_ids.push('placeholder so firebase doesn\'t get mad')
                     console.log('current user bookmarked quests:', user_bookmarked_quest_ids);
-
-
-
                     [accepted_quests_db, completed_quests_db, bookmarked_quests_db] = await Promise.all([
                         db.collection('quests').where(firebase.firestore.FieldPath.documentId(), 'in', user_accepted_quest_ids).get(),
                         db.collection('quests').where(firebase.firestore.FieldPath.documentId(), 'in', user_completed_quest_ids).get(),
@@ -66,8 +65,9 @@ $(document).ready(async function () {
                         all_quest_tags,
                         user_doc
                     )
+
+                    // Add event listeners to accept, bookmark, and complete buttons
                     $("#accepted_button").on('click', () => {
-                        console.log('clicked accepted quest button')
                         accepted_button.prop('disabled', true)
                         accepted_button.addClass('pressed')
                         bookmarked_button.prop('disabled', false)
@@ -85,7 +85,6 @@ $(document).ready(async function () {
                         )
                     })
                     $("#bookmarked_button").on('click', () => {
-                        console.log('clicked bookmarked quest button')
                         accepted_button.prop('disabled', false)
                         accepted_button.removeClass('pressed')
                         bookmarked_button.prop('disabled', true)
@@ -103,7 +102,6 @@ $(document).ready(async function () {
                         )
                     })
                     $("#completed_button").on('click', () => {
-                        console.log('clicked completed quest button')
                         accepted_button.prop('disabled', false)
                         accepted_button.removeClass('pressed')
                         bookmarked_button.prop('disabled', false)

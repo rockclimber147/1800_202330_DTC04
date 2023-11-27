@@ -1,3 +1,6 @@
+/*
+* Display user points on top navigation bar
+*/
 async function display_points_earned() {
     let user_doc;
     await firebase.auth().onAuthStateChanged(async user =>{

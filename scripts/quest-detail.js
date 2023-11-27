@@ -70,6 +70,9 @@ function set_display_state(display_state) {
     }
 }
 
+/**
+ *  Switches the buttons and pop-ups based on the stage the quest is at (not accepted/accepted/completed)
+ */
 function switch_buttons_and_pop_ups(user, ID) {
     // when "Accept" is clicked
     $('.quest_accept_button').click(function () {
