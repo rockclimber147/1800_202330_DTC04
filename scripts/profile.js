@@ -94,14 +94,14 @@ function populateUserInfo() {
                         if (userPreferences != null) {
                               if (userPreferences.includes(doc.id))
                                     checked = 'checked'
-                        $("#check").append(
-                              `
+                              $("#check").append(
+                                    `
                         <div class="form-check">
                               <input ${checked} type="checkbox" class="form-check-input" id="tagcheckbox" name="tagcheckbox"/>
                               <label id="${doc.id}" for="tagcheckbox">${doc.data().tag_name}</label>  
                         </div>
                         `
-                        )
+                              )
                         } else {
                               $("#check").append(
                                     `
@@ -126,10 +126,11 @@ populateUserInfo();
 // Demo 10 Step 1.3 Activate the edit button
 function editUserInfo() {
       //Enable the form fields
+      console.log("hi")
       document.getElementById('personalInfoFields').disabled = false;
 }
 
-// Demo 10 Step 1.4 Activate the save button
+// // Demo 10 Step 1.4 Activate the save button
 function saveUserInfo() {
       // get information entered by user
 
@@ -177,4 +178,83 @@ function saveUserInfo() {
       document.getElementById("personalInfoFields").disabled = true;
 }
 
+var ImageFile;      //global variable to store the File Object reference
 
+function chooseFileListener() {
+      const fileInput = document.getElementById("profile_pic_input");   // pointer #1
+      const image = document.getElementById("profile_pic_container");   // pointer #2
+
+      //attach listener to input file
+      //when this file changes, do something
+      fileInput.addEventListener('change', function (e) {
+
+            //the change event returns a file "e.target.files[0]"
+            ImageFile = e.target.files[0];
+            var blob = URL.createObjectURL(ImageFile);
+
+            //change the DOM img element source to point to this file
+            image.src = blob;    //assign the "src" property of the "img" tag
+      })
+}
+chooseFileListener();
+
+function saveUserInfo() {
+      console.log("save button")
+      firebase.auth().onAuthStateChanged(async function (user) {
+            var storageRef = storage.ref("images/" + user.uid + ".jpg");
+
+            //Asynch call to put File Object (global variable ImageFile) onto Cloud
+            await storageRef.put(ImageFile)
+
+            console.log('Uploaded to Cloud Storage.');
+
+            //Asynch call to get URL from Cloud
+            let url = await storageRef.getDownloadURL()
+
+            console.log("Got the download URL.");
+            //get values from the from
+            userName = document.getElementById("nameInput").value
+            userBirthDate = document.getElementById("birthDateInput").value
+            userAddress = document.getElementById("addressInput").value
+            userCity = document.getElementById("cityInput").value
+            userProvince = document.getElementById("provinceInput").value
+            userCountry = document.getElementById("countryInput").value
+            // Gender
+            userGender = document.getElementById("genderInput").value
+            userBio = document.getElementById("bioInput").value
+            checkboxDivs = document.getElementById("check").getElementsByTagName("div")
+            selectedCheckboxes = []
+
+            for (i = 0; i < checkboxDivs.length; i++) {
+                  var div = checkboxDivs[i];
+                  console.log(div)
+                  checkbox = div.getElementsByTagName("input")[0]
+                  label = div.getElementsByTagName("label")[0]
+
+                  if (checkbox.checked) {
+                        selectedCheckboxes.push(label.id);
+                  }
+            }
+
+            //Asynch call to save the form fields into Firestore.
+            currentUser.update({
+                  name: userName,
+                  birthdate: userBirthDate,
+                  address: userAddress,
+                  city: userCity,
+                  province: userProvince,
+                  country: userCountry,
+                  bio: userBio,
+                  gender: userGender,
+                  preferences: selectedCheckboxes
+            })
+                  .then(() => {
+                        console.log("Document successfully updated!");
+                        alert("Your information is saved!")
+                        console.log('Added Profile Pic URL to Firestore.');
+                        console.log('Saved use profile info');
+                        document.getElementById('personalInfoFields').disabled = true;
+                  })
+
+      })
+}
