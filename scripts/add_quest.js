@@ -30,34 +30,29 @@ async function add_quest_to_database() {
             console.log(`user is logged in, user.uid: ${user.uid}`)
 
             quest_title = document.getElementById("add_quest_title").value
-            const stars = document.querySelectorAll('.star');
-            const money = document.querySelectorAll('.money')
-            const questpoints = document.querySelector('#add_quest_points')
+            var stars = document.querySelectorAll('.star');
+            var money = document.querySelectorAll('.money')
+            var questpoints = document.querySelector('#add_quest_points')
+            var addquestDescription = document.getElementById("add_quest_description").value;
+            let addquestRating = 0;
+            let addquestCost = 0;
+
+            stars.forEach((star) => {
+                if (star.textContent === 'star') {
+                    addquestRating++;
+                }
+            });
+            money.forEach((money) => {
+                if (money.textContent === 'attach_money') {
+                    addquestCost++;
+                }
+            });
 
         } 
     })
 }
 
-function add_quest() {
-    console.log("inside add quest");
-    let addquestTitle = document.getElementById("add_quest_title").value;
-    let addquestDescription = document.getElementById("add_quest_description").value;
 
-    // Initialize a variable 'questRating' and 'questCost' to keep track of the rating and cost
-    let addquestRating = 0;
-    let addquestCost = 0;
-
-    // Iterate through each element in the 'stars' NodeList using the forEach method
-    stars.forEach((star) => {
-        if (star.textContent === 'star') {
-            addquestRating++;
-        }
-    });
-    money.forEach((money) => {
-        if (money.textContent === 'attach_money') {
-            addquestCost++;
-        }
-    });
 
     var user = firebase.auth().currentUser;
     if (user) {
@@ -81,4 +76,4 @@ function add_quest() {
         console.log("No user is signed in");
         window.location.href = 'review.html';
     }
-}
+
