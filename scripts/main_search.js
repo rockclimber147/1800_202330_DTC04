@@ -133,6 +133,9 @@ $(document).ready(function () {
        */
 
       $('#search_button').on('click', async function (event) {
+            $('.card_container').remove();
+            $('#message_before_search').remove();
+
             console.log('clicked search');
             let search_text = $('#myInput').val().toLowerCase();             // put text to lowercase to match keywords
             console.log('search text:', search_text);
@@ -154,24 +157,24 @@ $(document).ready(function () {
                   final_search_keywords.pop()
             }
 
-            console.log('final search keywords:', final_search_keywords);
-            let search_results = await db.collection('quests')               // get quests
-                  .where('keywords', 'array-contains-any', final_search_keywords).get(); // where quest keywords contain any word in search array
-            console.log('TEST', event.currentTarget.current_map)
-            update_map(event.currentTarget.current_map, search_results);                                      // update map with results
-            update_quest_cards(
-                  search_results,
-                  quest_html_node,
-                  tag_html_node,
-                  user_location,
-                  all_quest_tags,
-                  user_doc
-            );                              // update cards with results
+            if (final_search_keywords.length > 0) {
+                  let search_results = await db.collection('quests')               // get quests
+                        .where('keywords', 'array-contains-any', final_search_keywords).get(); // where quest keywords contain any word in search array
+
+                  update_map(event.currentTarget.current_map, search_results, user_doc);                                      // update map with results
+                  update_quest_cards(
+                        search_results,
+                        quest_html_node,
+                        tag_html_node,
+                        user_location,
+                        all_quest_tags,
+                        user_doc
+                  );                               // update cards with results
+            }
       })
 
       init()
       $('#quest_cards_go_here').hide();
-
 })
 
 $('#view_toggle').on('click', toggle_view)

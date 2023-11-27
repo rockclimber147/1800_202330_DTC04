@@ -73,19 +73,26 @@
     <!-- /reusable top navbar -->
 
     <div id="search_container" class="container d-flex justify-content-between">
-        <button id="view_toggle">
-            <span id="view_toggle_text"
-                class="material-symbols-outlined justify-content-start material-icons md-36 view_icon">LIST</span>
-        </button>
 
-        <button id="bookmarked_button" class="top_button">Bookmarked</button>
-        <button id="accepted_button" class="top_button pressed" disabled>Accepted</button>
+
+
 
     </div>
 
     <main>
+        <div id="top_interface">
+            <button id="view_toggle">
+                <span id="view_toggle_text"
+                    class="material-symbols-outlined justify-content-start material-icons md-36 view_icon">LIST</span>
+            </button>
+            <div id="quest_view_toggle">
+                <button id="bookmarked_button" class="top_button">Bookmarked</button>
+                <button id="accepted_button" class="top_button pressed" disabled>Accepted</button>
+                <button id="completed_button" class="top_button">Completed</button>
+            </div>
+        </div>
         <!-- MAPBOX -->
-        <div id='map' style='display:inline-block;width: 100%; height:80vh; margin-top:10vh;'></div>
+        <div id='map' style='display:inline-block; width: 100%; height:80vh;'></div>
         <!-- Quest cards -->
         <div id="quest_cards_go_here">
 

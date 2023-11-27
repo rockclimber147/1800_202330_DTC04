@@ -23,7 +23,7 @@ async function do_all() {
 
             // update contents
             $(`.quest_name`).text(quest_name);
-            $(`.quest_point`).text(`${quest_point} pt`);
+            $(`.quest_point_completion`).text(`${quest_point} pt`);
 
             // update user points
             let current_user_points = user_doc.data().points;

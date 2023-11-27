@@ -3,11 +3,6 @@ body {
     padding-bottom:10vh;
 }
 
-
-#quest_cards_go_here{
-    padding-top: 5vh;
-}
-
 h3 {
     padding-top: 6vh;
 }
@@ -41,4 +36,40 @@ h3 {
 
 h3 {
     padding-top: 0vh;
+}
+
+
+/* COntainer for the superimposed */
+#top_interface{
+    display:flex;
+    flex-direction: row;
+    position: fixed;
+    height:10vh;
+    width:100%;
+    z-index: 2;
+}
+
+#view_toggle {
+    height:100%;
+    display:inline-block;
+    border-radius: 10px;
+}
+
+
+/* For pressed button look */
+.pressed {
+    background: #a36654;
+    color:white;
+    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+       -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
+            box-shadow: inset 0px 0px 5px #c1c1c1;
+     outline: none;
+}
+
+
+/* Fix main to fill the remainiong 80vh not used by to and bottom navs (10vh each) */
+main {
+    margin-top: 10vh;
+    padding:0px;
+    height:80vh;
 }

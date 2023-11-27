@@ -70,24 +70,24 @@
     <!-- reusable top navbar -->
     <div id="reusable_header"></div>
     <!-- /reusable top navbar -->
-    <div id="search_container" class="container d-flex justify-content-between">
-        <button id="view_toggle" onclick="toggle_view()">
-            <span id="view_toggle_text"
-                class="material-symbols-outlined justify-content-start material-icons md-36 view_icon">LIST</span>
-        </button>
-        <!-- AUTOCOMPLETE -->
-        <div class="autocomplete flex-end">
-            <input id="myInput" type="text" placeholder="Search">
-            <button id="search_button" class="bg-light"><span class="material-icons md-36">search</span></button>
-        </div>
-        <!-- /AUTOCOMPLETE -->
-    </div>
     <main>
+        <div id="top_interface">
+            <button id="view_toggle">
+                <span id="view_toggle_text"
+                    class="material-symbols-outlined justify-content-start material-icons md-36 view_icon">LIST</span>
+            </button>
+            <div>
+                <input id="myInput" type="text" placeholder="Search">
+                <button id="search_button" class="bg-light"><span class="material-icons md-36">search</span></button>
+            </div>
+        </div>
         <!-- MAPBOX -->
-        <div id='map' style='display:inline-block;width: 100%; height:80vh; margin-top:10vh;'></div>
+        <div id='map' style='display:inline-block;width: 100%; height:80vh;'></div>
         <!-- Quest cards -->
         <div id="quest_cards_go_here">
-            
+            <div id="message_before_search" class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+                <h1>Enter words to display quests</h1>
+            </div>
         </div>
     </main>
 

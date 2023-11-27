@@ -121,6 +121,9 @@ async function add_keywords_to_quests() {
     })
 }
 
+/**
+ * This adds new quests to the quest collection
+ */
 function writeQuests() {
     //define a variable for the collection you want to create in Firestore to populate data
     var questRef = db.collection("quests");
@@ -130,7 +133,7 @@ function writeQuests() {
         location_name: "Vancouver Aquarium",
         location: [49.30120109782259, -123.13059318497679], // copy from Google map
         rate: 4, //integer between 1 to 5 (decide as you want!)
-        cost: 3, // integer between 1 to 3 (1: ~$15, 2: ~$40, 3: $40~)
+        cost: 3, // integer between 1 to 5 (1: $0, 2: ~$15, 3: ~$30, 4: ~$50, 5: $50~)
         description: "The Vancouver Aquarium offers a memorable experience, showcasing the wonders of the underwater world. Located in the heart of Stanley park, it is the perfect spot for nature and animal lovers. Come to see sea otters, seals, sea lions, sharks, and more! Not only do they have animals, but you can immerse yourself in a 4D theatre experience. It will be an unforgettable experience for visitors of all ages.",
         tag_ids: ["FRqykuyJ6ibTjRW2SRYs"], // uncomment helper.js at main_home.html and run log_tags() to see the list of tags (or you can copy tag_ids from firebase)
         image_url: "https://smapse.com/storage/2019/09/converted/895_0_o-2.jpg", // right click on the image at google image search and then select "Copy Image Address"
@@ -142,7 +145,7 @@ function writeQuests() {
         location_name: "The Lamplighter",
         location: [49.283906730938504, -123.10620894614956], // copy from Google map
         rate: 3, //integer between 1 to 5 (decide as you want!)
-        cost: 2, // integer between 1 to 3 (1: ~$15, 2: ~$40, 3: $40~)
+        cost: 2, //integer between 1 to 5 (1: $0, 2: ~$15, 3: ~$30, 4: ~$50, 5: $50~)
         description: "Nestled in Vancouver's charming Gastown district, the Lamplighter is one of the most iconic bars in the city. It was established back in 1925 and was the first pub to be granted an alcohol license. With its rustic decor and warm ambiance, it is the perfect spot for a casual drink and a lively evening. Next time you trek through the cobblestone streets of Gastown, make sure you make a stop at the Lamplighter!",
         tag_ids: ["amcTVmlcFPvVZo2XarCH", "j6MrxNTQVsVDqZZqKY3A"], // uncomment helper.js at main_home.html and run log_tags() to see the list of tags (or you can copy tag_ids from firebase)
         image_url: "https://www.vmcdn.ca/f/files/via/import/2018/01/04115149_lamplighter-pub-vancouver.jpg;w=960", // right click on the image at google image search and then select "Copy Image Address"
@@ -154,7 +157,7 @@ function writeQuests() {
         location_name: "Vancouver Art Gallery",
         location: [49.283107643362, -123.12042858847792], // copy from Google map
         rate: 3, //integer between 1 to 5 (decide as you want!)
-        cost: 2, // integer between 1 to 3 (1: ~$15, 2: ~$40, 3: $40~)
+        cost: 2, //integer between 1 to 5 (1: $0, 2: ~$15, 3: ~$30, 4: ~$50, 5: $50~)~)
         description: "The gallery spans 165,000 square feet, making it the largest art museum in Western Canada. Here, you can explore the diverse collections of artwork and immerse yourself in thought-provoking exhibitions. Find artwork in various mediums including paintings, sculptures, and more. This is the perfect destination for those who are interested in fine and contemporary arts. Located in the heart of downtown Vancouver at Robson Square, it is close to Robson Street, a popular shopping district. Visit the Vancouver Art Gallery for an unforgettable cultural experience!",
         tag_ids: ["FRqykuyJ6ibTjRW2SRYs"], // uncomment helper.js at main_home.html and run log_tags() to see the list of tags (or you can copy tag_ids from firebase)
         image_url: "https://contentadmin.vanartgallery.bc.ca/wp-content/uploads/2019/06/5_HISTORY-Robson-Square-Vancouver-Art-Gallery-1024PX.jpg", // right click on the image at google image search and then select "Copy Image Address"
@@ -166,7 +169,7 @@ function writeQuests() {
         location_name: "Orpheum",
         location: [49.28037661215589, -123.12046005322641], // copy from Google map
         rate: 4, //integer between 1 to 5 (decide as you want!)
-        cost: 3, // integer between 1 to 3 (1: ~$15, 2: ~$40, 3: $40~)
+        cost: 3, //integer between 1 to 5 (1: $0, 2: ~$15, 3: ~$30, 4: ~$50, 5: $50~)
         description: "The Orpheum is an iconic venue featuring an interior with elegant sweeping staircases, majestic chandeliers, and exquisite architecture. It is one of the designated National Heritage Sites and has enraptured millions of people since its opening in 1927. The Orpheum is also home to the internationally renowned Vancouver Symphony Orchestra. Make sure to book your next ticket here to experience an unparalleled performance!",
         tag_ids: ["HMrrJ40lism9mp1GIsAP"], // uncomment helper.js at main_home.html and run log_tags() to see the list of tags (or you can copy tag_ids from firebase)
         image_url: "https://lh3.googleusercontent.com/p/AF1QipO8YFYY-xsT6M0te3P2X7L4yAfekb8_NpCUn0Ti=s1360-w1360-h1020", // right click on the image at google image search and then select "Copy Image Address"
@@ -179,7 +182,7 @@ function writeQuests() {
         location_name: "Greenheart Treewalk",
         location: [49.25077224296747, -123.24653281646229], // copy from Google map
         rate: 2, //integer between 1 to 5 (decide as you want!)
-        cost: 1, // integer between 1 to 3 (1: ~$15, 2: ~$40, 3: $40~)
+        cost: 1, //integer between 1 to 5 (1: $0, 2: ~$15, 3: ~$30, 4: ~$50, 5: $50~)
         description: "The Greenheart TreeWalk will spark your adventurous spirit as you navigate suspended walkways and tree platforms high above the forest ﬂoor. Located in the heart of UBC Botanical Garden, the 310 metre-long tree top canopy walkway hangs from huge Douglas firs, cedars and grand firs, many of which are over 100 years old. Reaching a height of nearly 20 metres above the forest floor, the walkway will give you a bird’s eye view of Vancouver’s magnificent coastal temperate rainforest.",
         tag_ids: ["D4NeTY30U09lD3TemV4Y", "ntk5nt0wadhVx4A17Weu"], // uncomment helper.js at main_home.html and run log_tags() to see the list of tags (or you can copy tag_ids from firebase)
         image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Greenheart_TreeWalk_-_UBC_Botanical_Garden_-_Vancouver%2C_Canada_-_DSC08050.jpg/1024px-Greenheart_TreeWalk_-_UBC_Botanical_Garden_-_Vancouver%2C_Canada_-_DSC08050.jpg", // right click on the image at google image search and then select "Copy Image Address"
@@ -191,7 +194,7 @@ function writeQuests() {
         location_name: "Iona South Jetty",
         location: [49.2092684568335, -123.26270005171358],
         rate: 3, //integer between 1 to 5
-        cost: 1, // integer between 1 to 3
+        cost: 1, //integer between 1 to 5 (1: $0, 2: ~$15, 3: ~$30, 4: ~$50, 5: $50~)
         description: "The Iona Jetty is a 8.2km long trail that juts out into the water. It is, in fact, a long pipe that runs out of the sewage treatment plant and into the water. If you were to view the jetty on a map, you will see a straight line in the water coming out of the peninsula. There are beaches in the area, although beachgoers and dogs are advised to avoid them because of the sewage emissions.",
         tag_ids: ["D4NeTY30U09lD3TemV4Y", "ntk5nt0wadhVx4A17Weu"],
         image_url: "https://www.insidevancouver.ca/wp-content/uploads/2021/11/ionajettyAlltrailsRickyBatallones-664x498.jpg",
@@ -203,7 +206,7 @@ function writeQuests() {
         location_name: "Vancouver Public Library",
         location: [49.27982782965753, -123.11556849852188],
         rate: 4, //integer between 1 to 5
-        cost: 1, // integer between 1 to 3
+        cost: 1, //integer between 1 to 5 (1: $0, 2: ~$15, 3: ~$30, 4: ~$50, 5: $50~)
         description: "Vancouver Public Library (VPL) is the public library system for the city of Vancouver, British Columbia. In 2013, VPL had more than 6.9 million visits with patrons borrowing nearly 9.5 million items including: books, ebooks, CDs, DVDs, video games, newspapers and magazines. Across 22 locations and online, VPL serves nearly 428,000 active members and is the third-largest public library system in Canada.",
         tag_ids: ["0o8PuZZQAbN2e6CU6veD", "j6MrxNTQVsVDqZZqKY3A"],
         image_url: "https://www.vpl.ca/sites/default/files/styles/landscape_sm/public/branch-CEN.jpg?itok=Vpx3FFJd",
@@ -215,7 +218,7 @@ function writeQuests() {
         location_name: "Vancouver Aquatic Centre",
         location: [49.276949796368434, -123.13514559455747],
         rate: 4, //integer between 1 to 5
-        cost: 1, // integer between 1 to 3
+        cost: 1, //integer between 1 to 5 (1: $0, 2: ~$15, 3: ~$30, 4: ~$50, 5: $50~)
         description: "The Vancouver Aquatic Centre is a large city-run recreation centre with a swimming pool and fitness facilities. The swimming pool is a large indoor 50 metre pool with a diving tower (5m, 7.5m, and 10m), diving boards(1m and 3m), rope swing, and slide. It has a sauna and weight room.",
         tag_ids: ["R5xMy6JZru7488KC6ICA"],
         image_url: "https://images.dailyhive.com/20190513111503/vancouver-aquatic-centre.jpg",

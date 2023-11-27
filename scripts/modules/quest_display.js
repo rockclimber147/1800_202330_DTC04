@@ -19,15 +19,40 @@ export function update_quest_cards(quest_db, quest_html_node, tag_html_node, use
         var quest_tag_id_list = doc.data().tag_ids       // get the list of tag ids
         var quest_id = doc.id;                           // get the quest ids
         var quest_point = doc.data().point;            // get the quest points
-        var bookmarked_quests = user_doc.data().bookmarked_quests
-        
+        var bookmarked_quests = user_doc.data().bookmarked_quests;  // get the list of bookmarked quests
+        var user_accepted_quests = user_doc.data().accepted_quests; // get the list of accepted quests
+        var user_completed_quests = user_doc.data().completed_quests;   // get the list of completed quests
+
+        // determine the current state of the quest
+        var display_state;
+        if (user_accepted_quests.includes(quest_id)) {
+            display_state = 'quest is accepted';
+        } else if (user_completed_quests.includes(quest_id)) {
+            display_state = 'quest is completed';
+        } else {
+            display_state = 'quest is not yet accepted';
+        }
+
         // Clone the contents of the quest card template element (not the parent template element)
         let new_quest_card = $(quest_html_node).clone();
 
         let bookmark_state = 'bookmark_border'
-        console.log(bookmarked_quests)
-        if (bookmarked_quests.includes(quest_id)){
+        if (bookmarked_quests.includes(quest_id)) {
             bookmark_state = "bookmark"
+        }
+
+        // append 'completed', 'accepted', or point depending on the state of the quest
+        switch (display_state) {
+            case 'quest is accepted': {
+                new_quest_card.find('.quest_state').text('Accepted');
+                break;
+            } case 'quest is completed': {
+                new_quest_card.find('.quest_state').text('Completed');
+                break;
+            } case 'quest is not yet accepted': {
+                new_quest_card.find('.quest_state').text(quest_point + 'pt');
+                break;
+            }
         }
 
         //update title and text and image
@@ -38,21 +63,23 @@ export function update_quest_cards(quest_db, quest_html_node, tag_html_node, use
         new_quest_card.find('.quest_distance').text(quest_distance + 'km');
         new_quest_card.find('.quest_image').attr('src', image_url); // find image and put in new quest card
         new_quest_card.find('.quest_detail_link').attr('href', `./quest-detail.html?quest_id=${quest_id}`); // set links to quest cards
-        new_quest_card.find('.quest_point').text(quest_point + 'pt'); // put quest points in quest card
         new_quest_card.find('.quest_bookmark').text(bookmark_state)
-        new_quest_card.find('.quest_bookmark').attr('id', doc.id) // set id to id of current quest
-        
+        new_quest_card.find('.quest_bookmark').attr('id', 'bookmark_' + doc.id) // set id to id of current quest
+        new_quest_card.find('i').click(() => (toggle_bookmark(quest_id, user_doc.id)));
+        new_quest_card.find('.quest_name, .quest_rating, .quest_price, .quest_distance, .quest_image').click(() => (window.location.href = `./quest-detail.html?quest_id=${quest_id}`)); // set links to quest cards
+
+        // append tags to quest card
         if (quest_tag_id_list[0] != "") {
             for (let i = 0; i < quest_tag_id_list.length; i++) {
-                    let new_quest_tag = $(tag_html_node).clone();
-                    new_quest_tag.text(all_quest_tags[quest_tag_id_list[i]]);
-                    new_quest_tag.appendTo(new_quest_card.find('.quest_tags_container'));
+                let new_quest_tag = $(tag_html_node).clone();
+                new_quest_tag.text(all_quest_tags[quest_tag_id_list[i]]);
+                new_quest_tag.appendTo(new_quest_card.find('.quest_tags_container'));
             }
         }
 
         new_quest_card.appendTo('#quest_cards_go_here')
 
-    })
+    });
 }
 
 /**
@@ -77,14 +104,19 @@ export async function initialize_map(user_location) {
     // Adds map features
     map.on('load', () => {
         // Defines map pin icon for events
-        map.loadImage(
-            'https://cdn.iconscout.com/icon/free/png-256/pin-locate-marker-location-navigation-16-28668.png',
+        map.loadImage( 
+            '/images/quest_pin.png',
             (error, image) => {
                 if (error) throw error;
+                map.addImage('quest_pin', image); // Pin Icon
+            }
+        );
 
-                // Add the image to the map style.
-                map.addImage('eventpin', image); // Pin Icon
-
+        map.loadImage( 
+            '/images/completed_quest_pin.png',
+            (error, image) => {
+                if (error) throw error;
+                map.addImage('completed_quest_pin', image);
             }
         );
 
@@ -165,10 +197,13 @@ export async function initialize_map(user_location) {
  * Adds pins from quest_db to the map
  * @param {*} map OpenGL mapbox
  * @param {*} quest_db Quest database
+ * @param {*} user_doc Firebase document for current user
  */
-export function update_map(map, quest_db) {
+export function update_map(map, quest_db, user_doc) {
 
     const features = []; // Defines an empty array for information to be added to
+    const completed_quests = []; // Defines an empty array for information to be added to
+    let currentArray;
 
     quest_db.forEach(doc => {
         let lat = doc.data().location[0];
@@ -178,20 +213,23 @@ export function update_map(map, quest_db) {
         // console.log(coordinates);
         // Coordinates
         let event_name = doc.data().quest_name; // Event Name
-        let preview = doc.data().description; // Text Preview
-        // let img = doc.data().posterurl; // Image
-        // url = doc.data().link; // URL
+
+        if (user_doc.data().completed_quests.includes(doc.id)){
+            currentArray = completed_quests;
+        } else {
+            currentArray = features;
+        }
 
         // Pushes information into the features array
-        features.push({
+        currentArray.push({
             'type': 'Feature',
             'properties': {
-                'description': `<strong>${event_name}</strong><p>${preview}</p> <br> <a href="/quest-detail.html?quest_id=${doc.id}" title="Opens in this window">Read more</a>`
+                'description': `<strong>${event_name}</strong><a href="/quest-detail.html?quest_id=${doc.id}" title="Opens in this window">Read more</a>`
             },
             'geometry': {
                 'type': 'Point',
                 'coordinates': coordinates
-            }
+            },
         });
     });
 
@@ -201,6 +239,12 @@ export function update_map(map, quest_db) {
     }
     if (map.getSource("places")) {
         map.removeSource("places");
+    }
+    if (map.getLayer("completed_quests")) {
+        map.removeLayer("completed_quests");
+    }
+    if (map.getSource("completed_quests")) {
+        map.removeSource("completed_quests");
     }
 
 
@@ -213,6 +257,15 @@ export function update_map(map, quest_db) {
         }
     });
 
+    // Adds features as a source to the map
+    map.addSource('completed_quests', {
+        'type': 'geojson',
+        'data': {
+            'type': 'FeatureCollection',
+            'features': completed_quests
+        }
+    });
+
     // Creates a layer above the map displaying the pins
     map.addLayer({
         'id': 'places',
@@ -220,7 +273,20 @@ export function update_map(map, quest_db) {
         // source: 'places',
         'source': 'places',
         'layout': {
-            'icon-image': 'eventpin', // Pin Icon
+            'icon-image': 'quest_pin', // Pin Icon
+            'icon-size': 0.1, // Pin Size
+            'icon-allow-overlap': true // Allows icons to overlap
+        }
+    });
+
+    // Creates a layer above the map displaying the pins
+    map.addLayer({
+        'id': 'completed_quests',
+        'type': 'symbol',
+        // source: 'places',
+        'source': 'completed_quests',
+        'layout': {
+            'icon-image': 'completed_quest_pin', // Pin Icon
             'icon-size': 0.1, // Pin Size
             'icon-allow-overlap': true // Allows icons to overlap
         }
@@ -228,6 +294,22 @@ export function update_map(map, quest_db) {
 
     // Map On Click function that creates a popup, displaying previously defined information from "events" collection in Firestore
     map.on('click', 'places', (e) => {
+        // Copy coordinates array.
+        const coordinates = e.features[0].geometry.coordinates.slice();
+        const description = e.features[0].properties.description;
+
+        // Ensure that if the map is zoomed out such that multiple copies of the feature are visible, the popup appears over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(description)
+            .addTo(map);
+    });
+
+    map.on('click', 'completed_quests', (e) => {
         // Copy coordinates array.
         const coordinates = e.features[0].geometry.coordinates.slice();
         const description = e.features[0].properties.description;
@@ -261,17 +343,17 @@ export function toggle_view() {
     console.log('switching...');
     console.log($('#view_toggle_text').text())
     switch ($('#view_toggle_text').text()) {
-          case 'MAP': {
-                $('#view_toggle_text').text('LIST');
-                $('#map').show();
-                $('#quest_cards_go_here').hide();
-                break;
-          } case 'LIST': {
-                $('#view_toggle_text').text('MAP');
-                $('#map').hide();
-                $('#quest_cards_go_here').show();
-                break;
-          }
+        case 'MAP': {
+            $('#view_toggle_text').text('LIST');
+            $('#map').show();
+            $('#quest_cards_go_here').hide();
+            break;
+        } case 'LIST': {
+            $('#view_toggle_text').text('MAP');
+            $('#map').hide();
+            $('#quest_cards_go_here').show();
+            break;
+        }
     }
 }
 
@@ -293,3 +375,19 @@ function calculateDistance(current, destination) {
     return distance;
 }
 
+async function toggle_bookmark(quest_id, user_id) {
+    var iconID = 'bookmark_' + quest_id;
+    if (document.getElementById('bookmark_' + quest_id).innerText == 'bookmark') {
+        await db.collection("users").doc(user_id).update({
+            bookmarked_quests: firebase.firestore.FieldValue.arrayRemove(quest_id)
+        })
+        console.log("bookmark has been removed for " + quest_id);
+        document.getElementById(iconID).innerText = 'bookmark_border';
+    } else {
+        await db.collection("users").doc(user_id).update({
+            bookmarked_quests: firebase.firestore.FieldValue.arrayUnion(quest_id)
+        })
+        console.log("bookmark has been saved for " + quest_id);
+        document.getElementById(iconID).innerText = 'bookmark';
+    }
+}
