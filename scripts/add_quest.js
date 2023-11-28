@@ -44,6 +44,7 @@ async function add_quest_to_database() {
             var quest_description = document.getElementById("add_quest_description").value;
             let quest_rating = 0;
             let quest_cost = 0;
+            let quest_image = document.querySelector('#add_quest_image')
 
             stars.forEach((star) => {
                 if (star.textContent === 'star') {
