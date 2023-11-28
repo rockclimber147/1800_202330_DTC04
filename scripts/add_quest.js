@@ -65,7 +65,7 @@ async function add_quest_to_database() {
 
             tag_db.forEach((doc) => {
                 let checked = ''
-                    $("#check").append(
+                $("#add_quest_checkboxes").append(
                         `
                               <div class="form-check">
                                     <input ${checked} type="checkbox" class="form-check-input" id="tagcheckbox" name="tagcheckbox"/>
