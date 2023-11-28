@@ -45,6 +45,10 @@ async function add_quest_to_database() {
             let quest_rating = 0;
             let quest_cost = 0;
             let quest_image = document.querySelector('#add_quest_image')
+            let quest_latitude = document.querySelector('#add_quest_latitude')
+            let quest_longitude = document.querySelector('#add_quest_longitude')
+            let quest_location_name = document.querySelector('#add_quest_location_name')
+
 
             stars.forEach((star) => {
                 if (star.textContent === 'star') {
