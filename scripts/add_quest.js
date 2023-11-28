@@ -37,11 +37,11 @@ async function add_quest_to_database() {
             }
 
             // get fields from page
-            quest_title = document.getElementById("add_quest_title").value
+            quest_title = document.getElementById("#add_quest_title").value
             var stars = document.querySelectorAll('.star');
             var money = document.querySelectorAll('.money')
             var quest_points = document.querySelector('#add_quest_points')
-            var quest_description = document.getElementById("add_quest_description").value;
+            var quest_description = document.getElementById("#add_quest_description").value;
             let quest_rating = 0;
             let quest_cost = 0;
             let quest_image = document.querySelector('#add_quest_image')
