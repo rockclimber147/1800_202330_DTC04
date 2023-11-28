@@ -85,7 +85,8 @@
                 <button id="complete" class="d-block border-0 quest_complete_button py-2 my-1 d-none">Complete</button>
                 <button id="drop" class="d-block border-0 quest_drop_button py-2 my-1 d-none">Drop</button>
                 <button id="quest_is_completed" class="border-0 py-2 my-1 w-100 d-none" disabled>Completed!</button>
-                <button class="border-0 py-2 w-100 d-none quest_review_button" onclick="saveQuestDocumentIDAndRedirect()">Write Review</button>
+                <button class="border-0 py-2 w-100 d-none quest_review_button"
+                    onclick="saveQuestDocumentIDAndRedirect()">Write Review</button>
             </div>
         </div>
         <div class="w-100 px-3 pt-4 position-relative">
@@ -156,7 +157,7 @@
             </div>
         </div>
     </div>
-    
+
     <template id="reviewCardTemplate">
         <div class="card">
             <img class="card-img-top">
@@ -166,7 +167,8 @@
                 <p class="cost-rating"></p>
                 <p class="time">placeholder</p>
                 <p class="level">placeholder</p>
-                <p class="description">This card has supporting text below as a natural lead-in to additional content.</p>
+                <p class="description">This card has supporting text below as a natural lead-in to additional content.
+                </p>
             </div>
         </div>
     </template>
@@ -179,7 +181,7 @@
     <script src="./scripts/firebaseAPI_DTC04.js"></script>
     <script src="./scripts/script.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/quest-detail.js"></script>
+    <script src="./scripts/quest_detail.js"></script>
     <script src="./scripts/review.js"></script>
 </body>
 
