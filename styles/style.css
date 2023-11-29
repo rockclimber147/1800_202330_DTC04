@@ -1,49 +1,3 @@
-#top-navbar {
-    margin-bottom:0px;
-    height:10vh;
-    background-color: #F5DFBB;
-}
-
-
-#footer_nav{
-    height:10vh;
-}
-
-#navbar-logo {
-    font-size: 30px;
-}
-
-#user-profile {
-    display: flex;
-    flex-direction: column;
-}
-
-#user-profile img {
-    width: 25pt;
-}
-
-.hamburger-menu {
-    background-color: #a36654;
-}
-
-.offcanvas {
-    width: 50%;
-}
-
-.list-unstyled li:last-child {
-    border-bottom: none;
-}
-
-.list-unstyled li a:hover {
-    background-color: white !important;
-    color: #F2542D !important;
-}
-
-/* font */
-.orbitron {
-    font-family: Orbitron, sans-serif;
-}
-
 /* bootstrap color override */
 /*
 * --------------------------------------------
@@ -61,10 +15,24 @@ white #FFFFFF
 pale yellow #F5DFBB;
 */
 
+/* font */
+.orbitron {
+    font-family: Orbitron, sans-serif;
+}
 
-.bg-info {
-    background-color: #A36654 !important;
-    /* Medium shade for navbar */
+/* ======================== */
+/* Navigation bars */
+
+#top-navbar {
+    margin-bottom:0px;
+    height:10vh;
+    background-color: #F5DFBB;
+}
+
+/* Naborly logo */
+.navbar-brand {
+    font-family: 'Orbitron', sans-serif;
+    margin: 0px;
 }
 
 /* top navbar */
@@ -74,6 +42,85 @@ pale yellow #F5DFBB;
     /* Light shade for brand name & nav links for contrast */
 }
 
+.navbar-toggler {
+    border: none;
+    padding: 0px;
+}
+
+/* #navbar-logo {
+    font-size: 30px;
+} */
+
+#footer_nav{
+    height:10vh;
+}
+
+/* Bottom nav icons */
+a {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+a:hover {
+    color: white;
+}
+
+.bg-info {
+    background-color: #A36654 !important;
+    /* Medium shade for bottom navbar */
+}
+
+/* #user-profile {
+    display: flex;
+    flex-direction: column;
+} */
+
+#user-profile img {
+    width: 25pt;
+}
+
+.hamburger-menu {
+    background-color: #a36654;
+}
+
+/* .offcanvas {
+    width: 50%;
+} */
+
+/* Sign in widget */
+#firebaseui-auth-container {
+    margin-top: 10vh;
+    margin: 5vw;
+}
+
+/* body */
+body {
+    background-color: #F5DFBB;
+    padding-bottom: 10vh;
+    padding-top: 10vh;
+}
+
+
+
+
+
+
+
+
+.list-unstyled li:last-child {
+    border-bottom: none;
+}
+
+.list-unstyled li a:hover {
+    background-color: white !important;
+    color: #F2542D !important;
+}
+
+
 .top_part_quest_detail{
     padding-top: 5vh;
 }
@@ -82,40 +129,24 @@ pale yellow #F5DFBB;
     padding: 0 12px;
 }
 
-.navbar-brand{
-    font-family: 'Orbitron', sans-serif;
-    margin: 0px;
-}
 
-.navbar-toggler{
-    border: none;
-    padding: 0px;
-}
+
 
 h1{
     margin: 0px;
     font-size: 1.5rem;
 }
 
-#firebaseui-auth-container{
-    margin-top: 10vh;
-}
 
-/* body */
-body {
-    background-color: #F5DFBB;
-    /* Light shade for body background */
-    padding-bottom: 10vh;
-    padding-top: 10vh;
-}
 
-/* buttons */
+
+
+
+/* Login button */
 .sign_up {
     color: #FFFFFF;
-    /* Light shade for text */
     font-size: 150%;
     background-color: #d96055;
-    /* Darkest shade for border */
     border-width: thick;
 }
 
@@ -125,51 +156,29 @@ body {
     color: #FFFFFF;
 }
 
-.login:hover,
+/* .login:hover,
 .wireflow:hover {
     border-color: #562C2C;
-}
+} */
 
-a{
-    color: black;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-}
-
-a:hover{
-    color: white;
-}
 
 .material-icons.md-36 {
     font-size: 32px;
 }
 
-#profile_pic{
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background-color: white;
-    padding: 10px;
-}
 
-.back_arrow{
+/* .back_arrow{
     padding-left: 10px;
-}
+} */
 
-#back_button{
-    padding-left: 15px;
-}
+/* 
 section{
     padding: 10px;
-}
+} */
 
-.option_btn{
+/* .option_btn{
     border-radius: 30px;
-}
+} */
 
 p.orbitron{
     margin-bottom: 3px;
@@ -179,6 +188,19 @@ p.orbitron{
 .view_icon{
     padding: 5px;
 }
+
+
+/* Map */
+#view_toggle{
+    /* position: fixed; */
+    /* This next line has a powerful aura */
+    z-index: 50 !important;
+    margin: 1vh; 
+    border-radius: 5px;
+    border: black solid 1px;    
+}
+
+
 
 /* main_home.html > quest_card_template */
 #quest_cards_go_here{
@@ -223,11 +245,17 @@ p.orbitron{
     #footer_nav a {
         font-size: 0.6rem;
     }
+
 }
 
 
 
-/* quest-detail.html */
+/* quest_detail.html */
+
+#back_button {
+    padding-left: 15px;
+}
+
 .quest_accept_button, .quest_complete_button, .quest_drop_button,
 .pop_up_close_button,
 .pop_up_cancel_button,
@@ -256,7 +284,8 @@ p.orbitron{
     
 }
 
-/* quest-detail.html > pop-ups */
+
+/* quest_detail.html > pop-ups */
 .pop_up {
     position: fixed;
     top: 50%;
@@ -276,6 +305,8 @@ p.orbitron{
     font-size: 3rem;
 }
 
+
+
 .acquired_point {
     border-bottom: solid black 1px;
 }
@@ -285,4 +316,43 @@ p.orbitron{
     color: white;
     border-radius: 20px;
     background-color: #d96055;
+}
+
+
+@media screen and (min-width: 768px) {
+    #view_toggle {
+            margin: 3vh;
+    }
+    .card_body {
+        font-size: 1.5rem;
+    }
+
+    #footer_nav a {
+        font-size: 0.6rem;
+    }
+
+
+    /* .pop_up {
+        /* position: relative; */
+        /* top: 50%; */
+        /* left: 50%; */
+        /* transform: translate(-50%, -50%); */
+        /* height: 30%; */
+        /* width: 10%; */
+    /* }  */
+
+    .w-75{
+        width: auto;
+    }
+
+    .pop_up_title {
+        background-color: #d96055;
+        color: white;
+    }
+
+    /* quest-completed */
+    .quest_completed {
+        rotate: -10deg;
+        font-size: 3rem;
+    }
 }

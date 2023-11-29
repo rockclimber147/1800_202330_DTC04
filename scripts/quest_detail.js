@@ -78,6 +78,7 @@ function switch_buttons_and_pop_ups(user, ID) {
     $('.quest_accept_button').click(function () {
         $('#quest_accepted_pop_up').removeClass('d-none'); // pop-up shows up
         $('#details_go_here').addClass('opacity-25'); // quest detail fades
+        $('#reviewCardGroup').addClass('opacity-25');
         db.collection('users').doc(user.uid).update({
             accepted_quests: firebase.firestore.FieldValue.arrayUnion(ID)
         })
@@ -88,18 +89,21 @@ function switch_buttons_and_pop_ups(user, ID) {
         $(this).closest('.pop_up').addClass('d-none'); // pop-up disappears
         $('.quest_accept_button').addClass('d-none'); // "Accept" button disappears
         $('#details_go_here').removeClass('opacity-25');
+        $('#reviewCardGroup').removeClass('opacity-25');
     })
 
     // when "Drop" is clicked
     $('.quest_drop_button').click(function () {
         $('#drop_quest_pop_up').removeClass('d-none'); // pop-up shows up
         $('#details_go_here').addClass('opacity-25'); // quest detail fades
+        $('#reviewCardGroup').addClass('opacity-25');
     })
 
     // when "Cancel" is clicked after "Drop" being clicked
     $('#drop_quest_pop_up .pop_up_cancel_button').click(function () {
         $(this).closest('.pop_up').addClass('d-none'); // pop-up disappears
         $('#details_go_here').removeClass('opacity-25');
+        $('#reviewCardGroup').removeClass('opacity-25');
     })
 
     // when "Drop" is confirmed
@@ -118,27 +122,30 @@ function switch_buttons_and_pop_ups(user, ID) {
         $(this).closest('.pop_up').addClass('d-none'); // pop-up disappears
         $('.quest_accept_button').removeClass('d-none'); // "Accept" button shows up
         $('#details_go_here').removeClass('opacity-25');
+        $('#reviewCardGroup').removeClass('opacity-25');
     })
 
     // when "Complete" is clicked
     $('.quest_complete_button').click(function () {
         $('#complete_quest_pop_up').removeClass('d-none'); // pop-up shows up
         $('#details_go_here').addClass('opacity-25'); // quest detail fades
+        $('#reviewCardGroup').addClass('opacity-25');
     })
 
     // when "Cancel" is clicked after "Complete" being clicked
     $('#complete_quest_pop_up .pop_up_cancel_button').click(function () {
         $(this).closest('.pop_up').addClass('d-none'); // pop-up disappears
         $('#details_go_here').removeClass('opacity-25');
+        $('#reviewCardGroup').removeClass('opacity-25');
     })
 
     // When complete quest is confirmed
-    $(`#complete_quest_pop_up .pop_up_confirm_button`).click(async function(){
+    $(`#complete_quest_pop_up .pop_up_confirm_button`).click(async function () {
         await db.collection('users').doc(user.uid).update({
             accepted_quests: firebase.firestore.FieldValue.arrayRemove(ID), // Remove the quest from accepted quests
             completed_quests: firebase.firestore.FieldValue.arrayUnion(ID)  // Move to completed quests
         })
-        window.location.href = `quest-completion.html?quest_id=${ID}`
+        window.location.href = `quest_completion.html?quest_id=${ID}`
     });
 
 }

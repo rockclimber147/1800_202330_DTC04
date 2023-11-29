@@ -59,24 +59,42 @@ input[type=submit] {
 }
 
 #search_button {
-    position: absolute;
-    height: 100%;
-    border-radius: 5px;
+    /* position: absolute; */
+    /* height: 100%; */
+    border-radius: 7px;
+    margin-top: 6px;
+    left: 70%;
+    height: 70%;
+    margin-top: 7px;
 }
 
 #myInput {
     border-radius: 10px;
     border: 1px solid black;
+    /* width: 75%; */
+    /* margin-left: 15%; */
+    /* position: absolute; */
+    width: 55%;
+    left: 7%;
+    margin-top: 7px;    
+    height: 70%;
 }
 
 #search_nav_button {
     color: white;
+    
 }
 
-#myInput {
-    width: 75%;
-    margin-left: 15%;
+#top-interface{
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
+
+#search_and_button{
+    width: 100%;
+}
+
 
 @media only screen and (max-width: 600px) {
     .autocomplete-items {

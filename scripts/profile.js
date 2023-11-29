@@ -1,28 +1,3 @@
-// Demo 7 Step 7.4 - Get name from authentication
-// function getNameFromAuth() {
-//       firebase.auth().onAuthStateChanged(user => {
-//             // Check if a user is signed in:
-//             if (user) {
-//                   // Do something for the currently logged-in user here: 
-//                   console.log(user.uid); //print the uid in the browser console
-//                   console.log(user.displayName);  //print the user name in the browser console
-//                   userName = user.displayName;
-
-//                   //method #1:  insert with JS
-//                   document.getElementById("name-goes-here").innerText = userName;    
-
-//                   //method #2:  insert using jquery
-//                   //$("#name-goes-here").text(userName); //using jquery
-
-//                   //method #3:  insert using querySelector
-//                   //document.querySelector("#name-goes-here").innerText = userName
-
-//             } else {
-//                   // No user is signed in.
-//             }
-//       });
-// }
-// getNameFromAuth(); //run the function
 
 // Demo 9 Step 3.3 - Display name from firestore
 function insertNameFromFirestore() {
@@ -43,6 +18,7 @@ function insertNameFromFirestore() {
             }
       })
 }
+
 
 insertNameFromFirestore();
 
@@ -72,6 +48,10 @@ function populateUserInfo() {
                   var userBio = userDoc.data().bio;
 
                   var userPreferences = userDoc.data().preferences
+                  var userPoints = userDoc.data().points
+                  var userLevel = userDoc.data().level
+
+
 
                   //if the data fields are not empty, then write them into the form.
                   if (userName != null) {
@@ -93,7 +73,6 @@ function populateUserInfo() {
                         document.getElementById("countryInput").value = userCountry;
                   }
 
-                  // Gender
                   if (userGender != null) {
                         document.getElementById("genderInput").value = userGender;
                   }
@@ -102,19 +81,36 @@ function populateUserInfo() {
                         document.getElementById("bioInput").value = userBio;
                   }
 
+                  if (userPoints != null) {
+                        document.getElementById("points_earned").innerHTML = `<h4 id="points">Points: ${userPoints}</h4>`
+                  }
+
+                  if (userLevel != null) {
+                        document.getElementById("level").innerHTML = `<h4 id="level">Level: ${userLevel}</h4>`
+                  }
+
                   tag_db.forEach((doc) => {
                         let checked = ''
                         if (userPreferences != null) {
                               if (userPreferences.includes(doc.id))
                                     checked = 'checked'
-                        $("#check").append(
-                              `
+                              $("#check").append(
+                                    `
+                        <div class="form-check">
+                              <input ${checked} type="checkbox" class="form-check-input" id="tagcheckbox" name="tagcheckbox"/>
+                              <label id="${doc.id}" for="tagcheckbox">${doc.data().tag_name}</label>  
+                        </div>
+                        `
+                              )
+                        } else {
+                              $("#check").append(
+                                    `
                               <div class="form-check">
                                     <input ${checked} type="checkbox" class="form-check-input" id="tagcheckbox" name="tagcheckbox"/>
                                     <label id="${doc.id}" for="tagcheckbox">${doc.data().tag_name}</label>  
                               </div>
-                              `
-                        )}
+                        `)
+                        }
                   })
 
             } else {
@@ -130,10 +126,11 @@ populateUserInfo();
 // Demo 10 Step 1.3 Activate the edit button
 function editUserInfo() {
       //Enable the form fields
+      console.log("hi")
       document.getElementById('personalInfoFields').disabled = false;
 }
 
-// Demo 10 Step 1.4 Activate the save button
+// // Demo 10 Step 1.4 Activate the save button
 function saveUserInfo() {
       // get information entered by user
 
@@ -175,40 +172,89 @@ function saveUserInfo() {
       })
             .then(() => {
                   console.log("Document successfully updated!");
+                  alert("Your information is saved!")
             })
 
       document.getElementById("personalInfoFields").disabled = true;
 }
 
-// Populates the dropdown menu options
-// function log_tags() {
-//       preferences = document.getElementById("activities")
-//       db.collection('tags').get()
-//             .then(all_tags => {
-//                   all_tags.forEach((doc) => {
-//                         // doc.data() is never undefined for query doc snapshots
-//                         var option = document.createElement("option");
-//                         option.text = doc.data().tag_name;
-//                         option.value = doc.data().tag_name;
-//                         preferences.appendChild(option);
-//                   })
-//             })
-// }
+var ImageFile;      //global variable to store the File Object reference
 
-// log_tags()
+function chooseFileListener() {
+      const fileInput = document.getElementById("profile_pic_input");   // pointer #1
+      const image = document.getElementById("profile_pic_container");   // pointer #2
 
-// // Displaying the tag after dropdown selection
-// function print_tag() {
-//       preferences.addEventListener("change", (event) => {
-//             var selectedOption = document.getElementById("activities").value;
-//             var buttonOption = document.createElement("button")
-//             var buttonText = document.createElement("span")
-//             buttonText.innerHTML = selectedOption
-//             buttonOption.appendChild(buttonText)
-//             document.getElementById("tag_div").append(buttonOption)
-//       }
-//       )
-// };
+      //attach listener to input file
+      //when this file changes, do something
+      fileInput.addEventListener('change', function (e) {
 
-// print_tag()
+            //the change event returns a file "e.target.files[0]"
+            ImageFile = e.target.files[0];
+            var blob = URL.createObjectURL(ImageFile);
 
+            //change the DOM img element source to point to this file
+            image.src = blob;    //assign the "src" property of the "img" tag
+      })
+}
+chooseFileListener();
+
+function saveUserInfo() {
+      console.log("save button")
+      firebase.auth().onAuthStateChanged(async function (user) {
+            var storageRef = storage.ref("images/" + user.uid + ".jpg");
+
+            //Asynch call to put File Object (global variable ImageFile) onto Cloud
+            await storageRef.put(ImageFile)
+
+            console.log('Uploaded to Cloud Storage.');
+
+            //Asynch call to get URL from Cloud
+            let url = await storageRef.getDownloadURL()
+
+            console.log("Got the download URL.");
+            //get values from the from
+            userName = document.getElementById("nameInput").value
+            userBirthDate = document.getElementById("birthDateInput").value
+            userAddress = document.getElementById("addressInput").value
+            userCity = document.getElementById("cityInput").value
+            userProvince = document.getElementById("provinceInput").value
+            userCountry = document.getElementById("countryInput").value
+            // Gender
+            userGender = document.getElementById("genderInput").value
+            userBio = document.getElementById("bioInput").value
+            checkboxDivs = document.getElementById("check").getElementsByTagName("div")
+            selectedCheckboxes = []
+
+            for (i = 0; i < checkboxDivs.length; i++) {
+                  var div = checkboxDivs[i];
+                  console.log(div)
+                  checkbox = div.getElementsByTagName("input")[0]
+                  label = div.getElementsByTagName("label")[0]
+
+                  if (checkbox.checked) {
+                        selectedCheckboxes.push(label.id);
+                  }
+            }
+
+            //Asynch call to save the form fields into Firestore.
+            currentUser.update({
+                  name: userName,
+                  birthdate: userBirthDate,
+                  address: userAddress,
+                  city: userCity,
+                  province: userProvince,
+                  country: userCountry,
+                  bio: userBio,
+                  gender: userGender,
+                  preferences: selectedCheckboxes
+            })
+                  .then(() => {
+                        console.log("Document successfully updated!");
+                        alert("Your information is saved!")
+                        console.log('Added Profile Pic URL to Firestore.');
+                        console.log('Saved use profile info');
+                        document.getElementById('personalInfoFields').disabled = true;
+                  })
+
+      })
+}

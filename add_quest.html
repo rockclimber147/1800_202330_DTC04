@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Review Page</title>
+    <title>Add Quest</title>
     <meta name="comp1800 template" content="My 1800 App">
 
     <!------------------------>
@@ -55,11 +55,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 
-    <!-- Pixelify font -->
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet"> -->
-
     <!-- Back button -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -68,22 +63,38 @@
 
 <body>
     <!-- reusable top navbar -->
-    <div id="reusable_header_with_return"></div>
+    <div id="reusable_header"></div>
     <!-- /reusable top navbar -->
 
     <body>
         <div class="container">
             <br>
-            <h1>Review for <span id="questName">Quest Name</span></h1>
+            <h1>Contribute a Quest!</h1>
             <br>
             <form>
                 <div class="form-group">
                     <label for="exampleFormControlInput1">Add a title</label>
-                    <input type="text" class="form-control" id="title" placeholder="Title">
+                    <input type="text" class="form-control" id="add_quest_title" placeholder="Title">
+                </div><br>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Add an image</label>
+                    <input type="text" class="form-control" id="add_quest_image" placeholder="Quest Image URL">
+                </div><br>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Add the location name</label>
+                    <input type="text" class="form-control" id="add_quest_location_name" placeholder="Location Name">
+                </div><br>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Add the latitude</label>
+                    <input type="text" class="form-control" id="add_quest_latitude" placeholder="Latitude">
+                </div><br>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Add the longitude</label>
+                    <input type="text" class="form-control" id="add_quest_longitude" placeholder="Longitude">
                 </div><br>
                 <div class="form-group">
                     <div class="card-body">
-                        <p>Rate your overall experience:</p>
+                        <p>Rate the quest:</p>
                         <span class="material-icons star" id="star1">star_outline</span>
                         <span class="material-icons star" id="star2">star_outline</span>
                         <span class="material-icons star" id="star3">star_outline</span>
@@ -91,32 +102,32 @@
                         <span class="material-icons star" id="star5">star_outline</span>
                     </div>
                     <div class="card-body">
-                        <p>How expensive was it?</p>
+                        <p>How expensive is it?</p>
                         <span class="material-symbols-outlined money" id="money1">attach_money</span>
                         <span class="material-symbols-outlined money" id="money2">fiber_manual_record</span>
                         <span class="material-symbols-outlined money" id="money3">fiber_manual_record</span>
                         <span class="material-symbols-outlined money" id="money4">fiber_manual_record</span>
                         <span class="material-symbols-outlined money" id="money5">fiber_manual_record</span>
                     </div>
-                    <label for="exampleFormControlSelect1">What was the level of the quest?</label>
-                    <select class="form-control" id="level">
-                        <option>Hard</option>
-                        <option>Moderate</option>
-                        <option>Easy</option>
-                    </select>
                     <br>
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1">What did you think of the quest?</label>
-                        <textarea class="form-control" id="description" rows="3"></textarea>
+                        <label for="exampleFormControlTextarea1">Write a description about the quest:</label>
+                        <textarea class="form-control" id="add_quest_description" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">How many points is this quest worth?</label>
+                        <input class="form-control" id="add_quest_points" rows="3"></input>
                     </div>
                     <br>
+                    <div id="add_quest_checkboxes"></div>
                     <div class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-lg review_submit_button pull-right" onclick="writeReview()">Submit</button>
+                        <button type="button" class="btn btn-lg review_submit_button pull-right" onclick="add_quest_to_database()">Submit<button>
                     </div>
                 </div>
             </form>
         </div>
     </body>
+
 
     <!-- reusable footer -->
     <div id="reusable_footer"></div>
@@ -130,11 +141,7 @@
     <script src="./scripts/firebaseAPI_DTC04.js"></script>
     <!-- This script loads the reusable html skeletons for the header and footer -->
     <script src="./scripts/skeleton.js"></script>
-    <!-- This script loads the javascript specific to review page -->
-    <script src="scripts/review.js"></script>
-
-    <!-- This script is for displaying user information to top_nav bar -->
-    <script src="./scripts/top_nav.js"></script>
+    <script src="./scripts/add_quest.js"></script>
 
     <!-- <script src="./scripts/helpers.js"></script> -->
 

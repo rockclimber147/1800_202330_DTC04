@@ -15,3 +15,26 @@ body{
       width: 50%;
       display: inline-block;
 }
+
+#profile_pic {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: white;
+      padding: 10px;
+}
+
+#points{}
+
+#level{
+      
+}
+
+#name-goes-here{
+      font-size: 2rem;
+}
+
+#savebtn{
+      background-color: #d96055;
+      color: white;
+}

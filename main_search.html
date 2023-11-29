@@ -71,15 +71,15 @@
     <div id="reusable_header"></div>
     <!-- /reusable top navbar -->
     <main>
-        <div id="top_interface">
+        <div id="top_interface" class="d-flex justify-content-center">
             <button id="view_toggle">
                 <span id="view_toggle_text"
                     class="material-symbols-outlined justify-content-start material-icons md-36 view_icon">LIST</span>
             </button>
-            <div>
+            <!-- <div id="search_and_button"> -->
                 <input id="myInput" type="text" placeholder="Search">
                 <button id="search_button" class="bg-light"><span class="material-icons md-36">search</span></button>
-            </div>
+            <!-- </div> -->
         </div>
         <!-- MAPBOX -->
         <div id='map' style='display:inline-block;width: 100%; height:80vh;'></div>
@@ -104,9 +104,6 @@
     <script src="./scripts/firebaseAPI_DTC04.js"></script>
     <!-- This script loads the reusable html skeletons for the header and footer -->
     <script src="./scripts/skeleton.js"></script>
-
-    <!-- This script is for displaying user information to top_nav bar -->
-    <script src="./scripts/top_nav.js"></script>
 
     <script type="module" src="./scripts/main_search.js"></script>
 

@@ -10,6 +10,7 @@
       margin: 5%;
       background-color: #a36654;
       justify-content: center;
+      z-index: 1
 }
 
 #reviewCardGroup{
@@ -26,6 +27,7 @@
       .card { 
             width: 45%;
             margin: 2%;
+            display: flex;
       }
 }
 /* Style the individual cards as needed */

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-      <title>My BCIT Project</title>
+      <title>Profile page</title>
       <meta name="comp1800 template" content="My 1800 App">
 
       <!------------------------>
@@ -63,105 +63,95 @@
 
 <body>
 
-      <span class="material-symbols-outlined back_button" onclick="window.history.go(-1); return false;">arrow_back_ios</span>
+      <span class="material-symbols-outlined back_button"
+            onclick="window.history.go(-1); return false;">arrow_back_ios</span>
 
       <div class="container">
-            <div id="level"></div>
-            <div id="profile_pic" class="container d-flex justify-content-center">
+            <!-- <div id="profile_pic" class="container d-flex justify-content-center">
                   <img src="images/person-icon.png" alt="user profile">
-            </div>
-            <div class="d-flex justify-content-center">
-                  <h1 id="name-goes-here"></h1>
-
-                  <!-- Placeholder for level -->
-                  <p id="level" class="d-flex justify-content-center"></p>
-                  
-                  <!-- Placeholder for points earned -->
-                  <p id="points_earned" class="d-flex justify-content-center"></p>
-
-                  
-            </div>
+            </div> -->
 
             <!-- Save and Edit buttons -->
             <div class="d-flex justify-content-end mt-5">
                   <button type="button" class="btn btn-secondary" onclick="editUserInfo()">Edit</button>
                   <span style="width: 10px"></span>
-                  <button type="button" class="btn btn-info" onclick="saveUserInfo()">Save</button>
+                  <button type="button" class="btn" id="savebtn" onclick="saveUserInfo()">Save</button>
             </div>
-
             <div class="container">
-                  <form>
-                        <fieldset class="mb-3" id="personalInfoFields" disabled>
-                              
-                              <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" id="nameInput" class="form-control" placeholder="Enter your name">
-                              </div>
 
-                              <label for="exampleFormControlSelect1">What is your gender?</label>
-                              <select class="form-control" id="genderInput">
-                                    <option disabled selected value>Select an option</option>
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                    <option>Other</option>
-                              </select>
-                              
-                              <div class="form-group">
-                                    <label>Birth Date</label>
-                                    <input type="text" id="birthDateInput" class="form-control" placeholder="MM/DD/YYYY">
-                              </div>
-                             
-                              <div class="form-group">
-                                    <label>Address</label>
-                                    <input type="text" id="addressInput" class="form-control" placeholder="Enter your address">
-                              </div>                                       
-                              <div class="form-group">
-                                    <label>City</label>
-                                    <input type="text" id="cityInput" class="form-control" placeholder="Enter your city">
-                              </div>
-                              <div class="form-group">
-                                    <label>Province</label>
-                                    <input type="text" id="provinceInput" class="form-control" placeholder="Enter your province">
-                              </div>
-                              <div class="form-group">
-                                    <label>Country</label>
-                                    <input type="text" id="countryInput" class="form-control" placeholder="Enter your country">
-                              </div>
-                              <div class="form-group">
-                                    <label>Add a Bio</label>
-                                    <textarea type="text" id="bioInput" class="form-control" placeholder="Enter your Bio"></textarea>     
-                              </div>
-                              <fieldset class="tag_checkbox">
-                                    <legend>What activities are you interested in?</legend>
-                                    <div id="check" class="d-inline-flex flex-wrap"></div>
-                                    </div>
-                              </fieldset>
+                  <fieldset class="mb-3" id="personalInfoFields" disabled>
 
+
+                        <div class="form-group container text-center py-3">
+                              <img src="images/person-icon.png" alt="user profile" id="profile_pic_container">
+                              <input type="file" id="profile_pic_input" accept="image/*">
+                        </div>
+                        <div>
+                              <h1 id="name-goes-here" class="d-flex justify-content-center"></h1>
+                              <br>
+                              <div id="level" class="d-flex justify-content-center"></div>
+
+                              <div id="points_earned" class="d-flex justify-content-center"></div>
+
+                        </div>
+                        <div class="form-group">
+                              <label>Name</label>
+                              <input type="text" id="nameInput" class="form-control" placeholder="Enter your name">
+                        </div>
+
+                        <label for="genderInput">What is your gender?</label>
+                        <select class="form-control" id="genderInput">
+                              <option disabled selected value>Select an option</option>
+                              <option>Male</option>
+                              <option>Female</option>
+                              <option>Other</option>
+                        </select>
+
+                        <div class="form-group">
+                              <label>Birth Date</label>
+                              <input type="text" id="birthDateInput" class="form-control" placeholder="MM/DD/YYYY">
+                        </div>
+                        <div class="form-group">
+                              <label>Address</label>
+                              <input type="text" id="addressInput" class="form-control"
+                                    placeholder="Enter your address">
+                        </div>
+                        <div class="form-group">
+                              <label>City</label>
+                              <input type="text" id="cityInput" class="form-control" placeholder="Enter your city">
+                        </div>
+                        <div class="form-group">
+                              <label>Province</label>
+                              <input type="text" id="provinceInput" class="form-control"
+                                    placeholder="Enter your province">
+                        </div>
+                        <div class="form-group">
+                              <label>Country</label>
+                              <input type="text" id="countryInput" class="form-control"
+                                    placeholder="Enter your country">
+                        </div>
+                        <div class="form-group">
+                              <label>Add a Bio</label>
+                              <input type="text" id="bioInput" class="form-control"
+                                    placeholder="Enter your Bio"></input>
+                        </div>
+                        <fieldset class="tag_checkbox">
+                              <legend>What activities are you interested in?</legend>
+                              <div id="check" class="d-inline-flex flex-wrap"></div>
                         </fieldset>
 
-                        <!-- Placeholder for preference -->
-                        <!-- <div id="tag_div"></div> -->
-                        
-                        <!-- Dropdown menu for preferences -->
-                        <!-- <div class="form-group"> -->
-                              <!-- <label for="exampleFormControlSelect1">What activities are you interested in?</label> -->
-                              <!-- <select class="form-control" id="activities"> -->
-                              <!-- </select> -->
-                              <!-- <br> -->
-                        <!-- </div> -->
-                        
-                        <!-- Checkboxes for preferences -->
-                  </form>
+                  </fieldset>
+
             </div>
 
-      <!-- This script relates to firebase -->
-      <script src="./scripts/firebaseAPI_DTC04.js"></script>
-      <!-- This script loads the reusable html skeletons for the header and footer -->
-      <script src="./scripts/skeleton.js"></script>
-      <!-- This script loads the placeholders in profile -->
-      <script src="./scripts/profile.js"></script>
-      <!-- <script src="./scripts/script.js"></script> -->
-      
+            <!-- This script relates to firebase -->
+            <script src="./scripts/firebaseAPI_DTC04.js"></script>
+            <!-- This script loads the reusable html skeletons for the header and footer -->
+            <script src="./scripts/skeleton.js"></script>
+            <!-- This script loads the placeholders in profile -->
+            <script src="./scripts/profile.js"></script>
+            <!-- <script src="./scripts/script.js"></script> -->
+
 </body>
 
 </html>

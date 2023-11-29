@@ -7,8 +7,13 @@ h3 {
     padding-top: 6vh;
 }
 
-#user_name {
-    font-size: 1.2rem;
+
+/* #user_name {
+    font-size: 1.0rem;
+} */
+
+#name-goes-here{
+    font-size: 1.0rem;
 }
 
 
@@ -28,7 +33,6 @@ h3 {
 }
 
 #view_toggle {
-    height:100%;
     display:inline-block;
     border-radius: 10px;
 }

@@ -64,7 +64,7 @@ function insertNameFromFirestore() {
                   currentUser = db.collection("users").doc(user.uid); // Go to the Firestore document of the user
                   currentUser.get().then(userDoc => {
                         // Get the user name
-                        var userName = userDoc.data().name;
+                        var userName = userDoc.data().name.split(" ")[0];
                         console.log(userName);
                         //$("#name-goes-here").text(userName); // jQuery
                         document.getElementById("name-goes-here").innerText = userName;
