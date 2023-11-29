@@ -50,6 +50,7 @@ function populateUserInfo() {
                   var userPreferences = userDoc.data().preferences
                   var userPoints = userDoc.data().points
                   var userLevel = userDoc.data().level
+                
 
 
 
@@ -246,7 +247,8 @@ function saveUserInfo() {
                   country: userCountry,
                   bio: userBio,
                   gender: userGender,
-                  preferences: selectedCheckboxes
+                  preferences: selectedCheckboxes,
+                  profilepic: url
             })
                   .then(() => {
                         console.log("Document successfully updated!");
