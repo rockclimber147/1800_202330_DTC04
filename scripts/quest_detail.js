@@ -140,12 +140,12 @@ function switch_buttons_and_pop_ups(user, ID) {
     })
 
     // When complete quest is confirmed
-    $(`#complete_quest_pop_up .pop_up_confirm_button`).click(async function(){
+    $(`#complete_quest_pop_up .pop_up_confirm_button`).click(async function () {
         await db.collection('users').doc(user.uid).update({
             accepted_quests: firebase.firestore.FieldValue.arrayRemove(ID), // Remove the quest from accepted quests
             completed_quests: firebase.firestore.FieldValue.arrayUnion(ID)  // Move to completed quests
         })
-        window.location.href = `quest-completion.html?quest_id=${ID}`
+        window.location.href = `quest_completion.html?quest_id=${ID}`
     });
 
 }

@@ -250,7 +250,7 @@ p.orbitron{
 
 
 
-/* quest-detail.html */
+/* quest_detail.html */
 
 #back_button {
     padding-left: 15px;
@@ -285,7 +285,7 @@ p.orbitron{
 }
 
 
-/* quest-detail.html > pop-ups */
+/* quest_detail.html > pop-ups */
 .pop_up {
     position: fixed;
     top: 50%;
