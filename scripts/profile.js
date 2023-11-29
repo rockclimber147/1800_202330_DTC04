@@ -50,7 +50,7 @@ function populateUserInfo() {
                   var userPreferences = userDoc.data().preferences
                   var userPoints = userDoc.data().points
                   var userLevel = userDoc.data().level
-                
+                  var userPic = userDoc.data().profilepic
 
 
 
@@ -88,6 +88,13 @@ function populateUserInfo() {
 
                   if (userLevel != null) {
                         document.getElementById("level").innerHTML = `<h4 id="level">Level: ${userLevel}</h4>`
+                  }
+
+                  if (userPic != null) {
+                        console.log(userPic);
+                        // use this line if "mypicdiv" is a "div"
+                        //$("#mypicdiv").append("<img src='" + picUrl + "'>")
+                        $("#profile_pic_container").attr("src", userPic);
                   }
 
                   tag_db.forEach((doc) => {
