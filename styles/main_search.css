@@ -23,10 +23,10 @@ input[type=submit] {
     border-top: none;
     z-index: 99;
     /*position the autocomplete items to be the same width as the container:*/
-    top: 100%;
+    width:100%;
+    /* top: 100%;
     left: 0;
-    right: 0;
-    margin-left: 15%;
+    right: 0; */
 }
 
 .autocomplete-items div {
@@ -34,8 +34,8 @@ input[type=submit] {
     cursor: pointer;
     background-color: #fff;
     border-bottom: 1px solid #d4d4d4;
-    width:85%;
-    border-radius:5%;
+    width:100%;
+    border-radius:5px;
 }
 
 /*when hovering an item:*/
@@ -46,7 +46,7 @@ input[type=submit] {
 .autocomplete {
     display: inline-block;
     margin-left: 10vw;
-    width: 80%;
+    width: 100%;
 }
 
 #search_button {
@@ -59,13 +59,15 @@ input[type=submit] {
     margin-top: 7px;
 }
 
+
+
 #myInput {
     border-radius: 10px;
     border: 1px solid black;
     /* width: 75%; */
     /* margin-left: 15%; */
     /* position: absolute; */
-    width: 55%;
+    width: 100%;
     left: 7%;
     margin-top: 7px;    
     height: 70%;
@@ -84,13 +86,4 @@ input[type=submit] {
 
 #search_and_button{
     width: 100%;
-}
-
-
-@media only screen and (max-width: 600px) {
-    .autocomplete-items {
-        width: 85%;
-        margin-left: 15%;
-        border-radius: 10px;
-    }
 }

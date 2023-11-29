@@ -320,9 +320,9 @@ p.orbitron{
 
 
 @media screen and (min-width: 768px) {
-    #view_toggle {
+    /* #view_toggle {
             margin: 3vh;
-    }
+    } */
     .card_body {
         font-size: 1.5rem;
     }
