@@ -23,7 +23,7 @@ input[type=submit] {
     border-top: none;
     z-index: 99;
     /*position the autocomplete items to be the same width as the container:*/
-    width:100%;
+    width: 100%;
     /* top: 100%;
     left: 0;
     right: 0; */
@@ -34,8 +34,8 @@ input[type=submit] {
     cursor: pointer;
     background-color: #fff;
     border-bottom: 1px solid #d4d4d4;
-    width:100%;
-    border-radius:5px;
+    width: 100%;
+    border-radius: 5px;
 }
 
 /*when hovering an item:*/
@@ -53,12 +53,18 @@ input[type=submit] {
     /* position: absolute; */
     /* height: 100%; */
     border-radius: 7px;
-    margin-top: 6px;
     left: 70%;
     height: 70%;
     margin-top: 7px;
+    margin-right: 10vw;
 }
 
+#autocomplete_container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
 
 
 #myInput {
@@ -69,13 +75,13 @@ input[type=submit] {
     /* position: absolute; */
     width: 100%;
     left: 7%;
-    margin-top: 7px;    
+    margin-top: 7px;
     height: 70%;
 }
 
 #search_nav_button {
     color: white;
-    
+
 }
 
 /* #top-interface{
@@ -84,6 +90,6 @@ input[type=submit] {
     justify-content: center;
 } */
 
-#search_and_button{
+#search_and_button {
     width: 100%;
 }
