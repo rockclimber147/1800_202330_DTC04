@@ -38,3 +38,10 @@ body{
       background-color: #d96055;
       color: white;
 }
+
+#profile_pic_container{
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+
+}
