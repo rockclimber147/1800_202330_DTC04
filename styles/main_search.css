@@ -49,15 +49,6 @@ input[type=submit] {
     width: 80%;
 }
 
-#search_container {
-    margin-top: 11vh;
-    position: fixed;
-    z-index: 100;
-    overflow: visible;
-    max-height: 50px;
-    width: 90%;
-}
-
 #search_button {
     /* position: absolute; */
     /* height: 100%; */
@@ -85,11 +76,11 @@ input[type=submit] {
     
 }
 
-#top-interface{
+/* #top-interface{
     width: 100%;
     display: flex;
     justify-content: center;
-}
+} */
 
 #search_and_button{
     width: 100%;
