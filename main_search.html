@@ -71,21 +71,25 @@
     <div id="reusable_header"></div>
     <!-- /reusable top navbar -->
     <main>
-        <div id="top_interface" class="d-flex justify-content-center">
+        <div id="top_interface">
             <button id="view_toggle">
                 <span id="view_toggle_text"
                     class="material-symbols-outlined justify-content-start material-icons md-36 view_icon">LIST</span>
             </button>
             <!-- <div id="search_and_button"> -->
+            <div id="autocomplete_container">
                 <input id="myInput" type="text" placeholder="Search">
-                <button id="search_button" class="bg-light"><span class="material-icons md-36">search</span></button>
+            </div>
+            <button id="search_button" class="bg-light"><span class="material-icons md-36">search</span></button>
+            <div id="spacer"></div>
             <!-- </div> -->
         </div>
         <!-- MAPBOX -->
         <div id='map' style='display:inline-block;width: 100%; height:80vh;'></div>
         <!-- Quest cards -->
         <div id="quest_cards_go_here">
-            <div id="message_before_search" class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+            <div id="message_before_search" class="d-flex justify-content-center align-items-center"
+                style="height: 80vh;">
                 <h1 class="orbitron">Enter some keywords to display quests</h1>
             </div>
         </div>

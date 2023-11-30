@@ -25,8 +25,13 @@ pale yellow #F5DFBB;
 
 #top-navbar {
     margin-bottom:0px;
+    padding:0px;
     height:10vh;
     background-color: #F5DFBB;
+}
+
+#top_nav_container {
+    height: 10vh;
 }
 
 /* Naborly logo */
@@ -74,10 +79,9 @@ a:hover {
     /* Medium shade for bottom navbar */
 }
 
-/* #user-profile {
-    display: flex;
-    flex-direction: column;
-} */
+#user-profile {
+    display: inline-block;
+}
 
 #user-profile img {
     width: 25pt;
@@ -320,9 +324,7 @@ p.orbitron{
 
 
 @media screen and (min-width: 768px) {
-    #view_toggle {
-            margin: 3vh;
-    }
+
     .card_body {
         font-size: 1.5rem;
     }
