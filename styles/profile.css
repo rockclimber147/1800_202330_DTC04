@@ -1,47 +1,39 @@
+
 .back_button {
       font-size: 40px;
       margin: 10px;
 }
 
+#savebtn {
+      background-color: #d96055;
+      color: white;
+}
+
 body{
       padding: 5px;
+      padding-bottom: 40vh;
 }
 
 .tag_checkbox{
-      padding-top: 15px;
+      padding: 10px;
 }
 
 .form-check{
       width: 50%;
-      display: inline-block;
 }
-
-#profile_pic {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      background-color: white;
-      padding: 10px;
-}
-
-/* #points{}
-
-#level{
-      
-} */
 
 #name-goes-here{
       font-size: 2rem;
 }
 
-#savebtn{
-      background-color: #d96055;
-      color: white;
-}
-
 #profile_pic_container{
-      border-radius: 50%;
+      border-radius: 25%;
       width: 200px;
       height: 200px;
+      border: 2px black solid;
+}
 
+input#profile_pic_input[type='file'] {
+      color: transparent;
+      width: 118px;
 }

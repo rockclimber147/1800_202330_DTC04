@@ -66,13 +66,13 @@
       <span class="material-symbols-outlined back_button"
             onclick="window.history.go(-1); return false;">arrow_back_ios</span>
 
-      <div class="container">
+      <div class="container" id="form_background">
             
             <!-- Save and Edit buttons -->
-            <div class="d-flex justify-content-end mt-5 orbitron">
-                  <button type="button" class="btn btn-secondary" onclick="editUserInfo()">Edit</button>
-                  <span style="width: 10px"></span>
-                  <button type="button" class="btn" id="savebtn" onclick="saveUserInfo()">Save</button>
+            <div class="d-flex mt-5 orbitron justify-content-center">
+                  <button type="button" class="btn btn-secondary col-4" onclick="editUserInfo()">Edit</button>
+                  <span style="width: 30px"></span>
+                  <button type="button" class="btn col-4" id="savebtn" onclick="saveUserInfo()">Save</button>
             </div>
             <div class="container orbitron">
 
@@ -81,10 +81,9 @@
 
                         <div class="form-group container text-center py-3">
                               <img src="images/person-icon.png" alt="user profile" id="profile_pic_container">
-                              <input type="file" id="profile_pic_input" accept="image/*">
-                        </div>
-                        <div>
-                              <h1 id="name-goes-here" class="d-flex justify-content-center orbitron"></h1>
+                                    <input type="file" id="profile_pic_input" class="m-3" accept="image/*">
+                        
+                              <h1 id="name-goes-here" class="d-flex justify-content-center orbitron m-2"></h1>
                               
                               <div id="level" class="d-flex justify-content-center orbitron"></div>
 
