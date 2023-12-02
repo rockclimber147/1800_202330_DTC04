@@ -1,12 +1,4 @@
-/* bootstrap color override */
-/*
-* --------------------------------------------
-* These are some styles of customizing 
-* to over-ride the default bootstrap ones
-*---------------------------------------------
-*/
-
-/*Given Colors:
+/*Color theme codes:
 Purple #542946,
 Brown #a36654,
 Red #d96055
@@ -15,12 +7,12 @@ white #FFFFFF
 pale yellow #F5DFBB;
 */
 
+
 /* font */
 .orbitron {
     font-family: Orbitron, sans-serif;
 }
 
-/* ======================== */
 /* Navigation bars */
 
 #top-navbar {
@@ -28,6 +20,11 @@ pale yellow #F5DFBB;
     padding:0px;
     height:10vh;
     background-color: #F5DFBB;
+}
+
+.navbar-light .navbar-brand,
+.navbar-light .navbar-nav .nav-link {
+    color: #a36654;
 }
 
 #top_nav_container {
@@ -40,22 +37,30 @@ pale yellow #F5DFBB;
     margin: 0px;
 }
 
-/* top navbar */
-.navbar-light .navbar-brand,
-.navbar-light .navbar-nav .nav-link {
-    color: #a36654;
-    /* Light shade for brand name & nav links for contrast */
-}
-
 .navbar-toggler {
     border: none;
-    padding: 0px;
+    padding-left: 5px;
 }
 
-/* #navbar-logo {
-    font-size: 30px;
-} */
+#user-profile {
+    display: inline-block;
+}
 
+#user-profile img {
+    width: 25pt;
+}
+
+#points_earned{
+    font-family: orbitron;
+    font-size: 0.9rem;
+}
+
+.hamburger-menu {
+    background-color: #a36654;
+}
+
+
+/* Bottom nav bar */
 #footer_nav{
     height:10vh;
 }
@@ -74,31 +79,10 @@ a:hover {
     color: white;
 }
 
+
 .bg-info {
     background-color: #A36654 !important;
     /* Medium shade for bottom navbar */
-}
-
-#user-profile {
-    display: inline-block;
-}
-
-#user-profile img {
-    width: 25pt;
-}
-
-.hamburger-menu {
-    background-color: #a36654;
-}
-
-/* .offcanvas {
-    width: 50%;
-} */
-
-/* Sign in widget */
-#firebaseui-auth-container {
-    margin-top: 10vh;
-    margin: 5vw;
 }
 
 /* body */
@@ -107,13 +91,6 @@ body {
     padding-bottom: 10vh;
     padding-top: 10vh;
 }
-
-
-
-
-
-
-
 
 .list-unstyled li:last-child {
     border-bottom: none;
@@ -124,41 +101,16 @@ body {
     color: #F2542D !important;
 }
 
-
 .top_part_quest_detail{
     padding-top: 5vh;
 }
 
-#review_title{
-    padding: 0 12px;
-}
 
-
-
-
-h1{
+/* h1{
     margin: 0px;
     font-size: 1.5rem;
-}
+} */
 
-
-
-
-
-
-/* Login button */
-.sign_up {
-    color: #FFFFFF;
-    font-size: 150%;
-    background-color: #d96055;
-    border-width: thick;
-}
-
-.sign_up:hover{
-    border-color: #562C2C;
-    background-color: #d96055;
-    color: #FFFFFF;
-}
 
 /* .login:hover,
 .wireflow:hover {
@@ -189,58 +141,23 @@ p.orbitron{
     padding-top: 3px;
 }
 
-.view_icon{
-    padding: 5px;
-}
-
 
 /* Map */
 #view_toggle{
-    /* position: fixed; */
-    /* This next line has a powerful aura */
     z-index: 50 !important;
     margin: 1vh; 
     border-radius: 5px;
-    border: black solid 1px;    
+    border: rgb(163, 142, 142) solid 1px;    
+    background-color: white;
+    padding: 0px;
+    width: 50px;
+    height: 50px;
+    padding-top: 5px;
+    align-items: center;
 }
 
 
 
-/* main_home.html > quest_card_template */
-#quest_cards_go_here{
-    padding-top: 10vh;
-    padding-bottom: 10vh;
-}
-
-.card_container {
-    width: 94% !important;
-    margin: auto;
-    position: relative;
-}
-
-.card_properties {
-    font-size: smaller;
-}
-
-.card_tag {
-    background-color: #d96055;
-    color: white;
-}
-
-.quest_state {
-    color: #F2542D;
-    font-size: 1.0rem;
-    font-style: bold;
-}
-
-.quest_detail_link {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
 
 @media screen and (min-width: 768px) {
     .card_body {
@@ -252,75 +169,6 @@ p.orbitron{
 
 }
 
-
-
-/* quest_detail.html */
-
-#back_button {
-    padding-left: 15px;
-}
-
-.quest_accept_button, .quest_complete_button, .quest_drop_button,
-.pop_up_close_button,
-.pop_up_cancel_button,
-.pop_up_confirm_button, .review_submit_button, #quest_is_completed, .quest_review_button {
-    width: 100%;
-    border-radius: 20px;
-}
-
-.quest_accept_button,
-.quest_complete_button,
-.quest_drop_button,
-.pop_up_close_button,
-.pop_up_confirm_button, 
-.quest_review_button, 
-.review_submit_button,
-.see_more_quest_button, #quest_is_completed, .quest_review_button{
-    color: white;
-}
-
-.quest_accept_button, .quest_complete_button, .pop_up_close_button, .pop_up_confirm_button, .review_submit_button, .see_more_quest_button, .quest_review_button{
-    background-color: #d96055;
-}
-
-.quest_drop_button, #quest_is_completed{
-    background-color: gray;
-    
-}
-
-
-/* quest_detail.html > pop-ups */
-.pop_up {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px;
-}
-
-.pop_up_title {
-    background-color: #d96055;
-    color: white;
-}
-
-/* quest-completed */
-.quest_completed {
-    rotate: -10deg;
-    font-size: 3rem;
-}
-
-
-
-.acquired_point {
-    border-bottom: solid black 1px;
-}
-
-.quest_done_button {
-    width: 100%;
-    color: white;
-    border-radius: 20px;
-    background-color: #d96055;
-}
 
 
 @media screen and (min-width: 768px) {

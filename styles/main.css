@@ -4,13 +4,8 @@ body {
 }
 
 h3 {
-    padding-top: 6vh;
+    /* padding-top: 6vh; */
 }
-
-
-/* #user_name {
-    font-size: 1.0rem;
-} */
 
 #name-goes-here{
     font-size: 1.0rem;
@@ -33,7 +28,6 @@ h3 {
 }
 
 #view_toggle {
-    display:inline-block;
     border-radius: 10px;
 }
 
@@ -49,7 +43,7 @@ h3 {
 }
 
 
-/* Fix main to fill the remainiong 80vh not used by to and bottom navs (10vh each) */
+/* Fix main to fill the remaining 80vh not used by to and bottom navs (10vh each) */
 main {
     margin-top: 10vh;
     padding:0px;

@@ -1,0 +1,13 @@
+/* Login button */
+.sign_up {
+      color: #FFFFFF;
+      font-size: 150%;
+      background-color: #d96055;
+      border-width: thick;
+}
+
+.sign_up:hover {
+      border-color: #562C2C;
+      background-color: #d96055;
+      color: #FFFFFF;
+}

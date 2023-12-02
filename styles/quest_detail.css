@@ -1,3 +1,85 @@
 #quest_accepted_pop_up, #drop_quest_pop_up, #complete_quest_pop_up{
       z-index: 1000;
 }
+
+#review_title {
+      padding: 0 12px;
+}
+
+#back_button {
+      padding-left: 15px;
+}
+
+.quest_accept_button,
+.quest_complete_button,
+.quest_drop_button,
+.pop_up_close_button,
+.pop_up_cancel_button,
+.pop_up_confirm_button,
+.review_submit_button,
+#quest_is_completed,
+.quest_review_button {
+      width: 100%;
+      border-radius: 20px;
+}
+
+.quest_accept_button,
+.quest_complete_button,
+.quest_drop_button,
+.pop_up_close_button,
+.pop_up_confirm_button,
+.quest_review_button,
+.review_submit_button,
+.see_more_quest_button,
+#quest_is_completed,
+.quest_review_button {
+      color: white;
+}
+
+.quest_accept_button,
+.quest_complete_button,
+.pop_up_close_button,
+.pop_up_confirm_button,
+.review_submit_button,
+.see_more_quest_button,
+.quest_review_button {
+      background-color: #d96055;
+}
+
+.quest_drop_button,
+#quest_is_completed {
+      background-color: gray;
+
+}
+
+
+/* quest_detail.html > pop-ups */
+.pop_up {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+}
+
+.pop_up_title {
+      background-color: #d96055;
+      color: white;
+}
+
+/* quest-completed */
+.quest_completed {
+      rotate: -10deg;
+      font-size: 3rem;
+}
+
+.acquired_point {
+      border-bottom: solid black 1px;
+}
+
+.quest_done_button {
+      width: 100%;
+      color: white;
+      border-radius: 20px;
+      background-color: #d96055;
+}

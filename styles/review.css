@@ -15,11 +15,7 @@
 
 #reviewCardGroup{
       justify-content: center;
-      padding-top: 15px;
-}
 
-#review_title{
-      padding: 20px 12px;
 }
 
 
@@ -30,4 +26,3 @@
             display: flex;
       }
 }
-/* Style the individual cards as needed */
