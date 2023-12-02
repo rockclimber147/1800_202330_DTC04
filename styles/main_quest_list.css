@@ -23,10 +23,11 @@
 
 #quest_view_toggle {
     position: absolute;
-    width:70%;
+    width: 70%;
     left: 50%;
     transform: translateX(-50%);
-    height:100%;
+    height: 90%;
+    padding-left: 15px;
 }
 
 .top_button {
@@ -35,5 +36,7 @@
     width: 33%;
     height: 70%;
     margin-top: 8px;
+    padding: 2px 4px;
+    font-size: 0.8rem;
 }
 
