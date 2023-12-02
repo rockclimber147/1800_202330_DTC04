@@ -1,0 +1,16 @@
+/* quest-completed */
+.quest_completed {
+    rotate: -10deg;
+    font-size: 3rem;
+}
+
+.acquired_point {
+    border-bottom: solid black 1px;
+}
+
+.quest_done_button {
+    width: 100%;
+    color: white;
+    border-radius: 20px;
+    background-color: #d96055;
+}
