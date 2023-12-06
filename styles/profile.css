@@ -37,3 +37,7 @@ input#profile_pic_input[type='file'] {
       color: transparent;
       width: 118px;
 }
+
+label{
+      font: orbitron;
+}
