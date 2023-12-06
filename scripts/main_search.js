@@ -16,7 +16,6 @@ $(document).ready(function () {
             var map;
             navigator.geolocation.getCurrentPosition(async position => {                          // Get player position
                   user_location = [position.coords.latitude, position.coords.longitude];
-                  console.log('user_location in position', user_location)
                   map = await initialize_map(user_location);
                   document.getElementById('search_button').current_map = map;
 
@@ -40,28 +39,24 @@ $(document).ready(function () {
                         document.getElementById('search_button').all_quest_tags = all_quest_tags
 
                         let quest_names = quest_name_collection.data().all_quest_names;
-                        console.log(`all quest names: ${quest_names}`)
                         for (let i = 0; i < quest_names.length; i++) {
-                              console.log(`quest name: ${quest_names[i]}`)
                               let quest_name_keywords = quest_names[i].split(' ')
-                              console.log(`keywords: ${quest_name_keywords}`)
                               for (let j = 0; j < quest_name_keywords.length; j++) {
                                     if (!all_keywords.includes(quest_name_keywords[j])) {
                                           all_keywords.push(quest_name_keywords[j]);
                                     }
                               }
                         }
-                        console.log(`all keywords from quest name: ${all_keywords}`)
                         tag_db.forEach(tag_doc => {
                               all_quest_tags[tag_doc.id] = tag_doc.data().tag_name;
                               all_keywords.push(tag_doc.data().tag_name)                            // add tag names to tag array
                         })
 
-                        console.log('all keywords with tags', all_keywords)
                         /*initiate the autocomplete function on the "myInput" element, and pass along the keyword array as possible autocomplete values:*/
                         autocomplete(document.getElementById("myInput"), all_keywords);
                   } else {
-                        alert('user is not logged in!')
+                        console.log('User not signed in!')
+                        window.location.href = "index.html";
                   }
             });
 
@@ -136,18 +131,13 @@ $(document).ready(function () {
             $('.card_container').remove();
             $('#message_before_search').remove();
 
-            console.log('clicked search');
             let search_text = $('#myInput').val().toLowerCase();             // put text to lowercase to match keywords
-            console.log('search text:', search_text);
             let search_keywords = search_text.split(' ');                    // split text into array of words
             let final_search_keywords = []
             for (let i = 0; i < search_keywords.length; i++) {
                   let current = search_keywords[i].toLowerCase()
-                  console.log(`current keyword: ${current}`)
                   for (let j = 0; j < all_keywords.length; j++) {
-                        console.log(`checking against: ${all_keywords[j].toLowerCase() }`)
                         if (all_keywords[j].toLowerCase().includes(current)) {
-                              console.log(`match found: ${all_keywords[j]}`)
                               final_search_keywords.push(all_keywords[j].toLowerCase())
                         }
                   }
