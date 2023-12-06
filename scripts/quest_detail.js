@@ -71,7 +71,9 @@ function set_display_state(display_state) {
 }
 
 /**
- *  Switches the buttons and pop-ups based on the stage the quest is at (not accepted/accepted/completed)
+ * Switches the buttons and pop-ups based on the stage the quest is at (not accepted/accepted/completed)
+ * @param {FirestoreObject} user the currently signed in user
+ * @param {String} ID THe quest ID
  */
 function switch_buttons_and_pop_ups(user, ID) {
     // when "Accept" is clicked
@@ -148,6 +150,15 @@ function switch_buttons_and_pop_ups(user, ID) {
         window.location.href = `quest_completion.html?quest_id=${ID}`
     });
 
+}
+
+$(`#complete_quest_pop_up .pop_up_confirm_button`).click(doThing)
+
+/**
+ * STRINGSSSSSSSSSSSS
+ */
+async function doThing(){
+    // stuff
 }
 
 $(document).ready(function () {
