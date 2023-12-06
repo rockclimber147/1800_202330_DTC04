@@ -56,7 +56,7 @@ $(document).ready(function () {
                         autocomplete(document.getElementById("myInput"), all_keywords);
                   } else {
                         console.log('User not signed in!')
-                        window.location.href = "index.html";
+                        window.location.href = "login.html";
                   }
             });
 

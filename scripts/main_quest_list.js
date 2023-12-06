@@ -117,7 +117,7 @@ $(document).ready(async function () {
                     })
                 } else {
                     console.log('User not signed in!')
-                    window.location.href = "index.html";
+                    window.location.href = "login.html";
                 }
             });
         });
