@@ -20,7 +20,6 @@ $(document).ready(async function () {
 
         navigator.geolocation.getCurrentPosition(async (position) => {                          // Get player position
             var user_location = [position.coords.latitude, position.coords.longitude];
-            console.log('user_location in position', user_location)
 
             var map = await initialize_map(user_location);
 
@@ -42,23 +41,18 @@ $(document).ready(async function () {
                     // Get all quests that the user has accepted, completed, and bookmarked
                     let user_accepted_quest_ids = user_doc.data().accepted_quests;
                     user_accepted_quest_ids.push('placeholder so firebase doesn\'t get mad')
-                    console.log('current user accepted quests:', user_accepted_quest_ids);
 
                     let user_completed_quest_ids = user_doc.data().completed_quests;
                     user_completed_quest_ids.push('placeholder so firebase doesn\'t get mad')
-                    console.log('current user completed quests:', user_completed_quest_ids);
 
                     let user_bookmarked_quest_ids = user_doc.data().bookmarked_quests;
                     user_bookmarked_quest_ids.push('placeholder so firebase doesn\'t get mad')
-                    console.log('current user bookmarked quests:', user_bookmarked_quest_ids);
                     
                     [accepted_quests_db, completed_quests_db, bookmarked_quests_db] = await Promise.all([
                         db.collection('quests').where(firebase.firestore.FieldPath.documentId(), 'in', user_accepted_quest_ids).get(),
                         db.collection('quests').where(firebase.firestore.FieldPath.documentId(), 'in', user_completed_quest_ids).get(),
                         db.collection('quests').where(firebase.firestore.FieldPath.documentId(), 'in', user_bookmarked_quest_ids).get()
                     ])
-                    console.log('accepted quests db:', accepted_quests_db)
-                    console.log('completed quests db:', bookmarked_quests_db)
                     update_map(map, accepted_quests_db, user_doc);
                     update_quest_cards(
                         accepted_quests_db,
@@ -122,7 +116,8 @@ $(document).ready(async function () {
                         )
                     })
                 } else {
-                    alert('User not signed in!')
+                    console.log('User not signed in!')
+                    window.location.href = "index.html";
                 }
             });
         });

@@ -68,7 +68,7 @@ export function update_quest_cards(quest_db, quest_html_node, tag_html_node, use
         new_quest_card.find('i').click(() => (toggle_bookmark(quest_id, user_doc.id)));
         new_quest_card.find('.quest_name, .quest_rating, .quest_price, .quest_distance, .quest_image').click(() => (
             window.location.href = `./quest_detail.html?quest_id=${quest_id}`
-            )); // set links to quest cards
+        )); // set links to quest cards
 
         // append tags to quest card
         if (quest_tag_id_list[0] != "") {
@@ -91,7 +91,7 @@ export function update_quest_cards(quest_db, quest_html_node, tag_html_node, use
  */
 export async function initialize_map(user_location) {
     // Defines basic mapbox data
-    console.log('user_location in load_map():', user_location)
+    
     mapboxgl.accessToken = 'pk.eyJ1IjoiYWRhbWNoZW4zIiwiYSI6ImNsMGZyNWRtZzB2angzanBjcHVkNTQ2YncifQ.fTdfEXaQ70WoIFLZ2QaRmQ';
     let map = new mapboxgl.Map({
         container: 'map', // Container ID
@@ -134,7 +134,7 @@ export async function initialize_map(user_location) {
                 // Adds user's current location as a source to the map
                 navigator.geolocation.getCurrentPosition(position => {
                     let userLocation = [position.coords.longitude, position.coords.latitude];
-                    console.log(userLocation);
+                
                     if (userLocation) {
                         map.addSource('userLocation', {
                             'type': 'geojson',
@@ -210,9 +210,9 @@ export function update_map(map, quest_db, user_doc) {
     quest_db.forEach(doc => {
         let lat = doc.data().location[0];
         let lng = doc.data().location[1];
-        // console.log(lat, lng);
+        
         let coordinates = [lng, lat];
-        // console.log(coordinates);
+        
         // Coordinates
         let event_name = doc.data().quest_name; // Event Name
 
@@ -342,8 +342,8 @@ export function update_map(map, quest_db, user_doc) {
  * Toggles the view from map to quest card and back
  */
 export function toggle_view() {
-    console.log('switching...');
-    console.log($('#view_toggle_text').text())
+    
+    
     switch ($('#view_toggle_text').text()) {
         case 'MAP': {
             $('#view_toggle_text').text('LIST');
@@ -383,13 +383,11 @@ async function toggle_bookmark(quest_id, user_id) {
         await db.collection("users").doc(user_id).update({
             bookmarked_quests: firebase.firestore.FieldValue.arrayRemove(quest_id)
         })
-        console.log("bookmark has been removed for " + quest_id);
         document.getElementById(iconID).innerText = 'bookmark_border';
     } else {
         await db.collection("users").doc(user_id).update({
             bookmarked_quests: firebase.firestore.FieldValue.arrayUnion(quest_id)
         })
-        console.log("bookmark has been saved for " + quest_id);
         document.getElementById(iconID).innerText = 'bookmark';
     }
 }
