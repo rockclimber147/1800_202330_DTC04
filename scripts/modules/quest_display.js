@@ -377,6 +377,11 @@ function calculateDistance(current, destination) {
     return distance;
 }
 
+/**
+ * Toggles bookmark state of a quest
+ * @param {string} quest_id The ID of the quest to toggle the bookmark
+ * @param {string} user_id The ID of the user
+ */
 async function toggle_bookmark(quest_id, user_id) {
     var iconID = 'bookmark_' + quest_id;
     if (document.getElementById('bookmark_' + quest_id).innerText == 'bookmark') {
