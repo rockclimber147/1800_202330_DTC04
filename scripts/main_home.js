@@ -55,6 +55,7 @@ $(document).ready(async function () {
 
 $('#view_toggle').on('click', toggle_view)
 
+// Read the user's name from firestore and dynamically populate the welcome message
 function insertNameFromFirestore() {
       let currentUser = ""
       // Check if the user is logged in:
@@ -66,12 +67,11 @@ function insertNameFromFirestore() {
                         // Get the user name
                         var userName = userDoc.data().name.split(" ")[0];
                         console.log(userName);
-                        //$("#name-goes-here").text(userName); // jQuery
                         document.getElementById("name-goes-here").innerText = userName;
                   })
             } else {
                   console.log('User not signed in!')
-                  window.location.href = "index.html";
+                  window.location.href = "login.html";
             }
       })
 }

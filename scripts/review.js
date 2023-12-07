@@ -33,7 +33,6 @@ if (window.location.href.includes("review.html")) {
 }
 
 
-// Demo 10 Step 2.7
 // Make stars and dollar signs clickable
 const stars = document.querySelectorAll('.star'); //selects the stars from review.html
 const money = document.querySelectorAll('.money') //selects the money from review.html
@@ -110,10 +109,6 @@ function writeReview() {
       }
 }
 
-
-
-
-// Demo 10 - Populating reviews
 /**
  * Makes the previously submitted reviews show up in the corresponding quest detail page
  */
