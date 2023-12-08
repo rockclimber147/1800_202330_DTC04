@@ -27,13 +27,19 @@ Here are the steps ...
 ## 5. Known Bugs and Limitations
 Here are some known bugs:
 * Quest distances to user break when user does not consent to sharing their location
-* ...
-* ...
+* Depending on PC, sometimes it takes a long time to load the map
+* Quest ratings and cost displayed on quest details and cards are not dynamically generated from user reviews
+* Quests cannot be sorted by user preferences yet 
 
 ## 6. Features for Future
 What we'd like to build in the future:
 * Implement location checking for completing quests
 * Multi stage quests, or quests where the user has to visit several places
+* Show level under the profile icon on the top right
+* Users allowed to add quests after reaching a certain level
+* Allowing users to add friends or have a community board
+* Allow users to edit their completed quest list
+* Record time stamp for the time of completion
 	
 ## 7. Contents of Folder
 Content of the project folder:
@@ -45,43 +51,39 @@ Content of the project folder:
  ┣ 📂.vscode
  ┃ ┗ 📜settings.json
  ┣ 📂images
- ┃ ┣ 📜complete-quest.png
- ┃ ┣ 📜complete-quest2.png
- ┃ ┣ 📜complete-quest3.png
- ┃ ┣ 📜completed_quest_pin.png
- ┃ ┣ 📜drop-quest.png
- ┃ ┣ 📜person-icon.png
- ┃ ┣ 📜quest-dropped.png
- ┃ ┣ 📜quest_pin.png
- ┃ ┣ 📜theres-so-much-to-see.png
- ┃ ┣ 📜treasure-box.png
- ┃ ┗ 📜treasure-map.png
- ┣ 📂other_features
- ┃ ┣ 📜add_quest.html
- ┃ ┣ 📜add_quest.js
- ┃ ┣ 📜helpers.js
- ┃ ┗ 📜token.html
- ┣ 📂reusable_html
- ┃ ┣ 📜bottom_nav.html
- ┃ ┣ 📜quest_card.html
+ ┃ ┣ 📜complete-quest.png // picture for a popup - generated with chatgpt
+ ┃ ┣ 📜completed_quest_pin.png // green quest pin - from favicon.com
+ ┃ ┣ 📜drop-quest.png // picture for a popup - generated with chatgpt
+ ┃ ┣ 📜person-icon.png // placeholder for profile picture - from google icon
+ ┃ ┣ 📜quest-dropped.png // picture for a popup - generated with chatgpt
+ ┃ ┣ 📜quest_pin.png // red quest pin - from favicon.com
+ ┃ ┣ 📜theres-so-much-to-see.png // picture on landing page
+ ┃ ┣ 📜treasure-box.png // picture for points - generated with chatgpt
+ ┃ ┗ 📜treasure-map.png // picture for a pop up - generated with chatgpt
+ ┣ 📂other_features // folder for storing unused html code
+ ┃ ┣ 📜helpers.js // manual functions to organize quest
+ ┃ ┗ 📜token.html // token for hosting 
+ ┣ 📂reusable_html // templates for reusable html
+ ┃ ┣ 📜bottom_nav.html 
+ ┃ ┣ 📜quest_card.html 
  ┃ ┣ 📜quest_tag.html
  ┃ ┣ 📜top_nav_after_login.html
  ┃ ┣ 📜top_nav_before_login.html
  ┃ ┗ 📜top_nav_with_return_button.html
  ┣ 📂scripts
- ┃ ┣ 📂modules
- ┃ ┃ ┗ 📜quest_display.js
+ ┃ ┣ 📂modules // stores reusable modules
+ ┃ ┃ ┗ 📜quest_display.js // handles displaying quest for the three main pages
  ┃ ┣ 📜authentication.js
  ┃ ┣ 📜firebaseAPI_DTC04.js
- ┃ ┣ 📜main_home.js
- ┃ ┣ 📜main_quest_list.js
- ┃ ┣ 📜main_search.js
- ┃ ┣ 📜profile.js
- ┃ ┣ 📜quest_completion.js
- ┃ ┣ 📜quest_detail.js
+ ┃ ┣ 📜main_home.js // initializes home page
+ ┃ ┣ 📜main_quest_list.js // quest list view of the home page
+ ┃ ┣ 📜main_search.js // search page
+ ┃ ┣ 📜profile.js 
+ ┃ ┣ 📜quest_completion.js // add points when press on complete button
+ ┃ ┣ 📜quest_detail.js // quest detail page
  ┃ ┣ 📜review.js
- ┃ ┗ 📜skeleton.js
- ┣ 📂styles
+ ┃ ┗ 📜skeleton.js // loads the reusable html
+ ┣ 📂styles // styles correspond to html page
  ┃ ┣ 📜index.css
  ┃ ┣ 📜login.css
  ┃ ┣ 📜main.css
@@ -94,7 +96,7 @@ Content of the project folder:
  ┃ ┣ 📜review.css
  ┃ ┣ 📜style.css
  ┃ ┗ 📜thanks.css
- ┣ 📜.firebaserc
+ ┣ 📜.firebaserc // hosting material
  ┣ 📜.gitignore
  ┣ 📜404.html
  ┣ 📜firebase.json
