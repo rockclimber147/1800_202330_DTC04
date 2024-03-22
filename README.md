@@ -1,5 +1,10 @@
 # Project Title
 
+## 0. Related Links
+* Deployed website: https://comp1800-dtc04-1214c.web.app/
+* Figma: https://www.figma.com/file/UVVj9JKf3l5s2dm3ygJ6eH/Brainstorm-Smart-Cities
+* Trello: https://trello.com/b/zBAQsD0b/1800202330dtc04
+
 ## 1. Project Description
 State your app in a nutshell, or one-sentence pitch. Give some elaboration on what the core features are.  
 This browser based web application to ... 
